@@ -1,0 +1,117 @@
+<template>
+	<div class="upload-background-root column justify-center items-center">
+		<BtUploader
+			class="upload"
+			:width="120"
+			:height="120"
+			:size="1"
+			fileName="image"
+			accept=".jpg, image/*"
+			action="/images/upload/v1"
+			:parmas="{}"
+			@ok="ok"
+			@fail="fail"
+		>
+			<div class="upload-image-inner column justify-center items-center">
+				<q-icon size="20px" name="sym_r_add_photo_alternate" />
+				<div class="upload-image-inner-label">Upload image</div>
+			</div>
+		</BtUploader>
+
+		<div class="upload-image-title">
+			Select local image, upload and edit your own avatar
+		</div>
+		<div class="upload-image-label">
+			We recommend sizes above 400x400px, PNG or JPG
+		</div>
+	</div>
+</template>
+
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import { useUserStore } from 'src/stores/user';
+import { useQuasar } from 'quasar';
+import { bus } from '../../utils/bus';
+
+defineProps({
+	modelValue: {
+		type: Object,
+		required: true
+	}
+});
+
+const $q = useQuasar();
+const userStore = useUserStore();
+
+const currentPath = ref();
+onMounted(async () => {
+	console.log(userStore.user);
+});
+
+const ok = async (response: any) => {
+	console.log('ok ');
+	console.log(response.data);
+
+	if (response.code !== 200) {
+		$q.notify(response.message);
+		return;
+	}
+
+	currentPath.value = response.data.imageUrl;
+	bus.emit('choice', {
+		imageUrl: currentPath.value,
+		avatar: currentPath.value
+	});
+};
+
+const fail = (response: unknown) => {
+	console.log('fail', response);
+};
+</script>
+
+<style scoped lang="scss">
+.upload-background-root {
+	width: 100%;
+	height: 100%;
+
+	.upload-image-inner {
+		border-radius: 8px;
+		border: 1px solid var(--Grey-02, #ebebeb);
+		width: 120px;
+		height: 120px;
+
+		.upload-image-inner-label {
+			margin-top: 8px;
+			font-family: Roboto;
+			font-size: 12px;
+			font-weight: 400;
+			line-height: 16px;
+			letter-spacing: 0em;
+			text-align: left;
+			color: var(--Grey-08, #5c5551);
+		}
+	}
+
+	.upload-image-title {
+		font-family: Roboto;
+		font-size: 12px;
+		margin-top: 12px;
+		font-weight: 400;
+		line-height: 16px;
+		letter-spacing: 0em;
+		text-align: center;
+		color: #000;
+	}
+
+	.upload-image-label {
+		font-family: Roboto;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 16px;
+		letter-spacing: 0em;
+		text-align: center;
+		margin-top: 4px;
+		color: var(--Grey-05-, #adadad);
+	}
+}
+</style>

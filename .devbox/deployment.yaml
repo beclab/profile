@@ -1,0 +1,230 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: profile-dev
+    applications.app.bytetrade.io/name: profile-dev
+    applications.app.bytetrade.io/owner: {{ .Values.bfl.username }}
+    applications.app.bytetrade.io/author: bytetrade.io
+  annotations:
+    applications.app.bytetrade.io/icon: https://bookface-images.s3.amazonaws.com/small_logos/621cb43ec50d1aae545391abcc114014c84d295f.png
+    applications.app.bytetrade.io/title: Profile Dev
+    applications.app.bytetrade.io/version: '0.0.1'
+    applications.app.bytetrade.io/entrances: '[{"name":"profile-dev", "host":"profile-dev", "port":8080,"title":"Profile Dev"}]'
+
+  name: profile-dev
+  namespace: user-space-{{ .Values.bfl.username }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: profile-dev
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.network/chrome-default: "true"
+        io.kompose.service: profile-dev
+    spec:
+      initContainers:
+      - name: terminus-sidecar-init
+        image: openservicemesh/init:v1.2.3
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+          capabilities: 
+            add:
+            - NET_ADMIN
+          runAsNonRoot: false
+          runAsUser: 0
+        command:
+        - /bin/sh
+        - -c
+        - |
+          iptables-restore --noflush <<EOF
+          # sidecar interception rules
+          *nat
+          :PROXY_IN_REDIRECT - [0:0]
+          :PROXY_INBOUND - [0:0]
+          -A PROXY_IN_REDIRECT -p tcp -j REDIRECT --to-port 15003
+          -A PROXY_INBOUND -p tcp --dport 15000 -j RETURN
+          -A PROXY_INBOUND -p tcp -j PROXY_IN_REDIRECT
+          -A PREROUTING -p tcp -j PROXY_INBOUND
+          COMMIT
+          EOF
+        
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+      containers:
+        - env:
+            - name: PGID
+              value: "1000"
+            - name: PUID
+              value: "1000"
+            - name: TZ
+              value: Etc/UTC
+            - name: OS_APP_KEY
+              value: profile-dev-testkey
+            - name: OS_APP_SECRET
+              value: profile-dev-testsecret-asdasd23d23
+            - name: OS_SYSTEM_SERVER
+              value: system-server.user-system-{{ .Values.bfl.username }}
+
+
+     
+          image: "aboveos/node-ts-dev"
+          name: hahah
+          ports:
+
+            - containerPort: 8080
+                    
+          resources: {}
+
+          volumeMounts:
+                    
+            - mountPath: /appdata
+              name: appdata
+                      
+            - mountPath: /userdata
+              name: userdata
+
+        - name: terminus-envoy-sidecar
+          image: envoyproxy/envoy-distroless:v1.25.2
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+          ports:
+          - name: proxy-admin
+            containerPort: 15000
+          - name: proxy-inbound
+            containerPort: 15003
+          volumeMounts:
+          - name: terminus-sidecar-config
+            readOnly: true
+            mountPath: /etc/envoy/envoy.yaml
+            subPath: envoy.yaml
+          command:
+          - /usr/local/bin/envoy
+          - --log-level
+          - debug
+          - -c
+          - /etc/envoy/envoy.yaml
+          env:
+          - name: POD_UID
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.uid
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+    
+      restartPolicy: Always
+      
+      volumes:
+        - name: terminus-sidecar-config
+          configMap:
+            name: sidecar-configs
+            items:
+            - key: envoy.yaml
+              path: envoy.yaml
+                    
+        - name: appdata
+          hostPath:
+            type: DirectoryOrCreate
+            path: {{ .Values.userspace.appdata }}/Profile-Dev
+                      
+        - name: userdata
+          hostPath:
+            type: DirectoryOrCreate
+            path: {{ .Values.userspace.data }}/Profile-Dev
+
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: profile-dev
+  name: profile-dev
+  namespace: user-space-{{ .Values.bfl.username }}
+spec:
+  ports:
+
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+                    
+  selector:
+    io.kompose.service: profile-dev
+status:
+  loadBalancer: {}
+                  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-dev-proxy
+  namespace: user-system-{{ .Values.bfl.username }}
+spec:
+  type: ExternalName
+  externalName: profile-dev.user-space-{{ .Values.bfl.username }}.svc.cluster.local
+  ports:
+    - protocol: TCP
+      name: hahah
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-dev
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: ExternalName
+  externalName: profile-dev-proxy.user-system-{{ .Values.bfl.username }}.svc.cluster.local
+  ports:
+    - protocol: TCP
+      name: hahah
+      port: 8080
+      targetPort: 8080
+
+---
+apiVersion: sys.bytetrade.io/v1alpha1
+kind: ApplicationPermission
+metadata:
+  name: profile-dev
+  namespace: user-system-{{ .Values.bfl.username }}
+spec:
+  app: profile-dev
+  appid: profile-dev
+  key: profile-dev-testkey
+  secret: profile-dev-testsecret-asdasd23d23
+  permissions:
+  - dataType: datastore
+    group: service.bfl
+    ops:
+    - GetKey
+    - GetKeyPrefix
+    - SetKey
+    - DeleteKey
+    version: v1
+status:
+  state: active
+

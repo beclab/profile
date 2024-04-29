@@ -1,0 +1,39 @@
+name: editor
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*"
+jobs:
+  update_dockerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+      - name: get latest tag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        id: get-latest-tag
+        with:
+          fallback: latest
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.15"
+      - name: Install
+        run: npm i -g @quasar/cli
+      - name: Build
+        run: npm install;npm run build:editor
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile.frontend
+          push: true
+          tags: beclab/profile-editor:${{ steps.get-latest-tag.outputs.tag }}

@@ -1,0 +1,50 @@
+{
+  "name": "@profile/editor",
+  "version": "0.0.1",
+  "description": "A Quasar Project",
+  "productName": "profile App",
+  "author": "luz33c <33cluz@gmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.ts,.vue ./",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0",
+    "dev": "ACTION=EDITOR DEV_PORT=9100 quasar dev",
+    "dev:editor": "ACTION=EDITOR DEV_PORT=9100 quasar dev",
+    "dev:preview": "ACTION=PREVIEW DEV_PORT=9001 quasar dev",
+    "build": "quasar build",
+    "build:editor": "ACTION=EDITOR quasar build",
+    "build:preview": "ACTION=PREVIEW quasar build"
+  },
+  "dependencies": {
+    "@bytetrade/ui": "^0.0.83",
+    "@quasar/extras": "^1.16.9",
+    "axios": "^1.3.5",
+    "html2canvas": "^1.4.1",
+    "pinia": "^2.0.11",
+    "qrcode.vue": "^3.4.1",
+    "quasar": "^2.6.0",
+    "vue": "^3.0.0",
+    "vue-cropper": "^1.0.8",
+    "vue-draggable-next": "^2.1.1",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.0.0"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "^1.3.0",
+    "@types/node": "^12.20.21",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "autoprefixer": "^10.4.2",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.0.2"
+  },
+  "engines": {
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}
