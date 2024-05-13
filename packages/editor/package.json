@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A Quasar Project",
   "productName": "profile App",
-  "author": "luz33c <33cluz@gmail.com>",
+  "author": "icebergtsn <zhangyuhang@bytetrade.io>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
