@@ -9,6 +9,10 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers');
+const dotenv = require('dotenv');
+
+dotenv.config();
+console.log(process.env);
 
 module.exports = configure(function (/* ctx */) {
 	return {
@@ -65,10 +69,8 @@ module.exports = configure(function (/* ctx */) {
 			// analyze: true,
 			env: {
 				ACTION: process.env.ACTION,
-				NODE_RPC: 'https://sepolia.optimism.io',
-				CONTRACT_DID: '0x4c8c98e652d6a01494971a8faF5d3b68338f9ED4',
-				CONTRACT_ROOT_RESOLVER: '0xaA5bE49799b6A71Eda74d22D01F7A808aFf41b3f',
-				CONTRACT_REGISTRY: '0x9d100b3781cBB91746c13E876a3B520d22E0880F'
+				URL: process.env.URL,
+				WS_URL: process.env.WS_URL
 			}
 			// rawDefine: {}
 			// ignorePublicFolder: true,
@@ -86,12 +88,13 @@ module.exports = configure(function (/* ctx */) {
 
 		// Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
 		devServer: {
-			// https: true
+			https: true,
+			host: process.env.DEV_DOMAIN || 'localhost',
 			port: 9100,
 			proxy: {
 				// proxy all requests starting with /api to the backend server
 				'/api': {
-					target: 'http://localhost:3020',
+					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
 					changeOrigin: true,
 					pathRewrite: {
 						'^/api': ''
