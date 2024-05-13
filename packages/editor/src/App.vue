@@ -46,8 +46,14 @@ export default defineComponent({
 						userStore.setUser(response.data.data.profile);
 						userStore.setInfo(response.data.data.info);
 
-						const terminusName = response.data.data.info.terminusName;
-						const did = terminusName.slice(0, terminusName.indexOf('@'));
+						const appTerminusName = response.data.data.info.appTerminusName;
+						const terminusName = response.data.data.profile.terminusName;
+						let did = '';
+						if (terminusName) {
+							did = terminusName;
+						} else {
+							did = appTerminusName.slice(0, appTerminusName.indexOf('@'));
+						}
 						document.title = `${did} | Terminus HomePage`;
 
 						// initUserData(userStore.user);
