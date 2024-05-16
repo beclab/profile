@@ -14,7 +14,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 console.log(process.env);
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function () {
 	return {
 		eslint: {
 			// fix: true,
@@ -31,7 +31,11 @@ module.exports = configure(function (/* ctx */) {
 		// app boot file (/src/boot)
 		// --> boot files are part of "main.js"
 		// https://v2.quasar.dev/quasar-cli-vite/boot-files
-		boot: ['i18n', 'smartEnginEntrance', 'bytetradeUi'],
+		boot: [
+			'i18n',
+			'smartEnginEntrance',
+			{ path: 'bytetradeUi', server: false }
+		],
 
 		// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
 		css: ['app.scss'],
@@ -90,7 +94,7 @@ module.exports = configure(function (/* ctx */) {
 		devServer: {
 			https: true,
 			host: process.env.DEV_DOMAIN || 'localhost',
-			port: 9100,
+			port: process.env.DEV_PORT,
 			proxy: {
 				// proxy all requests starting with /api to the backend server
 				'/api': {
@@ -118,12 +122,6 @@ module.exports = configure(function (/* ctx */) {
 					target: 'ws://localhost:9100',
 					ws: true
 				}
-			},
-			open: true, // opens browser window automatically
-			hmr: {
-				port: 9100,
-				clientPort: 443,
-				path: '/socket.io'
 			}
 		},
 
@@ -174,7 +172,7 @@ module.exports = configure(function (/* ctx */) {
 			// manualStoreHydration: true,
 			// manualPostHydrationTrigger: true,
 
-			prodPort: 4020, // The default port that the production server should use
+			prodPort: process.env.DEV_PORT, // The default port that the production server should use
 			// (gets superseded if process.env.PORT is specified at runtime)
 
 			middlewares: [
