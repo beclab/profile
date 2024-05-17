@@ -8,11 +8,11 @@ import axios from 'axios';
 
 export default defineComponent({
 	name: 'App',
-	async preFetch() {
+	async preFetch({ ssrContext }) {
 		if (process.env.ACTION === 'PREVIEW') {
 			const userStore = useUserStore();
 			return await axios
-				.get(process.env.PREVIEW_DOMAIN + '/api/user/init')
+				.get(ssrContext?.req.headers.host + '/api/user/init')
 				.then((response) => {
 					console.log(response.data.data);
 					userStore.setUser(response.data.data.profile);
