@@ -172,7 +172,7 @@ module.exports = configure(function () {
 			// manualStoreHydration: true,
 			// manualPostHydrationTrigger: true,
 
-			prodPort: process.env.DEV_PORT, // The default port that the production server should use
+			prodPort: process.env.DEV_PORT | 8090, // The default port that the production server should use
 			// (gets superseded if process.env.PORT is specified at runtime)
 
 			middlewares: [
