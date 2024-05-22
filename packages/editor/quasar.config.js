@@ -120,11 +120,11 @@ module.exports = configure(function (/* ctx */) {
 				}
 			},
 			open: true, // opens browser window automatically
-			hmr: {
-				port: 9100,
-				clientPort: 443,
-				path: '/socket.io'
-			}
+			// hmr: {
+			// 	port: 9100,
+			// 	clientPort: 443,
+			// 	path: '/socket.io'
+			// }
 		},
 
 		// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
