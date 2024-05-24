@@ -2006,7 +2006,7 @@
   resolved "https://registry.npmjs.org/@pkgr/core/-/core-0.1.1.tgz"
   integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
 
-"@profile/editor@file:/Users/bytetrade/webstorm/profile/packages/editor":
+"@profile/editor@file:/Users/pengpeng/profile/packages/editor":
   version "0.0.1"
   resolved "file:packages/editor"
   dependencies:
@@ -2025,7 +2025,7 @@
     vue-i18n "^9.2.2"
     vue-router "^4.0.0"
 
-"@profile/server@file:/Users/bytetrade/webstorm/profile/packages/server":
+"@profile/server@file:/Users/pengpeng/profile/packages/server":
   version "0.0.1"
   resolved "file:packages/server"
   dependencies:

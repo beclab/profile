@@ -8,8 +8,8 @@ WORKDIR /server_dist
 
 # again if any source files change.
 
-COPY package*.json lerna.json tsconfig.json ./
-COPY packages/server/package*.json ./packages/server/
+COPY ../../package*.json ../../lerna.json ../../tsconfig.json ./
+COPY ../../packages/server/package*.json ./packages/server/
 
 # Install dependencies and bootstrap packages
 
@@ -17,9 +17,9 @@ RUN npm ci --unsafe-perm
 
 # Now copy over source files and assets
 
-COPY packages/server/src ./packages/server/src
-COPY packages/server/tsconfig.json ./packages/server/
-COPY packages/server/webpack.config.js ./packages/server/webpack.config.js
+COPY ../../packages/server/src ./packages/server/src
+COPY ../../packages/server/tsconfig.json ./packages/server/
+COPY ../../packages/server/webpack.config.js ./packages/server/webpack.config.js
 
 RUN npm run server:build
 
