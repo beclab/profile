@@ -22,10 +22,6 @@ jobs:
         id: get-latest-tag
         with:
           fallback: latest
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: "18.15"
       - name: Build and push
         uses: docker/build-push-action@v2
         with:

@@ -1,4 +1,4 @@
-FROM node:16.13.1-alpine as server_dist
+FROM node:18-alpine as server_dist
 
 WORKDIR /server_dist
 
@@ -22,7 +22,7 @@ RUN npm ci --unsafe-perm
 
 RUN npm run build:preview
 
-FROM node:16.13.1 as server_dist2
+FROM node:18-alpine as server_dist2
 
 WORKDIR /server_dist2/packages/editor
 
@@ -45,7 +45,7 @@ COPY --from=server_dist /server_dist/packages/server/editor/dist/ssr/ .
 # CMD [ "server"]
 
 
-FROM node:16.13.1-alpine 
+FROM node:18-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
