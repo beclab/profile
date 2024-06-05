@@ -11,6 +11,7 @@ export default defineComponent({
 	async preFetch({ ssrContext }) {
 		if (process.env.ACTION === 'PREVIEW') {
 			const userStore = useUserStore();
+			console.log('ssrContext?.req.headers.host');
 			return await axios
 				.get(ssrContext?.req.headers.host + '/api/user/init')
 				.then((response) => {

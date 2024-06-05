@@ -2029,6 +2029,7 @@
   version "0.0.1"
   resolved "file:packages/server"
   dependencies:
+    "@bytetrade/core" "^0.3.59"
     "@nestjs/common" "^9.0.0"
     "@nestjs/core" "^9.0.0"
     "@nestjs/mapped-types" "*"

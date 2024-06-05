@@ -5,8 +5,8 @@
     "boot": "lerna bootstrap",
     "build": "lerna run build",
     "dev": "lerna run --scope '@profile/{server,editor}' --parallel dev",
-    "build:editor": "ACTION=EDITOR lerna run build --scope @profile/editor",
-    "build:preview": "ACTION=PREVIEW lerna run build --scope @profile/editor",
+    "build:editor": "lerna run build:editor --scope @profile/editor",
+    "build:preview": "lerna run build:preview --scope @profile/editor",
     "server:build": "lerna run build --scope @profile/server",
     "clean": "lerna clean"
   },

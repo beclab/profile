@@ -1,12 +1,64 @@
-FROM nginx:stable-alpine
+FROM node:16.13.1-alpine as server_dist
 
-RUN sed -i '1idaemon off;' /etc/nginx/nginx.conf
+WORKDIR /server_dist
 
-COPY docker/preview/nginx.conf /etc/nginx/conf.d/default.conf
+# Only copy over the packages files of all required packages.
 
-# adapt the `dist/` folder to the output directory your build tool uses (such as `dist/`, `build/` or `www/`).
-COPY packages/editor/dist/spa/ /app
+# This will ensure that we don't have to install all dependencies
 
-EXPOSE 80
+# again if any source files change.
 
-CMD ["nginx"]
+COPY ../../package*.json ../../lerna.json ../../tsconfig.json ./
+COPY ../../packages/editor/package*.json ./packages/editor/
+
+# Install dependencies and bootstrap packages
+
+RUN npm ci --unsafe-perm
+
+# Now copy over source files and assets
+
+COPY ../../packages/editor/src ./packages/editor/src
+COPY ../../packages/editor/tsconfig.json ./packages/editor/
+COPY ../../packages/editor/webpack.config.js ./packages/editor/webpack.config.js
+
+RUN npm run build:preview
+
+FROM node:16.13.1 as server_dist2
+
+WORKDIR /server_dist2/packages/editor
+
+COPY --from=server_dist /server_dist/packages/server/editor/dist/ssr/package\*.json .
+
+RUN npm install
+
+COPY --from=server_dist /server_dist/packages/server/editor/dist/ssr/ .
+
+# FROM node:16.13.1-buster-slim
+
+# EXPOSE 3020
+
+# WORKDIR /desktop
+
+# COPY --from=server_dist2 /server_dist2/packages/server/ .
+
+# ENTRYPOINT ["npm", "run"]
+
+# CMD [ "server"]
+
+
+FROM node:16.13.1-alpine 
+
+# Create app directory
+WORKDIR /usr/src/app
+
+#RUN npm install
+RUN npm install -g pm2 
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# Bundle app source
+COPY --from=server_dist2 /server_dist2/packages/editor .
+
+EXPOSE 8090
+CMD pm2-docker start index.js
+
