@@ -11,13 +11,16 @@ export default defineComponent({
 	async preFetch({ ssrContext }) {
 		if (process.env.ACTION === 'PREVIEW') {
 			const userStore = useUserStore();
-			console.log('ssrContext?.req.headers.host');
+			console.log(ssrContext?.req.headers.host);
 			return await axios
-				.get(ssrContext?.req.headers.host + '/api/user/init')
+				.get('http://127.0.0.1:3020/api/user/init')
 				.then((response) => {
 					console.log(response.data.data);
 					userStore.setUser(response.data.data.profile);
 					userStore.setInfo(response.data.data.info);
+				})
+				.catch((error) => {
+					console.log(error);
 				});
 		}
 	},
