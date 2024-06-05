@@ -26,10 +26,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "18.15"
-      - name: Install
-        run: npm i -g @quasar/cli
-      - name: Build
-        run: npm install;npm run build:preview
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
