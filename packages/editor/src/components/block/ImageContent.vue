@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import EditView from 'components/base/EditView.vue';
-import BioImage from 'components/base/BioImage.vue';
+import EditView from 'src/components/base/EditView.vue';
+import BioImage from 'src/components/base/BioImage.vue';
 import { useI18n } from 'vue-i18n';
 
 defineProps({

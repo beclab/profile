@@ -1,6 +1,6 @@
 <template>
 	<div class="preview-share-container row items-center justify-between">
-		<div class="preview-share-edit row justify-between">
+		<div class="preview-share-edit row justify-between text-ink-2">
 			<div class="preview-share-url">
 				{{ url }}
 			</div>
@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import BioButton from 'components/base/BioButton.vue';
 import { watch, ref } from 'vue';
-import { copyToClipboard, useQuasar } from 'quasar';
+import { copyToClipboard } from 'quasar';
 import BioSharePopup from 'components/share/BioSharePopup.vue';
 import { useUserStore } from 'src/stores/user';
 import { TerminusInfo } from '@bytetrade/core';
@@ -31,7 +31,6 @@ const { t } = useI18n();
 const url = ref();
 const zone = ref<string>('');
 const name = ref<string>('');
-const $q = useQuasar();
 const userStore = useUserStore();
 
 const copyUrl = () => {
@@ -79,13 +78,11 @@ watch(
 		width: calc(100% - 92px);
 		height: 32px;
 		border-radius: 8px;
-		border: 1px solid var(--grey-02, #ebebeb);
-		background: #fff;
+		border: 1px solid $input-stroke;
 		overflow: hidden;
 		padding: 6px 8px 6px 12px;
 
 		.preview-share-url {
-			color: var(--grey-10, #1f1814);
 			text-overflow: ellipsis;
 			font-family: Roboto;
 			font-size: 12px;

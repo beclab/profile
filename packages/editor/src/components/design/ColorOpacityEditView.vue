@@ -121,10 +121,10 @@ defineExpose({ setHexColor });
 
 <style lang="scss">
 .opacity-input-background {
-	width: 116px;
+	width: 164px;
 	height: 32px;
 	border-radius: 8px;
-	border: 1px solid var(--border, #ebebeb);
+	border: 1px solid $input-stroke;
 	position: relative;
 
 	.opacity-input {

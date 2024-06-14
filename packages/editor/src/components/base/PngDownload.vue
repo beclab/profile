@@ -8,12 +8,10 @@
 		</div>
 		<div class="row justify-center">
 			<span class="png-download-tip">.png</span>
-			<q-circular-progress
+			<q-img
 				v-if="isLoading"
-				size="20px"
-				indeterminate
-				:thickness="0.1"
-				color="blue-6"
+				class="download-image"
+				:src="getRequireImage('loading-image.svg')"
 			/>
 			<q-icon
 				v-else
@@ -32,7 +30,7 @@ import html2canvas from 'html2canvas';
 import { useQuasar } from 'quasar';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-
+import { getRequireImage } from 'src/utils/helper';
 const { t } = useI18n();
 const $q = useQuasar();
 const props = defineProps({
@@ -70,7 +68,9 @@ const download = () => {
 				$q.notify(`File download failed : ${e.message}`);
 			})
 			.finally(() => {
-				isLoading.value = false;
+				setTimeout(() => {
+					isLoading.value = false;
+				}, 1000);
 			});
 	} else {
 		$q.notify('File download failed');
@@ -86,7 +86,7 @@ const download = () => {
 
 	.png-download-title {
 		overflow: hidden;
-		color: var(--Grey-10, #1f1814);
+		color: $ink-1;
 		font-family: Roboto;
 		font-size: 14px;
 		font-weight: 500;
@@ -102,11 +102,10 @@ const download = () => {
 		line-height: 16px;
 		letter-spacing: 0em;
 		text-align: left;
-		color: var(--Grey-05, #adadad);
+		color: $ink-3;
 	}
 
 	.png-download-tip {
-		//styleName: Text/Body3;
 		font-family: Roboto;
 		font-size: 12px;
 		font-weight: 400;
@@ -114,13 +113,41 @@ const download = () => {
 		letter-spacing: 0em;
 		text-align: left;
 		margin-right: 12px;
-		color: var(--Grey-05, #adadad);
+		color: $ink-3;
 	}
 
 	.download-icon {
 		&:hover {
 			border-radius: 4px;
-			background: var(--Grey-01, #f6f6f6);
+			background: $btn-bg-pressed;
+		}
+	}
+
+	.download-image {
+		width: 20px;
+		height: 20px;
+		animation: animate 1.2s linear infinite;
+		-webkit-animation: animate 1.2s linear infinite;
+	}
+
+	@keyframes animate {
+		0% {
+			transform: rotate(0deg);
+			-webkit-transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+			-webkit-transform: rotate(360deg);
+		}
+	}
+	@-webkit-keyframes animate {
+		0% {
+			transform: rotate(0deg);
+			-webkit-transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+			-webkit-transform: rotate(360deg);
 		}
 	}
 }

@@ -74,7 +74,7 @@ function onInput(value: string) {
 .input-item {
 	height: var(--height, 32px);
 	width: 100%;
-	border: 1px solid var(--border, #ebebeb);
+	border: 1px solid $input-stroke;
 	border-radius: 8px;
 	overflow: hidden;
 
@@ -94,7 +94,7 @@ function onInput(value: string) {
 			line-height: 16px;
 			letter-spacing: 0em;
 			text-align: left;
-			color: 1px solid var(--border, #ebebeb);
+			color: 1px solid $ink-2;
 		}
 	}
 }

@@ -1,4 +1,5 @@
 <template>
+	<bt-theme />
 	<router-view />
 </template>
 <script>

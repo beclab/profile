@@ -1,15 +1,15 @@
 <template>
 	<div
-		:style="{ '--border': isEdit ? '#1F1814' : '' }"
+		:style="{ '--border': isEdit ? border : '' }"
 		class="social-edit column justify-start"
 	>
 		<div class="social-edit-board row items-center">
-			<q-icon color="grey-5" size="20px" name="sym_r_drag_indicator" />
+			<q-icon color="ink0-3" size="20px" name="sym_r_drag_indicator" />
 			<social-svg
 				:platform="platform"
 				width="20px"
 				height="20px"
-				style="margin-left: 12px"
+				class="q-ml-md"
 			/>
 			<div class="edit-area row justify-start items-center">
 				<span class="platform-name">@</span>
@@ -54,9 +54,11 @@ const props = defineProps({
 		required: true
 	}
 });
-
+const { color: border } = useColor('input-stroke');
 const emit = defineEmits(['update:userName']);
 import { useUserStore } from 'src/stores/user';
+import { useColor } from '@bytetrade/ui';
+
 const userStore = useUserStore();
 const isEdit = ref(false);
 const displayUrl = ref();
@@ -112,8 +114,8 @@ onMounted(() => {
 		width: 100%;
 		height: 44px;
 		border-radius: 12px;
-		border: 1px solid var(--border, #ebebeb);
-		background: white;
+		border: 1px solid $input-stroke;
+		background: $background-1;
 		padding: 12px;
 
 		.edit-area {
@@ -129,7 +131,7 @@ onMounted(() => {
 				line-height: 16px;
 				letter-spacing: 0em;
 				text-align: left;
-				color: var(--grey-10, #1f1814);
+				color: $ink-1;
 			}
 
 			.username-input {
@@ -153,7 +155,7 @@ onMounted(() => {
 		text-align: left;
 		cursor: pointer;
 		text-decoration: none;
-		color: var(--grey-05, #adadad);
+		color: $ink-3;
 	}
 }
 </style>

@@ -67,8 +67,8 @@ const onButtonClick = () => {
 	width: 40px;
 	height: 40px;
 	border-radius: 12px;
-	border: 0.5px solid var(--border, #ebebeb);
-	background: white;
+	border: 0.5px solid $separator-2;
+	background: $ink-on-brand;
 	cursor: pointer;
 	text-decoration: none;
 }
@@ -77,8 +77,8 @@ const onButtonClick = () => {
 	width: 40px;
 	height: 40px;
 	border-radius: 12px;
-	border: 0.5px solid var(--border, #ebebeb);
-	background: var(--grey-01, #f6f6f6);
+	border: 0.5px solid $separator-2;
+	background: $background-3;
 	cursor: pointer;
 	text-decoration: none;
 }

@@ -1,14 +1,13 @@
 <template>
-	<q-menu :auto-close="false" max-height="500px">
+	<q-menu :auto-close="false" max-height="500px" style="border-radius: 12px">
 		<div class="bio-popup-menu">
 			<div class="bio-popup-title-bar row justify-between items-center">
 				<div class="row justify-start">
 					<q-icon
-						class="bio-clickable"
+						class="bio-clickable q-mr-xs"
 						v-if="back"
-						style="margin-right: 4px"
 						size="20px"
-						color="grey-8"
+						color="ink-2"
 						@click="emit('onBackClick')"
 						name="sym_r_chevron_left"
 					/>
@@ -51,10 +50,12 @@ const emit = defineEmits(['onBackClick']);
 
 <style scoped lang="scss">
 .bio-popup-menu {
-	width: 300px;
-	max-width: 300px !important;
+	width: 320px;
+	max-width: 320px !important;
 	box-shadow: 0 4px 10px 0 #00000033;
-	border-radius: 8px;
+	border-radius: 12px !important;
+	padding-left: 8px;
+	padding-right: 8px;
 
 	.bio-popup-title-bar {
 		width: 100%;
@@ -69,7 +70,7 @@ const emit = defineEmits(['onBackClick']);
 			line-height: 20px;
 			letter-spacing: 0em;
 			text-align: left;
-			color: var(--Grey-10, #1f1814);
+			color: $ink-1;
 		}
 	}
 
@@ -83,7 +84,7 @@ const emit = defineEmits(['onBackClick']);
 		line-height: 16px;
 		letter-spacing: 0em;
 		text-align: left;
-		color: var(--Grey-05, #adadad);
+		color: $ink-3;
 	}
 }
 </style>

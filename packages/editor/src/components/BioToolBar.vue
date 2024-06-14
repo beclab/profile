@@ -49,8 +49,7 @@ const switchItem = (item: string) => {
 	.item {
 		width: 3.2rem;
 		height: 3.2rem;
-		margin: auto;
-		margin-top: 2.4rem;
+		margin: 2.4rem auto auto;
 		display: flex;
 		border: none;
 		background: #ffffff;

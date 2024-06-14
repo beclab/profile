@@ -5,6 +5,7 @@
 	>
 		<q-icon
 			size="24px"
+			color="ink-2"
 			:name="expand ? 'sym_r_expand_less' : 'sym_r_expand_more'"
 		/>
 	</div>

@@ -3,13 +3,7 @@
 		class="row justify-center items-center"
 		:class="selected ? 'tab-item-root-selected' : 'tab-item-root'"
 	>
-		<q-icon
-			style="margin-right: 4px"
-			v-if="icon"
-			:name="icon"
-			class="font-icon"
-			size="16px"
-		/>
+		<q-icon v-if="icon" :name="icon" class="font-icon q-mr-xs" size="16px" />
 		<div class="tab-item-title">{{ label }}</div>
 	</div>
 </template>
@@ -39,20 +33,20 @@ defineProps({
 .tab-item-root {
 	height: 20px;
 	width: 112.67px;
-	color: var(--Grey-05, #adadad);
+	color: $ink-3;
 	text-align: center;
 	border-radius: 4px;
-	background-color: #f6f6f6;
+	background-color: $background-3;
 }
 
 .tab-item-root-selected {
 	height: 20px;
 	width: 112.67px;
-	color: var(--Grey-10, #1f1814);
+	color: $ink-1;
 	border-radius: 4px;
 	text-align: center;
-	background-color: #ffffff;
-	border: 1px solid #ebebeb;
+	background-color: $background-2;
+	border: 1px solid $separator-2;
 }
 
 .tab-item-title {
@@ -61,7 +55,6 @@ defineProps({
 	font-weight: 400;
 	line-height: 16px;
 	letter-spacing: 0em;
-	text-align: center;
 	text-align: center;
 	text-transform: capitalize;
 }

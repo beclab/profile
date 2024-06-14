@@ -6,7 +6,7 @@
 				<q-icon
 					size="16px"
 					name="sym_r_clear"
-					color="grey-8"
+					color="ink-3"
 					@click="onDialogCancel"
 				/>
 			</div>
@@ -32,12 +32,7 @@
 									</template>
 								</q-tab>
 
-								<div
-									:style="{
-										background: tab === 'upload' ? '#E8E8E8' : '#F6F6F6'
-									}"
-									class="tab-title-line"
-								/>
+								<div class="tab-title-line" />
 
 								<q-tab style="padding: 0" name="nft">
 									<template v-slot:default>
@@ -45,12 +40,7 @@
 									</template>
 								</q-tab>
 
-								<div
-									:style="{
-										background: tab === 'default' ? '#E8E8E8' : '#F6F6F6'
-									}"
-									class="tab-title-line"
-								/>
+								<div class="tab-title-line" />
 
 								<q-tab style="padding: 0" name="upload">
 									<template v-slot:default>
@@ -116,7 +106,7 @@ import DefaultAvatar from './DefaultAvatar.vue';
 import UploadAvatar from './UploadAvatar.vue';
 import NFTAvatar from './NFTAvatar.vue';
 import BioButton from 'components/base/BioButton.vue';
-import { bus } from '../..//utils/bus';
+import { bus } from 'src/utils/bus';
 import { useUserStore } from 'src/stores/user';
 import { Encoder } from '@bytetrade/core';
 import ProfileAvatarBoard from './ProfileAvatarBoard.vue';
@@ -209,14 +199,14 @@ onUnmounted(() => {
 	width: 800px;
 	height: 500px;
 	max-height: 500px;
-	background: #ffffff;
+	background: $background-1;
 	padding: 0;
 	position: relative;
 
 	.avatar-choose-header {
 		width: 100%;
 		height: 32px;
-		background: #f8f8f8;
+		background: $background-3;
 		padding-left: 12px;
 		padding-right: 12px;
 
@@ -227,19 +217,20 @@ onUnmounted(() => {
 			line-height: 16px;
 			letter-spacing: 0;
 			text-align: left;
+			color: $ink-1;
 		}
 	}
 
 	.avatar-choose-view {
 		margin-top: 20px;
 		border-radius: 8px;
-		border: 1px solid var(--Grey-02, #ebebeb);
+		border: 1px solid $separator-2;
 		height: 364px;
 		width: 374px;
 		margin-right: 6px;
 
 		.tab-title-background {
-			background: #f6f6f6;
+			background: $background-3;
 			margin-top: 16px;
 			margin-left: 16px;
 			border-radius: 4px;
@@ -250,17 +241,18 @@ onUnmounted(() => {
 			width: 1px;
 			height: 14px;
 			border-radius: 0.5px;
+			background-color: $ink-3;
 		}
 	}
 
 	.avatar-crop-view {
 		margin-top: 20px;
 		border-radius: 8px;
-		border: 1px solid var(--Grey-02, #ebebeb);
+		border: 1px solid $separator-2;
 		height: 364px;
 		width: 374px;
 		margin-left: 6px;
-		background: #00000080;
+		background: $background-3;
 
 		.avatar-preview {
 			width: 100%;

@@ -25,7 +25,7 @@
 						:index="index"
 						:type="BLOCK_TYPE.link"
 						v-if="item.type === BLOCK_TYPE.link"
-						style="margin-top: 12px"
+						class="q-mt-md"
 					>
 						<link-content
 							v-model:title="item.title"
@@ -37,7 +37,7 @@
 						:index="index"
 						:type="BLOCK_TYPE.text"
 						v-if="item.type === BLOCK_TYPE.text"
-						style="margin-top: 12px"
+						class="q-mt-md"
 					>
 						<text-content v-model:title="item.title" />
 					</block-container>
@@ -45,7 +45,7 @@
 						:index="index"
 						:type="BLOCK_TYPE.image"
 						v-if="item.type === BLOCK_TYPE.image"
-						style="margin-top: 12px"
+						class="q-mt-md"
 					>
 						<image-content
 							v-model:title="item.title"
@@ -61,13 +61,13 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { VueDraggableNext } from 'vue-draggable-next';
-import { BLOCK_TYPE, Link } from '../../types/User';
-import BlockButton from 'components/block/BlockButton.vue';
-import BlockContainer from 'components/block/BlockContainer.vue';
-import LinkContent from 'components/block/LinkContent.vue';
-import TextContent from 'components/block/TextContent.vue';
-import ImageContent from 'components/block/ImageContent.vue';
-import BioEditContainer from 'components/edit/BioEditContainer.vue';
+import { BLOCK_TYPE, Link } from 'src/types/User';
+import BlockButton from 'src/components/block/BlockButton.vue';
+import BlockContainer from 'src/components/block/BlockContainer.vue';
+import LinkContent from 'src/components/block/LinkContent.vue';
+import TextContent from 'src/components/block/TextContent.vue';
+import ImageContent from 'src/components/block/ImageContent.vue';
+import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
 const userStore = useUserStore();
@@ -103,7 +103,7 @@ const onAddLinks = (type: BLOCK_TYPE) => {
 	letter-spacing: 0em;
 	text-align: left;
 	overflow: hidden;
-	color: var(--grey-10, #1f1814);
+	color: $ink-1;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }

@@ -57,26 +57,17 @@ const itemOnClick = () => {
 .tab-item-root {
 	height: 56px;
 	width: 94px;
-	background-color: white;
-	color: var(--grey-08, #5c5551);
+	color: $ink-2;
 	cursor: pointer;
 	text-decoration: none;
 	position: relative;
 
 	&:hover {
-		color: var(--light-green-06, #2ee58a);
+		color: $green-default;
 	}
 
 	&:active {
-		color: var(--light-green-06, #2ee58a);
-	}
-
-	.material-symbols-rounded {
-		font-variation-settings:
-			'FILL' 0,
-			'wght' 300,
-			'GRAD' 0,
-			'opsz' 24;
+		color: $green-default;
 	}
 
 	.tab-item-bottom {
@@ -84,29 +75,20 @@ const itemOnClick = () => {
 		width: 100%;
 		position: absolute;
 		bottom: 0;
-		background: white;
+		background: transparent;
 	}
 }
 
 .tab-item-root-selected {
 	height: 56px;
 	width: 94px;
-	background-color: #ffffff;
-	color: var(--light-green-06, #2ee58a);
+	color: $green-default;
 	cursor: pointer;
 	text-decoration: none;
 	position: relative;
 
 	&:active {
-		color: var(--light-green-06, #2ee58a);
-	}
-
-	.material-symbols-rounded {
-		font-variation-settings:
-			'FILL' 1,
-			'wght' 300,
-			'GRAD' 0,
-			'opsz' 24;
+		color: $green-default;
 	}
 
 	.tab-item-bottom {

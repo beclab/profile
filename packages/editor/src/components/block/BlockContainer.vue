@@ -1,11 +1,11 @@
 <template>
 	<div class="block-container row justify-between items-center">
-		<q-icon color="grey-5" size="20px" name="sym_r_drag_indicator" />
+		<q-icon color="ink-3" size="20px" name="sym_r_drag_indicator" />
 		<div class="container-right column">
 			<div class="container-title row justify-between items-center">
 				<span class="container-type">{{ titleRef }}</span>
 				<q-icon
-					color="grey-5"
+					color="ink-3"
 					size="20px"
 					name="sym_r_delete"
 					@click="deleteLink"
@@ -71,8 +71,8 @@ const deleteLink = () => {
 	width: 400px;
 	height: auto;
 	border-radius: 12px;
-	border: 1px solid var(--border, #ebebeb);
-	background: white;
+	border: 1px solid $separator-2;
+	background: $background-1;
 	padding: 12px;
 
 	.container-right {
@@ -92,7 +92,7 @@ const deleteLink = () => {
 				line-height: 16px;
 				letter-spacing: 0em;
 				text-align: left;
-				color: var(--grey-10, #1f1814);
+				color: $ink-1;
 			}
 		}
 

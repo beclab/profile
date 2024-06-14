@@ -1,7 +1,7 @@
 <template>
-	<q-page class="row justify-evenly">
+	<q-page class="row justify-evenly bg-background-1">
 		<div v-if="!userStore.user" class="index-loading">
-			<bt-loading
+			<BtLoading
 				:show="true"
 				textColor="#ffffff"
 				color="#ffffff"
@@ -128,7 +128,7 @@ const onAreaClick = (index: number) => {
 	.left-editor-view {
 		height: 100vh;
 		width: 56%;
-		border-right: 1px solid var(--border, #ebebeb);
+		border-right: 1px solid $separator;
 
 		.editor-workspace {
 			height: calc(100% - 56px);

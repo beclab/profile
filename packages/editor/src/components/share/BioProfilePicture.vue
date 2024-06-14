@@ -11,14 +11,16 @@
           :src="userData.avatarUrl"
         />
       </q-avatar> -->
-			<q-avatar :size="`96px`">
-				<TerminusAvatar :info="userStore.info" :size="96" />
-			</q-avatar>
-			<div class="bio-profile-username">
-				{{ name }}
-			</div>
-			<div class="bio-profile-url">
-				{{ url }}
+			<div class="bio-profile-background column justify-center items-center">
+				<q-avatar size="48px">
+					<TerminusAvatar :info="userStore.info" :size="48" />
+				</q-avatar>
+				<div class="bio-profile-username">
+					{{ name }}
+				</div>
+				<div class="bio-profile-url">
+					{{ url }}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -64,46 +66,52 @@ const backgroundStyle = computed(() => {
 
 <style scoped lang="scss">
 .bio-profile-picture {
-	width: 232px;
+	width: 236px;
 	position: relative;
 	height: 360px;
 	border-radius: 12px;
 	backdrop-filter: blur(10px);
 
 	.bio-profile-card {
-		width: 192px;
+		width: 236px;
 		padding: 20px;
 		border-radius: 8px;
-		background: white;
 
-		.bio-profile-avatar {
-			width: 48px;
-			height: 48px;
-		}
-
-		.bio-profile-username {
-			font-family: Roboto;
-			font-size: 14px;
-			margin-top: 4px;
-			font-weight: 500;
-			line-height: 20px;
-			letter-spacing: 0em;
-			text-align: center;
-			color: var(--Grey-10, #1f1814);
-		}
-
-		.bio-profile-url {
-			font-family: Roboto;
-			padding: 6px 8px;
-			margin-top: 4px;
-			font-size: 10px;
-			font-weight: 400;
-			line-height: 12px;
-			letter-spacing: 0em;
-			text-align: center;
-			border: 1px solid var(--Grey-02, #ebebeb);
+		.bio-profile-background {
+			width: 200px;
+			height: 144px;
+			background-color: $background-1;
 			border-radius: 8px;
-			word-break: break-word;
+
+			.bio-profile-avatar {
+				width: 48px;
+				height: 48px;
+			}
+
+			.bio-profile-username {
+				font-family: Roboto;
+				font-size: 14px;
+				margin-top: 4px;
+				font-weight: 500;
+				line-height: 20px;
+				letter-spacing: 0em;
+				text-align: center;
+				color: $ink-1;
+			}
+
+			.bio-profile-url {
+				font-family: Roboto;
+				padding: 6px 8px;
+				margin-top: 4px;
+				font-size: 10px;
+				font-weight: 400;
+				line-height: 12px;
+				letter-spacing: 0em;
+				text-align: center;
+				border: 1px solid $separator;
+				border-radius: 8px;
+				word-break: break-word;
+			}
 		}
 	}
 }

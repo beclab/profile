@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div v-else class="column justify-center items-center" style="height: 100%">
-			<q-icon size="32px" name="sym_r_imagesmode" color="grey-5" />
+			<q-icon size="32px" name="sym_r_imagesmode" color="ink-2" />
 			<div class="nft-image-title">
 				You have not bound the blockchain address and cannot obtain the
 				corresponding NFT image. Go to the settings to complete the binding and
@@ -25,7 +25,7 @@
 				class="nft-bind-border row justify-center items-center cursor-pointer"
 				@click="goBindCloude"
 			>
-				<q-icon size="16px" name="sym_r_add_photo_alternate" />
+				<q-icon color="ink-2" size="16px" name="sym_r_add_photo_alternate" />
 				<div class="nft-bind-label">Go to Binding</div>
 			</div>
 		</div>
@@ -70,13 +70,13 @@ const goBindCloude = () => {
 		line-height: 16px;
 		letter-spacing: 0em;
 		text-align: center;
-		color: var(--Grey-05, #adadad);
+		color: $ink-2;
 		margin-top: 8px;
 	}
 
 	.nft-bind-border {
 		margin-top: 12px;
-		border: 1px solid #2ee58a;
+		border: 1px solid $green-default;
 		padding: 8px 21px;
 		border-radius: 8px;
 
@@ -88,7 +88,7 @@ const goBindCloude = () => {
 			line-height: 16px;
 			letter-spacing: 0em;
 			text-align: left;
-			color: var(--Grey-10, #1f1814);
+			color: $ink-2;
 		}
 	}
 }

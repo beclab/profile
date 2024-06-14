@@ -20,6 +20,7 @@
 				<q-input
 					borderless
 					type="text"
+					input-class="color-input"
 					class="color-input"
 					:model-value="hexColor"
 					@update:model-value="inputColorUpdate"
@@ -98,7 +99,7 @@ onMounted(() => {
 	padding-top: 12px;
 
 	&__title {
-		color: var(--grey-08, #5c5551);
+		color: $ink-3;
 		font-family: Roboto;
 		font-size: 12px;
 		font-weight: 400;
@@ -113,19 +114,19 @@ onMounted(() => {
 		height: 32px;
 
 		&__selected {
-			width: 116px;
-			height: 100%;
+			width: 32px;
+			height: 32px;
 			border-radius: 8px;
-			border: 1px solid var(--border, #ebebeb);
+			border: 1px solid $input-stroke;
 		}
 
 		&__input_background {
-			width: 118px;
+			width: 160px;
 			height: 100%;
 			border-radius: 8px;
-			border: 1px solid var(--border, #ebebeb);
-			margin-left: 12px;
-			margin-right: 12px;
+			border: 1px solid $input-stroke;
+			margin-left: 8px;
+			margin-right: 8px;
 			padding-bottom: -20px;
 			position: relative;
 
@@ -134,6 +135,7 @@ onMounted(() => {
 				padding-left: 10px;
 				padding-right: 10px;
 				position: absolute;
+				color: $ink-2 !important;
 			}
 		}
 	}

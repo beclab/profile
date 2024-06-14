@@ -1,7 +1,7 @@
 <template>
 	<div class="profile-area column items-center">
 		<bio-avatar />
-		<span class="profile-label label-width" style="margin-top: 32px">
+		<span class="profile-label full-width q-mt-xl">
 			{{ t('base.name') }}
 		</span>
 		<edit-view
@@ -11,7 +11,7 @@
 			:placeholder="t('profile.your_name')"
 			v-model="userStore.user.terminusName"
 		/>
-		<span class="profile-label label-width" style="margin-top: 12px">
+		<span class="profile-label full-width q-mt-md">
 			{{ t('profile.bio') }}
 		</span>
 		<edit-view
@@ -30,6 +30,7 @@ import EditView from 'components/base/EditView.vue';
 import BioAvatar from 'components/base/BioAvatar.vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
+
 const userStore = useUserStore();
 const { t } = useI18n();
 </script>
@@ -40,17 +41,13 @@ const { t } = useI18n();
 	padding-top: 32px;
 
 	.profile-label {
-		color: var(--grey-05, #adadad);
+		color: $ink-3;
 		font-family: Roboto;
 		font-size: 12px;
 		font-weight: 400;
 		line-height: 16px;
 		letter-spacing: 0em;
 		text-align: left;
-	}
-
-	.label-width {
-		width: 100%;
 	}
 }
 </style>
