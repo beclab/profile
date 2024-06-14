@@ -2,7 +2,7 @@
 	<bio-edit-container>
 		<span class="social-title">{{ t('social.add_social_links') }}</span>
 
-		<div class="row items-start" style="width: 100%; margin-top: 20px">
+		<div class="row items-start full-width q-mt-lg">
 			<template v-for="(item, key, index) in SocialMap" :key="index">
 				<social-button
 					:platform="item.platform"
@@ -19,7 +19,7 @@
 			/>
 		</div>
 
-		<div class="row items-start" style="width: 100%; margin-top: 20px">
+		<div class="row items-start full-width q-mt-lg">
 			<vue-draggable-next
 				style="width: 100%"
 				v-if="userStore.user !== null && userStore.user.socials"
@@ -69,7 +69,7 @@ const userStore = useUserStore();
 	letter-spacing: 0em;
 	text-align: left;
 	overflow: hidden;
-	color: var(--grey-10, #1f1814);
+	color: $ink-1;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }

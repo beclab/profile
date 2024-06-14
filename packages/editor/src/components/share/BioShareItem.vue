@@ -7,7 +7,7 @@
 				width="20px"
 				height="20px"
 			/>
-			<q-icon v-if="icon" :name="icon" size="20px" />
+			<q-icon color="ink-1" v-if="icon" :name="icon" size="20px" />
 			<div class="bio-share-text">{{ label }}</div>
 		</div>
 		<q-icon color="grey-5" class="20px" name="sym_r_chevron_right" />
@@ -34,12 +34,17 @@ defineProps({
 	height: 44px;
 	min-height: 44px;
 	margin: 0;
-	padding: 12px;
+	padding: 8px;
+
+	&:hover {
+		background-color: $background-hover;
+		border-radius: 8px;
+	}
 
 	.bio-share-div {
 		width: calc(100% - 20px);
 		height: 100%;
-		color: var(--Grey-10, #1f1814);
+		color: $ink-1;
 
 		.bio-share-text {
 			font-family: Roboto;

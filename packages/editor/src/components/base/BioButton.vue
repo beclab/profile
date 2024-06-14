@@ -10,9 +10,9 @@
 		<q-icon
 			v-if="icon"
 			size="16px"
-			:color="selected ? 'grey-10' : 'grey-8'"
+			:color="selected ? 'ink-on-brand-black' : 'ink-2'"
 			:name="icon"
-			style="margin-right: 8px"
+			class="q-mr-sm"
 		/>
 		<span
 			:class="selected ? 'bio-selected-button__label' : 'bio-button__label'"
@@ -73,8 +73,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .bio-button {
-	background: white;
-	border: 1px solid var(--border, #ebebeb);
+	background: $background-1;
+	border: 1px solid $btn-stroke;
 	height: 32px;
 	width: var(--width, 100%);
 	padding-left: 12px;
@@ -109,7 +109,7 @@ onMounted(() => {
 		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
-		color: var(--grey-08, #5c5551);
+		color: $ink-2;
 		text-overflow: ellipsis;
 	}
 }
@@ -153,7 +153,7 @@ onMounted(() => {
 		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
-		color: var(--grey-10, #1f1814);
+		color: $ink-on-brand-black;
 		text-overflow: ellipsis;
 	}
 }

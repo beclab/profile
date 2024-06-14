@@ -12,7 +12,7 @@
 	>
 		<q-img v-if="imgUrl" class="bio-img" :src="imgUrl" />
 		<div v-else class="bio-img-none column justify-center items-center">
-			<q-icon size="32px" color="grey-5" name="sym_r_imagesmode" />
+			<q-icon size="32px" color="ink-3" name="sym_r_imagesmode" />
 		</div>
 	</BtUploader>
 </template>
@@ -64,7 +64,7 @@ const fail = (response: unknown) => {
 	width: 72px;
 	height: 72px;
 	border-radius: 8px;
-	background: var(--grey-01, #f6f6f6);
-	border: 1px solid var(--border, #ebebeb);
+	background: $background-3;
+	border: $separator-2;
 }
 </style>

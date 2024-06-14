@@ -21,12 +21,11 @@ defineProps({
 	padding: 12px;
 	border-radius: 8px;
 	margin-top: 12px;
-	border: 1px solid var(--border, #ebebeb);
-	background: white;
+	border: 1px solid $separator-2;
 
 	&__title {
 		overflow: hidden;
-		color: var(--grey-10, #1f1814);
+		color: $ink-1;
 		text-overflow: ellipsis;
 		font-family: Roboto;
 		font-size: 12px;

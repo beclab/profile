@@ -31,7 +31,7 @@
 import { onMounted, ref } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useQuasar } from 'quasar';
-import { bus } from '../../utils/bus';
+import { bus } from 'src/utils/bus';
 
 defineProps({
 	modelValue: {
@@ -76,7 +76,7 @@ const fail = (response: unknown) => {
 
 	.upload-image-inner {
 		border-radius: 8px;
-		border: 1px solid var(--Grey-02, #ebebeb);
+		border: 1px solid $separator-2;
 		width: 120px;
 		height: 120px;
 
@@ -88,7 +88,7 @@ const fail = (response: unknown) => {
 			line-height: 16px;
 			letter-spacing: 0em;
 			text-align: left;
-			color: var(--Grey-08, #5c5551);
+			color: $ink-2;
 		}
 	}
 
@@ -100,7 +100,7 @@ const fail = (response: unknown) => {
 		line-height: 16px;
 		letter-spacing: 0em;
 		text-align: center;
-		color: #000;
+		color: $ink-1;
 	}
 
 	.upload-image-label {
@@ -111,7 +111,7 @@ const fail = (response: unknown) => {
 		letter-spacing: 0em;
 		text-align: center;
 		margin-top: 4px;
-		color: var(--Grey-05-, #adadad);
+		color: $ink-3;
 	}
 }
 </style>

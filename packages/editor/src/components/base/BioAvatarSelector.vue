@@ -24,7 +24,7 @@ defineProps({
 	height: 48px;
 	padding: 2px;
 	border-radius: 4px;
-	border: 1px solid var(--Grey-02, #ebebeb);
+	border: 1px solid $green-default;
 }
 
 .avatar-selector-normal {

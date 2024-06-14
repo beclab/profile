@@ -15,7 +15,7 @@
 		<q-icon
 			v-if="icon"
 			size="32px"
-			:color="selected ? 'grey-10' : 'grey-8'"
+			:color="selected ? 'ink-1' : 'ink-3'"
 			:name="icon"
 			@click="emit('onIconClick')"
 		/>
@@ -77,8 +77,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .background-picker-selected {
-	background: white;
-	border: 2px solid var(--LightGreen-06-, #2ee58a);
+	background: $background-3;
+	border: 2px solid $green-default;
 	height: 242px;
 	width: 126px;
 	justify-content: center;
@@ -98,15 +98,15 @@ onMounted(() => {
 		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
-		color: var(--grey-010, #1f1814);
+		color: $ink-1;
 		text-align: center;
 		text-overflow: ellipsis;
 	}
 }
 
 .background-picker {
-	background: white;
-	border: 1px solid var(--border, #ebebeb);
+	background: $background-3;
+	border: 1px solid $separator;
 	height: 234px;
 	width: 118px;
 	justify-content: center;
@@ -126,7 +126,7 @@ onMounted(() => {
 		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
-		color: var(--grey-08, #5c5551);
+		color: $ink-3;
 		text-align: center;
 		text-overflow: ellipsis;
 	}

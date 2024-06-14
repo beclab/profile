@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { scrollBarStyle } from '../../utils/helper';
+import { scrollBarStyle } from 'src/utils/helper';
 </script>
 
 <style scoped lang="scss">

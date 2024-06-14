@@ -147,7 +147,8 @@ const shareToLinkedin = () => {
 	padding: 8px;
 	margin-bottom: 18px;
 	border-radius: 8px;
-	border: 1px solid var(--Grey-02-, #ebebeb);
+	background-color: white;
+	border: 1px solid $separator;
 }
 
 .bio-share-picture {

@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import BioAvatarSelector from 'components/base/BioAvatarSelector.vue';
-import { bus } from '../../utils/bus';
+import BioAvatarSelector from 'src/components/base/BioAvatarSelector.vue';
+import { bus } from 'src/utils/bus';
 
 defineProps({
 	modelValue: {

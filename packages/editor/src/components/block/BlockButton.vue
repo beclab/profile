@@ -1,7 +1,7 @@
 <template>
 	<div class="block-button-root column justify-center" :title="descRef">
 		<div class="block-button-background row justify-center items-center">
-			<q-icon size="24px" :name="imageRef" />
+			<q-icon size="24px" color="ink-1" :name="imageRef" />
 		</div>
 		<span class="block-button-text">{{ titleRef }}</span>
 	</div>
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { onMounted, PropType, ref } from 'vue';
-import { BLOCK_TYPE } from '../../types/User';
+import { BLOCK_TYPE } from 'src/types/User';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
@@ -52,10 +52,11 @@ onMounted(() => {
 		width: 40px;
 		height: 40px;
 		border-radius: 12px;
-		border: 0.5px solid var(--border, #ebebeb);
-		background: white;
+		border: 0.5px solid $separator-2;
+		background: $background-1;
 
 		&:hover {
+			color: $ink-on-brand;
 			background: var(
 				--profile,
 				linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)
@@ -63,6 +64,7 @@ onMounted(() => {
 		}
 
 		&:active {
+			color: $ink-on-brand;
 			background: var(
 				--profile,
 				linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)
@@ -82,7 +84,7 @@ onMounted(() => {
 		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
-		color: var(--grey-08, #5c5551);
+		color: $ink-2;
 		text-align: center;
 		text-overflow: ellipsis;
 		white-space: nowrap;

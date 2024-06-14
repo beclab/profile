@@ -28,9 +28,6 @@
 	background-color: #f7f7f7;
 	cursor: pointer !important;
 }
-body {
-	background: #f7f7f7;
-}
 .q-field__marginal {
 	height: 100% !important;
 	color: #ffffff;
@@ -44,6 +41,13 @@ body {
 .text-color-profile {
 	//#8CE3FF;
 	color: #7fff93;
+}
+
+.q-field--dark .q-field__native,
+.q-field--dark .q-field__prefix,
+.q-field--dark .q-field__suffix,
+.q-field--dark .q-field__input {
+	color: $ink-2 !important;
 }
 
 .material-symbols-rounded {
@@ -127,4 +131,11 @@ body {
 
 .q-tab-panel {
 	padding: 16px 0 16px 16px !important;
+}
+
+@font-face {
+	font-family: 'Material Symbols Rounded';
+	font-style: normal;
+	font-weight: 100 700;
+	src: url('../assets/fonts/nyTnjDwKNJ_190FjzaqkNCeE.woff2') format('woff2');
 }

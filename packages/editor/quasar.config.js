@@ -8,13 +8,13 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-const { configure } = require('quasar/wrappers');
-const dotenv = require('dotenv');
+import { configure } from 'quasar/wrappers';
+import dotenv from 'dotenv';
 
 dotenv.config();
 console.log(process.env);
 
-module.exports = configure(function (/* ctx */) {
+export default configure(function (/* ctx */) {
 	return {
 		eslint: {
 			// fix: true,
@@ -31,7 +31,7 @@ module.exports = configure(function (/* ctx */) {
 		// app boot file (/src/boot)
 		// --> boot files are part of "main.js"
 		// https://v2.quasar.dev/quasar-cli-vite/boot-files
-		boot: ['i18n', 'smartEnginEntrance', 'bytetradeUi'],
+		boot: ['i18n', 'smartEnginEntrance', 'bytetrade-ui'],
 
 		// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
 		css: ['app.scss'],
@@ -119,7 +119,7 @@ module.exports = configure(function (/* ctx */) {
 					ws: true
 				}
 			},
-			open: true, // opens browser window automatically
+			open: true // opens browser window automatically
 			// hmr: {
 			// 	port: 9100,
 			// 	clientPort: 443,
@@ -129,7 +129,9 @@ module.exports = configure(function (/* ctx */) {
 
 		// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
 		framework: {
-			config: {},
+			config: {
+				dark: 'auto'
+			},
 
 			// iconSet: 'material-icons', // Quasar icon set
 			// lang: 'en-US', // Quasar language pack
@@ -160,27 +162,6 @@ module.exports = configure(function (/* ctx */) {
 		//   electronMain: 'src-electron/electron-main',
 		//   electronPreload: 'src-electron/electron-preload'
 		// },
-
-		// https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
-		ssr: {
-			// ssrPwaHtmlFilename: 'offline.html', // do NOT use index.html as name!
-			// will mess up SSR
-
-			// extendSSRWebserverConf (esbuildConf) {},
-			// extendPackageJson (json) {},
-
-			pwa: false,
-
-			// manualStoreHydration: true,
-			// manualPostHydrationTrigger: true,
-
-			prodPort: 4020, // The default port that the production server should use
-			// (gets superseded if process.env.PORT is specified at runtime)
-
-			middlewares: [
-				'render' // keep this as last one
-			]
-		},
 
 		// https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
 		pwa: {

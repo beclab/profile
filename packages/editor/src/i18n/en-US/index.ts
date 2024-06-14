@@ -1,18 +1,18 @@
 export default {
 	base: {
 		profile: 'Profile',
-		social: 'social',
+		social: 'Social',
 		blocks: 'Blocks',
 		design: 'Design',
 		share: 'Share',
-		name: 'name',
+		name: 'Name',
 		url: 'URL',
 		desc: 'Description'
 	},
 	profile: {
 		your_name: 'Your Name',
 		a_bit_about_you: 'A bit about you',
-		bio: 'bio'
+		bio: 'Bio'
 	},
 	social: {
 		add_social_links: 'Add social links'
