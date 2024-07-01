@@ -14,15 +14,17 @@
 		>
 			<div class="upload-image-inner column justify-center items-center">
 				<q-icon size="20px" name="sym_r_add_photo_alternate" />
-				<div class="upload-image-inner-label">Upload image</div>
+				<div class="upload-image-inner-label">
+					{{ t('profile.upload_image') }}
+				</div>
 			</div>
 		</BtUploader>
 
 		<div class="upload-image-title">
-			Select local image, upload and edit your own avatar
+			{{ t('profile.select_local_image_desc') }}
 		</div>
 		<div class="upload-image-label">
-			We recommend sizes above 400x400px, PNG or JPG
+			{{ t('profile.recommend_sizes') }}
 		</div>
 	</div>
 </template>
@@ -32,6 +34,7 @@ import { onMounted, ref } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useQuasar } from 'quasar';
 import { bus } from 'src/utils/bus';
+import { useI18n } from 'vue-i18n';
 
 defineProps({
 	modelValue: {
@@ -42,6 +45,7 @@ defineProps({
 
 const $q = useQuasar();
 const userStore = useUserStore();
+const { t } = useI18n();
 
 const currentPath = ref();
 onMounted(async () => {

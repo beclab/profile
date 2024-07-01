@@ -1,7 +1,9 @@
 <template>
 	<div class="nft-background">
 		<div v-if="userStore.cloud_login == CloudLoginState.YES">
-			<div v-if="userStore.nfts?.length == 0">Please Bind NFT in Settings</div>
+			<div v-if="userStore.nfts?.length == 0">
+				{{ t('profile.bind_nft_in_settings') }}
+			</div>
 			<div v-else>
 				<div class="default-avatar-grid row">
 					<template v-for="item in userStore.nfts" :key="item">
@@ -17,16 +19,14 @@
 		<div v-else class="column justify-center items-center" style="height: 100%">
 			<q-icon size="32px" name="sym_r_imagesmode" color="ink-2" />
 			<div class="nft-image-title">
-				You have not bound the blockchain address and cannot obtain the
-				corresponding NFT image. Go to the settings to complete the binding and
-				then come here to set the NFT avatar.
+				{{ t('profile.go_to_the_settings_to_complete_the_binding_desc') }}
 			</div>
 			<div
 				class="nft-bind-border row justify-center items-center cursor-pointer"
-				@click="goBindCloude"
+				@click="goBindCloud"
 			>
 				<q-icon color="ink-2" size="16px" name="sym_r_add_photo_alternate" />
-				<div class="nft-bind-label">Go to Binding</div>
+				<div class="nft-bind-label">{{ t('profile.go_to_binding') }}</div>
 			</div>
 		</div>
 	</div>
@@ -34,11 +34,13 @@
 
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
-import { bus } from '../../utils/bus';
-import { useUserStore, CloudLoginState } from '../../stores/user';
+import { bus } from 'src/utils/bus';
+import { useUserStore, CloudLoginState } from 'src/stores/user';
 const userStore = useUserStore();
 import BioAvatarSelector from 'components/base/BioAvatarSelector.vue';
+import { useI18n } from 'vue-i18n';
 const $q = useQuasar();
+const { t } = useI18n();
 
 defineProps({
 	modelValue: {
@@ -52,7 +54,7 @@ const onItemClick = (nft: any) => {
 	bus.emit('choice', { imageUrl: nft.imageUrl, avatar: nft.vp });
 };
 
-const goBindCloude = () => {
+const goBindCloud = () => {
 	$q.notify('go bind');
 };
 </script>

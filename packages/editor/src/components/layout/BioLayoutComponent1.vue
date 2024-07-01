@@ -32,7 +32,9 @@
 			</div>
 			<div v-if="isDefault" class="default-view">
 				<img src="/profile-pure.svg" alt="logo" />
-				<div class="content">Let people own their data again</div>
+				<div class="content">
+					{{ t('base.let_people_own_their_data_again') }}
+				</div>
 			</div>
 			<div class="simple-social-view" @click.stop="emit('onAreaClick', 1)">
 				<template v-for="item in user.socials" :key="item.url">
@@ -104,6 +106,7 @@ import { User, BLOCK_TYPE, Social } from 'src/types/User';
 import SocialSvg from 'components/social/SocialSvg.vue';
 import { useUserStore } from 'src/stores/user';
 import ProfileTerminusAvatar from '../avatar/ProfileTerminusAvatar.vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
 	user: {
@@ -118,6 +121,7 @@ const props = defineProps({
 
 const userStore = useUserStore();
 const emit = defineEmits(['onAreaClick']);
+const { t } = useI18n();
 
 const backgroundStyle = computed(() => {
 	switch (props.user.background.style) {

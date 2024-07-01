@@ -6,8 +6,7 @@
 		</span>
 		<edit-view
 			v-if="userStore.user"
-			class="label-width"
-			style="margin-top: 4px"
+			class="label-width q-mt-xs"
 			:placeholder="t('profile.your_name')"
 			v-model="userStore.user.terminusName"
 		/>
@@ -17,8 +16,7 @@
 		<edit-view
 			v-if="userStore.user"
 			height="96px"
-			class="label-width"
-			style="margin-top: 4px"
+			class="label-width q-mt-xs"
 			:placeholder="t('profile.a_bit_about_you')"
 			v-model="userStore.user.description"
 		/>
