@@ -7,12 +7,29 @@ export default {
 		share: 'Share',
 		name: 'Name',
 		url: 'URL',
-		desc: 'Description'
+		desc: 'Description',
+		cancel: 'Cancel',
+		create: 'Create',
+		let_people_own_their_data_again: 'Let people own their data again'
 	},
 	profile: {
 		your_name: 'Your Name',
 		a_bit_about_you: 'A bit about you',
-		bio: 'Bio'
+		bio: 'Bio',
+		avatar: 'Avatar',
+		edit: 'Edit',
+		avatar_setting: 'Avatar setting',
+		robot_avatar: 'Robot avatar',
+		nft_avatar: 'NFT avatar',
+		custom_avatar: 'Custom avatar',
+		bind_nft_in_settings: 'Please Bind NFT in Settings',
+		go_to_the_settings_to_complete_the_binding_desc:
+			'You have not bound the blockchain address and cannot obtain the corresponding NFT image. Go to the settings to complete the binding and then come here to set the NFT avatar.',
+		go_to_binding: 'Go to Binding',
+		upload_image: 'Upload image',
+		select_local_image_desc:
+			'Select local image, upload and edit your own avatar',
+		recommend_sizes: 'We recommend sizes above 400x400px, PNG or JPG'
 	},
 	social: {
 		add_social_links: 'Add social links'

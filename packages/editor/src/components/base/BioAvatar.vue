@@ -13,7 +13,7 @@
 			class="avatar-hover-background column justify-center items-center cursor-pointer"
 			@click="openDialog"
 		>
-			<div class="avatar-hover-edit">Edit</div>
+			<div class="avatar-hover-edit">{{ t('profile.edit') }}</div>
 		</div>
 	</profile-terminus-avatar>
 
@@ -23,7 +23,7 @@
 		@click="openDialog"
 	>
 		<q-icon name="sym_r_account_circle" size="20px" />
-		<span class="profile-avatar-desc"> avatar </span>
+		<span class="profile-avatar-desc">{{ t('profile.avatar') }}</span>
 	</div>
 </template>
 
@@ -33,10 +33,12 @@ import { ref } from 'vue';
 import ProfileTerminusAvatar from '../avatar/ProfileTerminusAvatar.vue';
 import AvatarChooseDialog from '../avatar/AvatarChooseDialog.vue';
 import { useUserStore } from 'src/stores/user';
+import { useI18n } from 'vue-i18n';
 
 const hover = ref(false);
 const $q = useQuasar();
 const userStore = useUserStore();
+const { t } = useI18n();
 
 async function openDialog() {
 	$q.dialog({

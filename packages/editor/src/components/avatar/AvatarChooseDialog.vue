@@ -2,7 +2,7 @@
 	<q-dialog ref="dialogRef">
 		<q-card class="avatar-choose-dialog">
 			<div class="avatar-choose-header row justify-between items-center">
-				<div class="avatar-choose-title">Avatar setting</div>
+				<div class="avatar-choose-title">{{ t('profile.avatar_setting') }}</div>
 				<q-icon
 					size="16px"
 					name="sym_r_clear"
@@ -27,7 +27,7 @@
 									<template v-slot:default>
 										<bt-tab-item
 											:selected="tab === 'default'"
-											label="Robot avatar"
+											:label="t('profile.robot_avatar')"
 										/>
 									</template>
 								</q-tab>
@@ -36,7 +36,10 @@
 
 								<q-tab style="padding: 0" name="nft">
 									<template v-slot:default>
-										<bt-tab-item :selected="tab === 'nft'" label="NFT avatar" />
+										<bt-tab-item
+											:selected="tab === 'nft'"
+											:label="t('profile.nft_avatar')"
+										/>
 									</template>
 								</q-tab>
 
@@ -46,7 +49,7 @@
 									<template v-slot:default>
 										<bt-tab-item
 											:selected="tab === 'upload'"
-											label="Custom avatar"
+											:label="t('profile.custom_avatar')"
 										/>
 									</template>
 								</q-tab>
@@ -84,13 +87,13 @@
 				<bio-button
 					:default-selected="false"
 					:width="75"
-					label="Cancel"
+					:label="t('base.cancel')"
 					@click="onDialogCancel"
 					style="margin-right: 20px"
 				/>
 				<bio-button
 					:width="75"
-					label="Create"
+					:label="t('base.create')"
 					@click="onOKClick"
 					style="margin-right: 20px"
 				/>
@@ -111,10 +114,12 @@ import { useUserStore } from 'src/stores/user';
 import { Encoder } from '@bytetrade/core';
 import ProfileAvatarBoard from './ProfileAvatarBoard.vue';
 import BtTabItem from '../base/BtTabItem.vue';
+import { useI18n } from 'vue-i18n';
 
 const userStore = useUserStore();
 const selected = ref();
 const tab = ref<string>('default');
+const { t } = useI18n();
 
 const { dialogRef, onDialogCancel, onDialogOK } = useDialogPluginComponent();
 
