@@ -10,8 +10,8 @@
 
 const { configure } = require('quasar/wrappers');
 const dotenv = require('dotenv');
-// const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 dotenv.config();
@@ -96,53 +96,53 @@ module.exports = configure(function (ctx) {
 					.set('assets', path.resolve('src/assets'))
 					.set('statics', path.resolve('src/statics'))
 					.set('components', path.resolve('src/components'));
-				// if (isClient) {
-				// 	chain.plugin('optimize-css').use(CssMinimizerPlugin, [
-				// 		{
-				// 			minimizerOptions: {
-				// 				preset: [
-				// 					'default',
-				// 					{
-				// 						mergeLonghand: false,
-				// 						cssDeclarationSorter: false
-				// 					}
-				// 				]
-				// 			}
-				// 		}
-				// 	]);
-				// }
-				// chain.plugin('terser').use(TerserPlugin, [
-				// 	{
-				// 		terserOptions: {
-				// 			compress: {
-				// 				drop_console: true,
-				// 				pure_funcs: ['console.log']
-				// 			}
-				// 		}
-				// 	}
-				// ]);
-				// chain.optimization.splitChunks({
-				// 	chunks: 'all', // The type of chunk that requires code segmentation
-				// 	minSize: 20000, // Minimum split file size
-				// 	minRemainingSize: 0, // Minimum remaining file size after segmentation
-				// 	minChunks: 1, // The number of times it has been referenced before it is split
-				// 	maxAsyncRequests: 30, // Maximum number of asynchronous requests
-				// 	maxInitialRequests: 30, // Maximum number of initialization requests
-				// 	enforceSizeThreshold: 50000,
-				// 	cacheGroups: {
-				// 		// Cache Group configuration
-				// 		defaultVendors: {
-				// 			test: /[\\/]node_modules[\\/]/,
-				// 			priority: -10,
-				// 			reuseExistingChunk: true
-				// 		},
-				// 		default: {
-				// 			minChunks: 2,
-				// 			priority: -20,
-				// 			reuseExistingChunk: true // Reuse the chunk that has been split
-				// 		}
-				// 	}
-				// });
+				if (isClient) {
+					chain.plugin('optimize-css').use(CssMinimizerPlugin, [
+						{
+							minimizerOptions: {
+								preset: [
+									'default',
+									{
+										mergeLonghand: false,
+										cssDeclarationSorter: false
+									}
+								]
+							}
+						}
+					]);
+				}
+				chain.plugin('terser').use(TerserPlugin, [
+					{
+						terserOptions: {
+							compress: {
+								drop_console: true,
+								pure_funcs: ['console.log']
+							}
+						}
+					}
+				]);
+				chain.optimization.splitChunks({
+					chunks: 'all', // The type of chunk that requires code segmentation
+					minSize: 20000, // Minimum split file size
+					minRemainingSize: 0, // Minimum remaining file size after segmentation
+					minChunks: 1, // The number of times it has been referenced before it is split
+					maxAsyncRequests: 30, // Maximum number of asynchronous requests
+					maxInitialRequests: 30, // Maximum number of initialization requests
+					enforceSizeThreshold: 50000,
+					cacheGroups: {
+						// Cache Group configuration
+						defaultVendors: {
+							test: /[\\/]node_modules[\\/]/,
+							priority: -10,
+							reuseExistingChunk: true
+						},
+						default: {
+							minChunks: 2,
+							priority: -20,
+							reuseExistingChunk: true // Reuse the chunk that has been split
+						}
+					}
+				});
 			}
 		},
 
