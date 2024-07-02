@@ -8,21 +8,24 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-import { configure } from 'quasar/wrappers';
-import dotenv from 'dotenv';
+const { configure } = require('quasar/wrappers');
+const dotenv = require('dotenv');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const path = require('path');
 
 dotenv.config();
 console.log(process.env);
 
-export default configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
 	return {
-		eslint: {
-			// fix: true,
-			// include = [],
-			// exclude = [],
-			// rawOptions = {},
-			warnings: true,
-			errors: true
+		supportTS: {
+			tsCheckerConfig: {
+				eslint: {
+					enabled: true,
+					files: './src/**/*.{ts,tsx,js,jsx,vue}'
+				}
+			}
 		},
 
 		// https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
@@ -70,7 +73,7 @@ export default configure(function (/* ctx */) {
 				ACTION: process.env.ACTION,
 				URL: process.env.URL,
 				WS_URL: process.env.WS_URL
-			}
+			},
 			// rawDefine: {}
 			// ignorePublicFolder: true,
 			// minify: false,
@@ -83,6 +86,64 @@ export default configure(function (/* ctx */) {
 			// vitePlugins: [
 			//   [ 'package-name', { ..options.. } ]
 			// ]
+			extractCSS: true,
+			gzip: true,
+			sourcemap: false,
+			minify: true,
+
+			chainWebpack(chain, { isClient, isServer }) {
+				chain.resolve.alias
+					.set('assets', path.resolve('src/assets'))
+					.set('statics', path.resolve('src/statics'))
+					.set('components', path.resolve('src/components'));
+				if (isClient) {
+					chain.plugin('optimize-css').use(CssMinimizerPlugin, [
+						{
+							minimizerOptions: {
+								preset: [
+									'default',
+									{
+										mergeLonghand: false,
+										cssDeclarationSorter: false
+									}
+								]
+							}
+						}
+					]);
+				}
+				chain.plugin('terser').use(TerserPlugin, [
+					{
+						terserOptions: {
+							compress: {
+								drop_console: true,
+								pure_funcs: ['console.log']
+							}
+						}
+					}
+				]);
+				chain.optimization.splitChunks({
+					chunks: 'all', // The type of chunk that requires code segmentation
+					minSize: 20000, // Minimum split file size
+					minRemainingSize: 0, // Minimum remaining file size after segmentation
+					minChunks: 1, // The number of times it has been referenced before it is split
+					maxAsyncRequests: 30, // Maximum number of asynchronous requests
+					maxInitialRequests: 30, // Maximum number of initialization requests
+					enforceSizeThreshold: 50000,
+					cacheGroups: {
+						// Cache Group configuration
+						defaultVendors: {
+							test: /[\\/]node_modules[\\/]/,
+							priority: -10,
+							reuseExistingChunk: true
+						},
+						default: {
+							minChunks: 2,
+							priority: -20,
+							reuseExistingChunk: true // Reuse the chunk that has been split
+						}
+					}
+				});
+			}
 		},
 
 		// Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
@@ -95,9 +156,6 @@ export default configure(function (/* ctx */) {
 				'/api': {
 					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
 					changeOrigin: true,
-					pathRewrite: {
-						'^/api': ''
-					}
 				},
 				// '/bfl': {
 				//   target: 'https://profile.zyh2433219116.snowinning.com/',
@@ -113,10 +171,10 @@ export default configure(function (/* ctx */) {
 				//     '^/sign': 'sign',
 				//   },
 				// },
-				'/socket.io': {
-					target: 'ws://localhost:9100',
-					ws: true
-				}
+				// '/socket.io': {
+				// 	target: 'ws://localhost:9100',
+				// 	ws: true
+				// }
 			},
 			open: true // opens browser window automatically
 			// hmr: {
@@ -210,15 +268,20 @@ export default configure(function (/* ctx */) {
 				// https://www.electron.build/configuration/configuration
 
 				appId: 'editor'
+			},
+
+			// "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+			chainWebpackMain(/* chain */) {
+				// do something with the Electron main process Webpack cfg
+				// extendWebpackMain also available besides this chainWebpackMain
+			},
+
+			// "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+			chainWebpackPreload(/* chain */) {
+				// do something with the Electron main process Webpack cfg
+				// extendWebpackPreload also available besides this chainWebpackPreload
 			}
-		},
-
-		// Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-browser-extensions/configuring-bex
-		bex: {
-			contentScripts: ['my-content-script']
-
-			// extendBexScriptsConf (esbuildConf) {}
-			// extendBexManifestJson (json) {}
 		}
+
 	};
 });
