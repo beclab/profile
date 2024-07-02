@@ -156,9 +156,6 @@ module.exports = configure(function (ctx) {
 				'/api': {
 					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
 					changeOrigin: true,
-					pathRewrite: {
-						'^/api': ''
-					}
 				},
 				// '/bfl': {
 				//   target: 'https://profile.zyh2433219116.snowinning.com/',
