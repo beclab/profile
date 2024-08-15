@@ -22,12 +22,12 @@
 		<div class="row items-start full-width q-mt-lg">
 			<vue-draggable-next
 				style="width: 100%"
-				v-if="userStore.user !== null && userStore.user.socials"
-				:list="userStore.user.socials"
+				v-if="userStore.user !== null && userStore.user.social.data"
+				:list="userStore.user?.social.data"
 			>
 				<transition-group name="list">
 					<template
-						v-for="(item, index) in userStore.user.socials"
+						v-for="(item, index) in userStore.user?.social.data"
 						:key="index"
 					>
 						<social-edit-item
@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import SocialButton from 'components/social/SocialButton.vue';
+import SocialButton from 'src/components/social/SocialButton.vue';
 import SocialEditItem from 'components/social/SocialEditItem.vue';
 import { VueDraggableNext } from 'vue-draggable-next';
 import SocialExpandButton from 'components/social/SocialExpandButton.vue';

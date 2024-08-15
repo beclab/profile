@@ -34,10 +34,10 @@ module.exports = configure(function (ctx) {
 		// app boot file (/src/boot)
 		// --> boot files are part of "main.js"
 		// https://v2.quasar.dev/quasar-cli-vite/boot-files
-		boot: ['i18n', 'smartEnginEntrance', 'bytetrade-ui'],
+		boot: ['i18n', 'smartEnginEntrance', 'bytetradeUi'],
 
 		// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
-		css: [ process.env.ACTION === 'EDITOR' ? 'app.scss' : ''],
+		css: [process.env.ACTION === 'EDITOR' ? 'app.scss' : ''],
 
 		// https://github.com/quasarframework/quasar/tree/dev/extras
 		extras: [
@@ -155,8 +155,8 @@ module.exports = configure(function (ctx) {
 				// proxy all requests starting with /api to the backend server
 				'/api': {
 					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
-					changeOrigin: true,
-				},
+					changeOrigin: true
+				}
 				// '/bfl': {
 				//   target: 'https://profile.zyh2433219116.snowinning.com/',
 				//   changeOrigin: true,
@@ -282,6 +282,5 @@ module.exports = configure(function (ctx) {
 				// extendWebpackPreload also available besides this chainWebpackPreload
 			}
 		}
-
 	};
 });

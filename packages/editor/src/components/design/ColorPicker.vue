@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-import ColorOpacityEditView from 'components/design/ColorOpacityEditView.vue';
+import ColorOpacityEditView from 'src/components/design/ColorOpacityEditView.vue';
 import { onMounted, ref } from 'vue';
 import { colors } from 'quasar';
 import { colorsRgba } from 'quasar/dist/types/utils/colors';

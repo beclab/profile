@@ -1,29 +1,46 @@
 <template>
-	<profile-terminus-avatar
-		class="profile-avatar"
-		v-if="userStore.info"
-		@mouseover="setHover(true)"
-		@mouseleave="setHover(false)"
-		:show-border="false"
-		:info="userStore.info"
-		size="96px"
-	>
-		<div
-			v-if="hover"
-			class="avatar-hover-background column justify-center items-center cursor-pointer"
-			@click="openDialog"
-		>
-			<div class="avatar-hover-edit">{{ t('profile.edit') }}</div>
-		</div>
-	</profile-terminus-avatar>
-
 	<div
-		v-else
-		class="profile-avatar-default column justify-center items-center"
+		class="cursor-pointer"
+		:style="{
+			position: 'relative',
+			width: size + 'px',
+			height: size + 'px',
+			'--avatarWidth': size + 'px',
+			'--iconSize': iconSize + 'px'
+		}"
 		@click="openDialog"
 	>
-		<q-icon name="sym_r_account_circle" size="20px" />
-		<span class="profile-avatar-desc">{{ t('profile.avatar') }}</span>
+		<profile-terminus-avatar
+			class="profile-avatar"
+			v-if="userStore.info"
+			@mouseover="setHover(true)"
+			@mouseleave="setHover(false)"
+			:show-image-border="false"
+			:info="userStore.info"
+			:size="size + 'px'"
+		>
+			<div
+				v-if="hover && showHover"
+				class="avatar-hover-background column justify-center items-center cursor-pointer"
+				@click="openDialog"
+			>
+				<div class="avatar-hover-edit">{{ t('profile.edit') }}</div>
+			</div>
+		</profile-terminus-avatar>
+
+		<div
+			v-else
+			class="profile-avatar-default column justify-center items-center"
+			@click="openDialog"
+		>
+			<q-icon name="sym_r_account_circle" size="20px" />
+			<span class="profile-avatar-desc">{{ t('profile.avatar') }}</span>
+		</div>
+
+		<q-img
+			class="avatar-photo"
+			:src="getRequireImage('profile/avatar_photo.svg')"
+		/>
 	</div>
 </template>
 
@@ -34,11 +51,27 @@ import ProfileTerminusAvatar from '../avatar/ProfileTerminusAvatar.vue';
 import AvatarChooseDialog from '../avatar/AvatarChooseDialog.vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
+import { getRequireImage } from 'src/utils/helper';
 
 const hover = ref(false);
 const $q = useQuasar();
 const userStore = useUserStore();
 const { t } = useI18n();
+
+defineProps({
+	size: {
+		type: Number,
+		require: true
+	},
+	showHover: {
+		type: Boolean,
+		default: false
+	},
+	iconSize: {
+		type: Number,
+		require: true
+	}
+});
 
 async function openDialog() {
 	$q.dialog({
@@ -70,8 +103,8 @@ const setHover = (isHover: boolean) => {
 
 	.avatar-hover-background {
 		background: linear-gradient(0deg, #1f1814 0%, rgba(31, 24, 20, 0) 100%);
-		width: 96px;
-		height: 32px;
+		width: var(--avatarWidth);
+		height: var(--iconSize);
 		opacity: 0.8;
 		position: absolute;
 		bottom: 0;
@@ -102,5 +135,16 @@ const setHover = (isHover: boolean) => {
 		text-align: center;
 		margin-top: 6px;
 	}
+}
+
+.avatar-photo {
+	width: var(--iconSize);
+	height: var(--iconSize);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	stroke: $background-1;
+	stroke-width: 2px;
+	fill: $ink-on-brand-black;
 }
 </style>

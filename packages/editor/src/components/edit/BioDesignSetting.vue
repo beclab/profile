@@ -14,14 +14,16 @@
 			/>
 		</bio-picker-group>
 		<div v-if="selectedTab === 0 && userStore.user" class="row">
-			<bio-picker-group v-model:active-index="userStore.user.layoutStyle">
+			<bio-picker-group v-model:active-index="userStore.user.layout.style">
 				<background-picker>
 					<bio-layout-component1 :use-em="true" :user="userStore.user" />
 				</background-picker>
 			</bio-picker-group>
 		</div>
 		<div v-if="selectedTab === 1 && userStore.user" class="row">
-			<bio-picker-group v-model:active-index="userStore.user.background.style">
+			<bio-picker-group
+				v-model:active-index="userStore.user.appearance.theme.style"
+			>
 				<background-picker icon="sym_r_vr180_create2d_off" />
 				<background-picker
 					icon="sym_r_imagesmode"
@@ -38,10 +40,10 @@
 						@fail="fail"
 					>
 						<q-img
-							v-if="userStore.user.background.uploadImg"
+							v-if="userStore.user.appearance.theme.uploadImg"
 							fit="cover"
 							class="background-image"
-							:src="userStore.user.background.uploadImg"
+							:src="userStore.user.appearance.theme.uploadImg"
 						/>
 					</BtUploader>
 				</background-picker>
@@ -53,7 +55,7 @@
 				>
 					<div
 						class="color-background column"
-						:style="{ background: userStore.user.background.color }"
+						:style="{ background: userStore.user.appearance.theme.color }"
 					>
 						<q-popup-proxy
 							transition-show="scale"
@@ -61,7 +63,7 @@
 							v-model="colorPicker"
 						>
 							<q-color
-								v-model="userStore.user.background.color"
+								v-model="userStore.user.appearance.theme.color"
 								no-header
 								no-footer
 								default-view="palette"
@@ -79,7 +81,7 @@
 						<div
 							class="gradient-half-top"
 							:style="{
-								background: userStore.user.background.gradientTopColor
+								background: userStore.user.appearance.theme.gradientTopColor
 							}"
 						>
 							<q-popup-proxy
@@ -88,7 +90,7 @@
 								v-model="gradientTopPicker"
 							>
 								<q-color
-									v-model="userStore.user.background.gradientTopColor"
+									v-model="userStore.user.appearance.theme.gradientTopColor"
 									no-header
 									no-footer
 									@update:model-value="selectedColorUpdate"
@@ -99,7 +101,7 @@
 						<div
 							class="gradient-half-bottom"
 							:style="{
-								background: userStore.user.background.gradientBottomColor
+								background: userStore.user.appearance.theme.gradientBottomColor
 							}"
 						>
 							<q-popup-proxy
@@ -108,7 +110,7 @@
 								v-model="gradientBottomPicker"
 							>
 								<q-color
-									v-model="userStore.user.background.gradientBottomColor"
+									v-model="userStore.user.appearance.theme.gradientBottomColor"
 									no-header
 									no-footer
 									@update:model-value="selectedColorUpdate"
@@ -144,30 +146,34 @@
 			style="margin-top: 8px"
 		>
 			<color-picker-container :title="t('base.name')">
-				<color-picker v-model:hex-color="userStore.user.appearance.nameColor" />
+				<color-picker
+					v-model:hex-color="userStore.user.appearance.header.textColor"
+				/>
 			</color-picker-container>
 			<color-picker-container :title="t('profile.bio')">
-				<color-picker v-model:hex-color="userStore.user.appearance.bioColor" />
+				<color-picker
+					v-model:hex-color="userStore.user.appearance.link.textColor"
+				/>
 			</color-picker-container>
 			<color-picker-container :title="t('base.social')">
 				<color-picker
-					v-model:hex-color="userStore.user.appearance.socialColor"
+					v-model:hex-color="userStore.user.appearance.block.textColor"
 				/>
 			</color-picker-container>
-			<color-picker-container :title="t('base.blocks')">
-				<color-picker
-					:title="t('design.border')"
-					v-model:hex-color="userStore.user.appearance.buttonBorderColor"
-				/>
-				<color-picker
-					:title="t('design.block')"
-					v-model:hex-color="userStore.user.appearance.buttonColor"
-				/>
-				<color-picker
-					:title="t('design.text')"
-					v-model:hex-color="userStore.user.appearance.buttonFontColor"
-				/>
-			</color-picker-container>
+			<!--			<color-picker-container :title="t('base.blocks')">-->
+			<!--				<color-picker-->
+			<!--					:title="t('design.border')"-->
+			<!--					v-model:hex-color="userStore.user.appearance.buttonBorderColor"-->
+			<!--				/>-->
+			<!--				<color-picker-->
+			<!--					:title="t('design.block')"-->
+			<!--					v-model:hex-color="userStore.user.appearance.buttonColor"-->
+			<!--				/>-->
+			<!--				<color-picker-->
+			<!--					:title="t('design.text')"-->
+			<!--					v-model:hex-color="userStore.user.appearance.buttonFontColor"-->
+			<!--				/>-->
+			<!--			</color-picker-container>-->
 		</div>
 	</bio-edit-container>
 </template>
@@ -175,7 +181,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import BioButton from 'components/base/BioButton.vue';
-import BioEditContainer from 'components/edit/BioEditContainer.vue';
+import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
 import ColorPickerContainer from 'components/design/ColorPickerContainer.vue';
 import ColorPicker from 'components/design/ColorPicker.vue';
 import BioPickerGroup from 'components/base/BioPickerGroup.vue';
@@ -194,22 +200,22 @@ const selectedColorUpdate = () => {
 	if (!userStore.user) {
 		return;
 	}
-	const gradientColor = `linear-gradient(180deg, ${userStore.user.background.gradientTopColor} 0%, ${userStore.user.background.gradientBottomColor} 100%)`;
+	const gradientColor = `linear-gradient(180deg, ${userStore.user.appearance.theme.gradientTopColor} 0%, ${userStore.user.appearance.theme.gradientBottomColor} 100%)`;
 
 	if (userStore.user) {
-		userStore.user.background.gradientColor = gradientColor;
+		userStore.user.appearance.theme.gradientColor = gradientColor;
 	}
 };
 
 const imgPickerUpdate = (imgName: string) => {
 	if (userStore.user) {
-		userStore.user.background.localImg = imgName;
+		userStore.user.appearance.theme.localImg = imgName;
 	}
 };
 
 const ok = (response: { success: string; path: string }) => {
 	if (userStore.user) {
-		userStore.user.background.uploadImg = response.path;
+		userStore.user.appearance.theme.uploadImg = response.path;
 	}
 };
 

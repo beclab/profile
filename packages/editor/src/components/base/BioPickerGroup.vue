@@ -27,7 +27,7 @@ function handleItemClick(button) {
 	emit('update:activeIndex', index);
 }
 
-const addChildComponent = (componentRef) => {
+const addChildComponent = (componentRef: any) => {
 	childComponents.value.push(componentRef);
 	// console.log(childComponents)
 };

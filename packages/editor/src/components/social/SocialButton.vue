@@ -40,10 +40,10 @@ const props = defineProps({
 });
 
 const selected = computed(() => {
-	if (!userStore.user || userStore.user?.socials.length < 0) {
+	if (!userStore.user || userStore.user?.social.data.length < 0) {
 		return false;
 	}
-	const index = userStore.user?.socials.findIndex(
+	const index = userStore.user?.social.data.findIndex(
 		(social) => social.platform === props.platform
 	);
 	return index >= 0;
@@ -52,11 +52,11 @@ const selected = computed(() => {
 const onButtonClick = () => {
 	if (userStore.user) {
 		if (selected.value) {
-			userStore.user.socials = userStore.user.socials.filter(
+			userStore.user.social.data = userStore.user.social.data.filter(
 				(item) => item.platform !== props.platform
 			);
 		} else {
-			userStore.user.socials.push(SocialMap[props.platform]);
+			userStore.user.social.data.push(SocialMap[props.platform]);
 		}
 	}
 };

@@ -9,12 +9,10 @@ import { DataStoreService } from './datastore.service';
 import { createInstance } from './bfl/utils';
 import axios from 'axios';
 
-export interface Link {
+export interface Block {
   type: string;
-  url: string;
-  title: string;
-  img?: string;
-  icon?: string;
+  nickName: string;
+  enabled: boolean;
 }
 
 export interface Social {
@@ -43,31 +41,110 @@ export enum SOCIAL_TYPE {
   TELEGRAM = 'telegram',
 }
 
+export enum HEADER_FORMAT_TYPE {
+  COLUMN = 'column',
+  ROW = 'row'
+}
+
+export enum THEME_TYPE {
+  SOLID = 'solid',
+  GRADIENT = 'gradient',
+  IMAGE = 'image'
+}
+
+export enum BLOCK_STYLE_TYPE {
+  CIRCULAR = 'circular',
+  SQUARE = 'square',
+  CUSTOM = 'custom',
+  UPLOAD = 'upload'
+}
+
+export enum SIZE_TYPE {
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGER = 'larger'
+}
+
+export enum HEADER_STYLE_TYPE {
+  CLASSIC = 'classic',
+  PORTRAIT = 'portrait',
+  BANNER = 'banner'
+}
+
+export enum PROFILE_SHAPE_TYPE {
+  CIRCULAR = 'circular',
+  SQUARE = 'square'
+}
+
+export enum BLOCK_TYPE {
+  link = 'link',
+  text = 'text',
+  image = 'image'
+}
+
+export enum FONT_TYPE {
+  ROBOTO = 'Roboto',
+  POPINS = 'Roboto',
+  ARVO = 'Arvo',
+  BITTER = 'Bitter',
+  RIGHTEOUS = 'Righteous',
+  LOBSTER = 'Lobster',
+  ORBITRON = 'Orbitron',
+  AUDIOWIDE = 'Audiowide',
+  COURGETTE = 'Courgette'
+}
+
 export interface User {
-  avatarUrl: string;
-  terminusName: string;
-  description: string;
   did: string;
-  layoutStyle: number;
-  background: {
-    style: number;
-    uploadImg: string;
-    color: string;
-    gradientTopColor: string;
-    gradientBottomColor: string;
-    gradientColor: string;
-    localImg: string;
+  header: {
+    style: string;
+    banner: string;
+    avatarUrl: string;
+    profileShape: string;
+    profileSize: number;
+    profileOutline: boolean;
+    nickName: string;
+    description: string;
+    textSize: string;
+    format: string;
   };
   appearance: {
-    nameColor: string;
-    bioColor: string;
-    socialColor: string;
-    buttonColor: string;
-    buttonBorderColor: string;
-    buttonFontColor: string;
+    theme: {
+      style: string;
+      uploadImg: string;
+      color: string;
+      gradientTopColor: string;
+      gradientBottomColor: string;
+      gradientColor: string;
+      localImg: string;
+    };
+    header: {
+      textColor: string;
+    };
+    link: {
+      background: string;
+      textColor: string;
+    };
+    block: {
+      background: string;
+      textColor: string;
+      style: string;
+      shadow: boolean;
+      outline: boolean;
+      transparency: number;
+    };
+    font: string;
   };
-  links: Link[];
-  socials: Social[];
+  social: {
+    data: Social[];
+    size: string;
+  };
+  block: {
+    data: Block[];
+  };
+  layout: {
+    style: number;
+  };
   isDefault?: boolean;
 }
 
@@ -91,7 +168,7 @@ function stringToIntHash(str: string, lowerbound: number, upperbound: number) {
 export class UserController {
   private readonly logger = new Logger(UserController.name);
 
-  private key = 'profile_user_info1';
+  private key = 'profile_user_info_v2';
 
   constructor(
     private readonly dataStoreService: DataStoreService, // private readonly ws: WsStartGateway,
@@ -108,29 +185,55 @@ export class UserController {
 
     return {
       did: '',
-      avatarUrl: '' + id + '.png',
-      terminusName: '',
-      description: '',
-      layoutStyle: 0,
-      background: {
+      layout: {
         style: 0,
-        uploadImg: '',
-        color: '#ffffff',
-        gradientTopColor: '#8CE3FF',
-        gradientBottomColor: '#7FFF93',
-        gradientColor: 'linear-gradient(180deg, #8CE3FF 0%, #7FFF93 100%)',
-        localImg: '',
+      },
+      header: {
+        style: HEADER_STYLE_TYPE.CLASSIC,
+        banner: '',
+        avatarUrl: '' + id + '.png',
+        profileShape: PROFILE_SHAPE_TYPE.CIRCULAR,
+        profileSize: 100,
+        profileOutline: false,
+        nickName: '',
+        description: '',
+        textSize: SIZE_TYPE.SMALL,
+        format: HEADER_FORMAT_TYPE.COLUMN,
       },
       appearance: {
-        nameColor: '#1F1814',
-        bioColor: '#1F1814',
-        socialColor: '#1F1814',
-        buttonColor: '#1F1814',
-        buttonBorderColor: '#1F1814',
-        buttonFontColor: '#FFFFFF',
+        theme: {
+          style: THEME_TYPE.SOLID,
+          uploadImg: '',
+          color: '#ffffff',
+          gradientTopColor: '#8CE3FF',
+          gradientBottomColor: '#7FFF93',
+          gradientColor: 'linear-gradient(180deg, #8CE3FF 0%, #7FFF93 100%)',
+          localImg: '',
+        },
+        header: {
+          textColor: '#1F1F1F',
+        },
+        link: {
+          background: '#DCF9EB',
+          textColor: '#1F1F1F',
+        },
+        block: {
+          background: '#DCF9EB',
+          textColor: '#1F1F1F',
+          style: BLOCK_STYLE_TYPE.CIRCULAR,
+          shadow: false,
+          outline: false,
+          transparency: 25,
+        },
+        font: 'Roboto',
       },
-      links: [],
-      socials: [],
+      social: {
+        data: [],
+        size: SIZE_TYPE.SMALL,
+      },
+      block: {
+        data: [],
+      },
       isDefault: true,
     };
   }

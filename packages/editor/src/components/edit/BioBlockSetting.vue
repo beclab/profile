@@ -16,11 +16,14 @@
 			/>
 		</div>
 		<vue-draggable-next
-			v-if="userStore.user && userStore.user.links"
-			:list="userStore.user.links"
+			v-if="userStore.user && userStore.user.block.data"
+			:list="userStore.user?.block.data"
 		>
 			<transition-group name="list">
-				<template v-for="(item, index) in userStore.user.links" :key="index">
+				<template
+					v-for="(item, index) in userStore.user?.block.data"
+					:key="index"
+				>
 					<block-container
 						:index="index"
 						:type="BLOCK_TYPE.link"
@@ -61,7 +64,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { VueDraggableNext } from 'vue-draggable-next';
-import { BLOCK_TYPE, Link } from 'src/types/User';
+import { BLOCK_TYPE, Block } from 'src/types/User';
 import BlockButton from 'src/components/block/BlockButton.vue';
 import BlockContainer from 'src/components/block/BlockContainer.vue';
 import LinkContent from 'src/components/block/LinkContent.vue';
@@ -72,7 +75,7 @@ import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
 const userStore = useUserStore();
 
-interface SubLink extends Link {
+interface SubLink extends Block {
 	type: BLOCK_TYPE;
 	img?: string;
 	icon?: string;
@@ -89,7 +92,7 @@ const setShowDialog = (bl: boolean) => {
 
 const onAddLinks = (type: BLOCK_TYPE) => {
 	addLink.value.type = type;
-	userStore.user!.links?.push(addLink.value);
+	userStore.user!.block.data?.push(addLink.value);
 	showAddLinkDialog.value = false;
 	addLink.value = { type, url: '', title: '' };
 };

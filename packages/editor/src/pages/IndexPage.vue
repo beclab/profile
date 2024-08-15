@@ -62,6 +62,7 @@
 					<div class="preview">
 						<BioLayoutComponent1
 							:user="userStore.user"
+							:font-size="10.24"
 							@on-area-click="onAreaClick"
 						/>
 					</div>
@@ -78,7 +79,7 @@ import BioSocialSetting from 'components/edit/BioSocialSetting.vue';
 import BioBlockSetting from 'components/edit/BioBlockSetting.vue';
 import BioDesignSetting from 'components/edit/BioDesignSetting.vue';
 import BioShareHeader from 'components/share/BioShareHeader.vue';
-import BioLayoutComponent1 from 'components/layout/BioLayoutComponent1.vue';
+import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
 import { useUserStore } from 'src/stores/user';
 import { debounce } from 'quasar';
 import axios from 'axios';
@@ -148,14 +149,15 @@ const onAreaClick = (index: number) => {
 			height: calc(100% - 4.67rem);
 
 			.preview {
-				margin-top: 2.67rem;
+				margin-top: 32px;
 				flex: 0 1 auto;
 				position: relative;
-				width: 21rem;
-				height: 40.3rem;
-				border: 0.25rem solid #363636;
-				border-radius: 2.4rem;
-				background: #ffffff;
+				width: 240px;
+				height: 520px;
+				border: 5.12px solid #000;
+				border-radius: 20.48px;
+				background: #fff;
+				overflow: hidden;
 				box-shadow: inset 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
 				filter: drop-shadow(0 0.8rem 2.4rem rgba(0, 0, 0, 0.25));
 			}

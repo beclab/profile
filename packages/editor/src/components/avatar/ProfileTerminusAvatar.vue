@@ -1,7 +1,12 @@
 <template>
 	<div
 		class="terminus-avatar-root row justify-center items-center"
-		:style="{ width: size, height: size }"
+		:style="{
+			width: size,
+			height: size,
+			'--avatarRadius': radius,
+			'--avatarBorder': `${showBorder ? 2 : 0}px solid #1F1F1F`
+		}"
 	>
 		<div
 			class="terminus-avatar-image-background"
@@ -48,6 +53,10 @@ const props = defineProps({
 		type: String,
 		default: ''
 	},
+	radius: {
+		type: String,
+		default: '50%'
+	},
 	isMe: {
 		type: Boolean,
 		default: true
@@ -57,6 +66,10 @@ const props = defineProps({
 		default: true
 	},
 	showBorder: {
+		type: Boolean,
+		default: false
+	},
+	showImageBorder: {
 		type: Boolean,
 		default: true
 	}
@@ -151,14 +164,15 @@ const srcResource = computed(() => {
 	background: transparent;
 
 	.terminus-avatar-image-background {
-		border-radius: 50%;
+		border-radius: var(--avatarRadius);
+		border: var(--avatarBorder);
 		position: relative;
 		overflow: hidden;
 
 		.terminus-avatar-image {
 			width: 100%;
 			height: 100%;
-			border-radius: 50%;
+			border-radius: var(--avatarRadius);
 		}
 	}
 

@@ -26,9 +26,8 @@ import { scrollBarStyle } from 'src/utils/helper';
 		height: 100%;
 
 		.design-area {
-			width: 400px;
+			width: 440px;
 			height: 100%;
-			padding-top: 32px;
 			padding-bottom: 32px;
 		}
 	}

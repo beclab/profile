@@ -1,4 +1,3 @@
-import axios from 'axios';
 export interface PathObject {
 	url: string;
 	name: string;

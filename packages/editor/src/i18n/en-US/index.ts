@@ -10,7 +10,8 @@ export default {
 		desc: 'Description',
 		cancel: 'Cancel',
 		create: 'Create',
-		let_people_own_their_data_again: 'Let people own their data again'
+		let_people_own_their_data_again: 'Let people own their data again',
+		size: 'Size'
 	},
 	profile: {
 		your_name: 'Your Name',
@@ -22,6 +23,20 @@ export default {
 		robot_avatar: 'Robot avatar',
 		nft_avatar: 'NFT avatar',
 		custom_avatar: 'Custom avatar',
+		header_style: 'Header Style',
+		classic: 'Classic',
+		portrait: 'Portrait',
+		banner: 'Banner',
+		profile_picture: 'Profile Picture',
+		upload_avatar_desc:
+			'Image should be at least 600x600px and in JPG, PNG or GIF format.',
+		circular: 'Circular',
+		square: 'Square',
+		profile_picture_shape: 'Profile Picture Shape',
+		profile_picture_Size: 'Profile Picture Size',
+		profile_picture_outline: 'Profile Picture Outline',
+		header_text: 'Header Text',
+		header_format: 'Header Format',
 		bind_nft_in_settings: 'Please Bind NFT in Settings',
 		go_to_the_settings_to_complete_the_binding_desc:
 			'You have not bound the blockchain address and cannot obtain the corresponding NFT image. Go to the settings to complete the binding and then come here to set the NFT avatar.',

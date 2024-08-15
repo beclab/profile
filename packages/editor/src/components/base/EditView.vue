@@ -10,6 +10,7 @@
 					'--width': slotIcon ? 'calc(100% - 32px)' : '100%',
 					'--paddingLeft': slotIcon ? '0' : '12px'
 				}"
+				input-class="text-body1 text-ink-1"
 				input-style="resize: none"
 				borderless
 				dense
@@ -93,7 +94,6 @@ function onInput(value: string) {
 			font-weight: 400;
 			line-height: 16px;
 			letter-spacing: 0em;
-			text-align: left;
 			color: 1px solid $ink-2;
 		}
 	}

@@ -1,7 +1,7 @@
 // app global css in SCSS form
-:root {
-	font-size: calc(100vw / 967 * 10);
-}
+//:root {
+//	font-size: calc(100vw / 967 * 10);
+//}
 .q-btn .q-icon,
 .q-btn .q-spinner {
 	font-size: 12.67px !important;
@@ -9,6 +9,13 @@
 
 .q-btn .on-left {
 	margin-right: 6.8px;
+}
+
+.q-field__control {
+	color: $light-green-default;
+	height: 40px !important;
+	max-width: 100%;
+	outline: none;
 }
 
 .q-toggle__inner--truthy .q-toggle__track {
