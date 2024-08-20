@@ -1,7 +1,7 @@
 <template>
 	<div
 		ref="buttonRef"
-		class="row items-center"
+		class="row items-center q-pa-sm"
 		:class="selected ? 'bio-selected-button' : 'bio-button'"
 		:style="{ '--width': `${width}px` }"
 		@click="handleClick"
@@ -9,8 +9,8 @@
 		<slot />
 		<q-icon
 			v-if="icon"
-			size="16px"
-			:color="selected ? 'ink-on-brand-black' : 'ink-2'"
+			:size="size"
+			color="ink-on-brand-black"
 			:name="icon"
 			class="q-mr-sm"
 		/>
@@ -28,6 +28,10 @@ import { getCurrentInstance, inject, onMounted, ref } from 'vue';
 const props = defineProps({
 	icon: {
 		type: String
+	},
+	size: {
+		type: String,
+		default: '16px'
 	},
 	label: {
 		type: String,
@@ -75,7 +79,7 @@ onMounted(() => {
 .bio-button {
 	background: $background-1;
 	border: 1px solid $btn-stroke;
-	height: 32px;
+	height: auto;
 	width: var(--width, 100%);
 	padding-left: 12px;
 	padding-right: 12px;
@@ -102,14 +106,9 @@ onMounted(() => {
 	}
 
 	&__label {
-		font-family: Roboto;
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 16px;
-		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
-		color: $ink-2;
+		color: $ink-on-brand-black;
 		text-overflow: ellipsis;
 	}
 }
@@ -119,7 +118,7 @@ onMounted(() => {
 		--profile,
 		linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)
 	);
-	height: 32px;
+	height: auto;
 	width: var(--width, 100%);
 	padding-left: 12px;
 	padding-right: 12px;
@@ -146,11 +145,6 @@ onMounted(() => {
 	}
 
 	&__label {
-		font-family: Roboto;
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 16px;
-		letter-spacing: 0em;
 		text-align: center;
 		overflow: hidden;
 		color: $ink-on-brand-black;

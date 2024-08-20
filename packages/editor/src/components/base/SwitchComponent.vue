@@ -1,7 +1,11 @@
 <template>
-	<div class="row full-width justify-between items-center">
+	<div
+		class="row full-width justify-between items-center"
+		style="margin-bottom: -8px"
+	>
 		<div class="text-subtitle1 text-ink-1">{{ label }}</div>
 		<q-toggle
+			size="xs"
 			:model-value="modelValue"
 			@update:model-value="updateModelValue"
 			color="light-green-default"

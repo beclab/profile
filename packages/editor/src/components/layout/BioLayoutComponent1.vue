@@ -277,16 +277,18 @@ const backgroundStyle = computed(() => {
 			return { 'background-color': props.user.appearance.theme.color };
 		case THEME_TYPE.GRADIENT:
 			return { background: props.user.appearance.theme.gradientColor };
-		case THEME_TYPE.UPLOAD:
-			return {
-				background: `url("${props.user.appearance.theme.uploadImg}")`,
-				'background-size': 'cover'
-			};
 		case THEME_TYPE.IMAGE:
-			return {
-				'background-image': `url("/background/${props.user.appearance.theme.localImg}")`,
-				'background-size': 'cover'
-			};
+			if (props.user.appearance.theme.useUpload) {
+				return {
+					background: `url("${props.user.appearance.theme.uploadImg}")`,
+					'background-size': 'cover'
+				};
+			} else {
+				return {
+					'background-image': `url("/background/${props.user.appearance.theme.localImg}")`,
+					'background-size': 'cover'
+				};
+			}
 		default:
 			return {};
 	}

@@ -1,6 +1,6 @@
 <template>
 	<div class="preview-layout" v-if="userStore.user">
-		<BioLayoutComponent1
+		<bio-layout-component1
 			:font-size="platform.is.desktop ? 20 : 25"
 			:user="userStore.user"
 		/>

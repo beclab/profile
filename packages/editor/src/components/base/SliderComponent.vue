@@ -23,7 +23,7 @@ A 5,5 0 1,0 15,10"
 			@update:model-value="updateModelValue"
 		>
 			<template v-slot:append>
-				<div class="text-body1 text-ink-1">px</div>
+				<div class="text-body1 text-ink-1">{{ unit }}</div>
 			</template>
 		</q-input>
 	</div>
@@ -42,6 +42,10 @@ defineProps({
 	max: {
 		type: Number,
 		default: 100
+	},
+	unit: {
+		type: String,
+		default: '%'
 	}
 });
 

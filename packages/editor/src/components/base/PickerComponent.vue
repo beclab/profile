@@ -1,12 +1,15 @@
 <template>
-	<div class="column justify-center items-center" @click="handleParentClick">
+	<div
+		class="column justify-center items-center full-width"
+		@click="handleParentClick"
+	>
 		<div
 			ref="buttonRef"
 			:style="{
 				'--root-padding': border ? '2px' : '0',
 				'--root-border': `${border ? 2 : 0}px solid ${selected ? greenDefault.color.value : 'transparent'}`
 			}"
-			class="picker-root"
+			class="picker-root column justify-center items-center"
 		>
 			<div
 				:style="{
@@ -19,6 +22,7 @@
 				<slot
 					name="default"
 					:color="selected ? greenDefault.color.value : separator.color.value"
+					:selected="selected"
 				/>
 
 				<q-icon
@@ -55,7 +59,7 @@ const props = defineProps({
 	},
 	width: {
 		type: String,
-		default: 'auto'
+		default: '100%'
 	},
 	height: {
 		type: String,
@@ -125,7 +129,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .picker-root {
 	height: auto;
-	width: auto;
+	width: 100%;
 	cursor: pointer;
 	border-radius: 16px;
 	padding: var(--root-padding);

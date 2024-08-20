@@ -56,8 +56,11 @@ export interface User {
 	appearance: {
 		theme: {
 			style: THEME_TYPE;
+			preset: number;
 			uploadImg: string;
 			color: string;
+			filter: IMAGE_FILTER;
+			useUpload: boolean;
 			gradientTopColor: string;
 			gradientBottomColor: string;
 			gradientColor: string;
@@ -100,8 +103,7 @@ export enum HEADER_FORMAT_TYPE {
 export enum THEME_TYPE {
 	SOLID = 'solid',
 	GRADIENT = 'gradient',
-	IMAGE = 'image',
-	UPLOAD = 'upload'
+	IMAGE = 'image'
 }
 
 export enum BLOCK_STYLE_TYPE {
@@ -114,6 +116,12 @@ export enum SIZE_TYPE {
 	SMALL = 'small',
 	MEDIUM = 'medium',
 	LARGER = 'larger'
+}
+
+export enum IMAGE_FILTER {
+	NONE = 'none',
+	DARK = 'dark',
+	Light = 'light'
 }
 
 export enum HEADER_STYLE_TYPE {
@@ -135,7 +143,7 @@ export enum BLOCK_TYPE {
 
 export enum FONT_TYPE {
 	ROBOTO = 'Roboto',
-	POPINS = 'Roboto',
+	POPINS = 'Popins',
 	ARVO = 'Arvo',
 	BITTER = 'Bitter',
 	RIGHTEOUS = 'Righteous',

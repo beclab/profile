@@ -30,11 +30,11 @@ const props = defineProps({
 	},
 	columnGap: {
 		type: String,
-		default: '8px'
+		default: '20px'
 	},
 	rowGap: {
 		type: String,
-		default: '8px'
+		default: '20px'
 	}
 });
 

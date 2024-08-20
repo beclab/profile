@@ -2,16 +2,7 @@
 	<bio-edit-container v-if="userStore.user">
 		<structured-title
 			:primary-title="t('profile.header_style')"
-			:secondary-titles="
-				userStore.user.header.style === HEADER_STYLE_TYPE.BANNER
-					? [t('profile.banner')]
-					: ''
-			"
-			:secondary-description="
-				userStore.user.header.style === HEADER_STYLE_TYPE.BANNER
-					? [t('profile.upload_avatar_desc')]
-					: ''
-			"
+			:secondary-items="headerStyleSecondaryItems"
 		>
 			<template v-slot:primary>
 				<grid-picker-group
@@ -87,15 +78,7 @@
 		<structured-title
 			:primary-title="t('profile.profile_picture')"
 			:primary-description="t('profile.upload_avatar_desc')"
-			:secondary-titles="
-				userStore.user.header.style === HEADER_STYLE_TYPE.PORTRAIT
-					? ''
-					: [
-							t('profile.profile_picture_shape'),
-							t('profile.profile_picture_Size'),
-							''
-						]
-			"
+			:secondary-items="pictureSecondaryItems"
 		>
 			<template v-slot:primary>
 				<bio-avatar :size="100" :icon-size="32" />
@@ -104,7 +87,7 @@
 			<template v-slot:secondary-0>
 				<grid-picker-group v-model="userStore.user.header.profileShape">
 					<picker-component
-						:label="t('profile.circular')"
+						:label="t('base.circular')"
 						:value="PROFILE_SHAPE_TYPE.CIRCULAR"
 					>
 						<template v-slot:default="{ color }">
@@ -115,7 +98,7 @@
 						</template>
 					</picker-component>
 					<picker-component
-						:label="t('profile.square')"
+						:label="t('base.square')"
 						:value="PROFILE_SHAPE_TYPE.SQUARE"
 					>
 						<template v-slot:default="{ color }">
@@ -133,6 +116,7 @@
 					v-model="userStore.user.header.profileSize"
 					:min="64"
 					:max="200"
+					unit="px"
 				/>
 			</template>
 
@@ -146,28 +130,30 @@
 
 		<structured-title
 			:primary-title="t('profile.header_text')"
-			:secondary-titles="[t('base.size')]"
+			:secondary-items="[{ title: t('base.size') }]"
 		>
 			<template v-slot:primary>
-				<span class="profile-label full-width q-mt-xl">
-					{{ t('base.name') }}
-				</span>
-				<edit-view
-					v-if="userStore.user"
-					class="label-width q-mt-xs"
-					:placeholder="t('profile.your_name')"
-					v-model="userStore.user.header.nickName"
-				/>
-				<span class="profile-label full-width q-mt-md">
-					{{ t('profile.bio') }}
-				</span>
-				<edit-view
-					v-if="userStore.user"
-					height="96px"
-					class="label-width q-mt-xs"
-					:placeholder="t('profile.a_bit_about_you')"
-					v-model="userStore.user.header.description"
-				/>
+				<div class="column">
+					<span class="profile-label full-width">
+						{{ t('base.name') }}
+					</span>
+					<edit-view
+						v-if="userStore.user"
+						class="label-width q-mt-xs"
+						:placeholder="t('profile.your_name')"
+						v-model="userStore.user.header.nickName"
+					/>
+					<span class="profile-label full-width q-mt-md">
+						{{ t('profile.bio') }}
+					</span>
+					<edit-view
+						v-if="userStore.user"
+						height="96px"
+						class="label-width q-mt-xs"
+						:placeholder="t('profile.a_bit_about_you')"
+						v-model="userStore.user.header.description"
+					/>
+				</div>
 			</template>
 
 			<template v-slot:secondary-0>
@@ -241,7 +227,7 @@ import {
 } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const userStore = useUserStore();
 const { t } = useI18n();
@@ -284,6 +270,42 @@ watch(
 		immediate: true
 	}
 );
+
+const headerStyleSecondaryItems = computed(() => {
+	if (!userStore.user) {
+		return [];
+	}
+
+	const data = [
+		{
+			title: t('profile.banner'),
+			description: t('profile.upload_avatar_desc'),
+			visible: userStore.user.header.style === HEADER_STYLE_TYPE.BANNER
+		}
+	];
+	console.log(data);
+	return data;
+});
+
+const pictureSecondaryItems = computed(() => {
+	if (!userStore.user) {
+		return [];
+	}
+	return [
+		{
+			title: t('profile.profile_picture_shape'),
+			visible: userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT
+		},
+		{
+			title: t('profile.profile_picture_size'),
+			visible: userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT
+		},
+		{
+			title: '',
+			visible: userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT
+		}
+	];
+});
 </script>
 <style scoped lang="scss">
 .shape_circle {

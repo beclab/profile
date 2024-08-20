@@ -50,7 +50,11 @@
 						v-model:userConfig="userStore.user"
 					/>
 					<bio-block-setting v-if="selectedIndex === 2" />
-					<bio-design-setting
+					<!--					<bio-design-setting-->
+					<!--						v-if="selectedIndex === 3"-->
+					<!--						v-model:userConfig="userStore.user"-->
+					<!--					/>-->
+					<bio-appearance-setting
 						v-if="selectedIndex === 3"
 						v-model:userConfig="userStore.user"
 					/>
@@ -77,14 +81,15 @@ import TabItem from 'components/base/TabItem.vue';
 import BioProfileSetting from 'components/edit/BioProfileSetting.vue';
 import BioSocialSetting from 'components/edit/BioSocialSetting.vue';
 import BioBlockSetting from 'components/edit/BioBlockSetting.vue';
-import BioDesignSetting from 'components/edit/BioDesignSetting.vue';
-import BioShareHeader from 'components/share/BioShareHeader.vue';
+// import BioDesignSetting from 'components/edit/BioDesignSetting.vue';
+import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
 import { useUserStore } from 'src/stores/user';
 import { debounce } from 'quasar';
 import axios from 'axios';
 import { User } from '../types/User';
 import { useI18n } from 'vue-i18n';
+import BioAppearanceSetting from 'src/components/edit/BioAppearanceSetting.vue';
 
 const userStore = useUserStore();
 const { t } = useI18n();

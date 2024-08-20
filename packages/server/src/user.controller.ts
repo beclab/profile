@@ -55,8 +55,13 @@ export enum THEME_TYPE {
 export enum BLOCK_STYLE_TYPE {
   CIRCULAR = 'circular',
   SQUARE = 'square',
-  CUSTOM = 'custom',
-  UPLOAD = 'upload'
+  CUSTOM = 'custom'
+}
+
+export enum IMAGE_FILTER {
+  NONE = 'none',
+  DARK = 'dark',
+  Light = 'light'
 }
 
 export enum SIZE_TYPE {
@@ -111,8 +116,11 @@ export interface User {
   appearance: {
     theme: {
       style: string;
+      preset: number;
       uploadImg: string;
       color: string;
+      filter: string;
+      useUpload: boolean;
       gradientTopColor: string;
       gradientBottomColor: string;
       gradientColor: string;
@@ -204,7 +212,10 @@ export class UserController {
         theme: {
           style: THEME_TYPE.SOLID,
           uploadImg: '',
+          preset: 0,
+          useUpload: false,
           color: '#ffffff',
+          filter: IMAGE_FILTER.NONE,
           gradientTopColor: '#8CE3FF',
           gradientBottomColor: '#7FFF93',
           gradientColor: 'linear-gradient(180deg, #8CE3FF 0%, #7FFF93 100%)',

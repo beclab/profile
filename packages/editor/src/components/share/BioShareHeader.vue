@@ -11,7 +11,7 @@
 				@click="copyUrl"
 			/>
 		</div>
-		<bio-button :label="t('base.share')" icon="sym_r_share">
+		<bio-button class="text-body3" :label="t('base.share')" icon="sym_r_share">
 			<bio-share-popup :url="url" :name="name" />
 		</bio-button>
 	</div>
@@ -75,7 +75,7 @@ watch(
 	padding-right: 20px;
 
 	.preview-share-edit {
-		width: calc(100% - 92px);
+		width: calc(100% - 100px);
 		height: 32px;
 		border-radius: 8px;
 		border: 1px solid $input-stroke;
