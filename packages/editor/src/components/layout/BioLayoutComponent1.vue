@@ -47,7 +47,7 @@
 								? 'nickname-' + props.user.header.textSize.toLowerCase()
 								: 'nickname-medium'
 						"
-						:style="{ color: user.appearance.header.textColor }"
+						:style="{ color: user.appearance.theme.header.textColor }"
 					>
 						{{ user.header.nickName }}
 					</div>
@@ -58,7 +58,7 @@
 								? 'description-' + props.user.header.textSize.toLowerCase()
 								: 'description-medium'
 						"
-						:style="{ color: user.appearance.header.textColor }"
+						:style="{ color: user.appearance.theme.header.textColor }"
 					>
 						{{ user.header.description }}
 					</div>
@@ -68,7 +68,7 @@
 						<a
 							target="_blank"
 							class="bio-social"
-							:style="{ color: user.appearance.header.textColor }"
+							:style="{ color: user.appearance.theme.header.textColor }"
 							:href="getSocialUrl(item)"
 						>
 							<social-svg width="2em" height="2em" :platform="item.platform" />
@@ -98,7 +98,7 @@
 								? 'nickname-' + props.user.header.textSize.toLowerCase()
 								: 'nickname-medium'
 						"
-						:style="{ color: user.appearance.header.textColor }"
+						:style="{ color: user.appearance.theme.header.textColor }"
 					>
 						{{ user.header.nickName }}
 					</div>
@@ -109,7 +109,7 @@
 								? 'description-' + props.user.header.textSize.toLowerCase()
 								: 'description-medium'
 						"
-						:style="{ color: user.appearance.header.textColor }"
+						:style="{ color: user.appearance.theme.header.textColor }"
 					>
 						{{ user.header.description }}
 					</div>
@@ -119,7 +119,7 @@
 						<a
 							target="_blank"
 							class="bio-social"
-							:style="{ color: user.appearance.header.textColor }"
+							:style="{ color: user.appearance.theme.header.textColor }"
 							:href="getSocialUrl(item)"
 						>
 							<social-svg width="2em" height="2em" :platform="item.platform" />
@@ -157,7 +157,7 @@
 								? 'nickname-' + props.user.header.textSize.toLowerCase()
 								: 'nickname-medium'
 						"
-						:style="{ color: user.appearance.header.textColor }"
+						:style="{ color: user.appearance.theme.header.textColor }"
 					>
 						{{ user.header.nickName }}
 					</div>
@@ -168,7 +168,7 @@
 								? 'description-' + props.user.header.textSize.toLowerCase()
 								: 'description-medium'
 						"
-						:style="{ color: user.appearance.header.textColor }"
+						:style="{ color: user.appearance.theme.header.textColor }"
 					>
 						{{ user.header.description }}
 					</div>
@@ -178,7 +178,7 @@
 						<a
 							target="_blank"
 							class="bio-social"
-							:style="{ color: user.appearance.header.textColor }"
+							:style="{ color: user.appearance.theme.header.textColor }"
 							:href="getSocialUrl(item)"
 						>
 							<social-svg width="2em" height="2em" :platform="item.platform" />
@@ -198,9 +198,9 @@
 					<a
 						v-if="item.type === BLOCK_TYPE.link"
 						:style="{
-							'border-color': user.appearance.link.textColor,
-							'background-color': user.appearance.link.background,
-							color: user.appearance.link.textColor
+							'border-color': user.appearance.theme.link.textColor,
+							'background-color': user.appearance.theme.link.background,
+							color: user.appearance.theme.link.textColor
 						}"
 					>
 						<img
@@ -213,9 +213,9 @@
 					<a
 						v-if="item.type === BLOCK_TYPE.text"
 						:style="{
-							'border-color': user.appearance.block.textColor,
-							'background-color': user.appearance.block.background,
-							color: user.appearance.block.textColor
+							'border-color': user.appearance.theme.block.textColor,
+							'background-color': user.appearance.theme.block.background,
+							color: user.appearance.theme.block.textColor
 						}"
 					>
 						{{ item.title }}</a
@@ -228,9 +228,9 @@
 						<a
 							class="image-title"
 							:style="{
-								'border-color': user.appearance.block.textColor,
-								'background-color': user.appearance.block.background,
-								color: user.appearance.block.textColor
+								'border-color': user.appearance.theme.block.textColor,
+								'background-color': user.appearance.theme.block.background,
+								color: user.appearance.theme.block.textColor
 							}"
 						>
 							{{ item.title }}
@@ -249,7 +249,8 @@ import {
 	THEME_TYPE,
 	User,
 	HEADER_STYLE_TYPE,
-	PROFILE_SHAPE_TYPE
+	PROFILE_SHAPE_TYPE,
+	getGradientColor
 } from 'src/types/User';
 import SocialSvg from 'src/components/social/SocialSvg.vue';
 import { useUserStore } from 'src/stores/user';
@@ -274,9 +275,14 @@ const { t } = useI18n();
 const backgroundStyle = computed(() => {
 	switch (props.user.appearance.theme.style) {
 		case THEME_TYPE.SOLID:
-			return { 'background-color': props.user.appearance.theme.color };
+			return { 'background-color': props.user.appearance.theme.background };
 		case THEME_TYPE.GRADIENT:
-			return { background: props.user.appearance.theme.gradientColor };
+			return {
+				background: getGradientColor(
+					props.user.appearance.theme.gradientTopColor,
+					props.user.appearance.theme.gradientBottomColor
+				)
+			};
 		case THEME_TYPE.IMAGE:
 			if (props.user.appearance.theme.useUpload) {
 				return {

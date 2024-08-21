@@ -1,36 +1,44 @@
 <template>
-	<div class="slider-root full-width row justify-start items-center">
-		<q-slider
-			:model-value="modelValue"
-			@update:model-value="updateModelValue"
-			thumb-path="M 15,10
+	<div class="slider-root column full-width justify-start q-mt-lg">
+		<div class="text-subtitle1 text-ink-1">{{ label }}</div>
+
+		<div class="full-width row justify-start items-center q-mt-xs">
+			<q-slider
+				:model-value="modelValue"
+				@update:model-value="updateModelValue"
+				thumb-path="M 15,10
 A 5,5 0 1,0 5,10
 A 5,5 0 1,0 15,10"
-			:min="min"
-			:max="max"
-			thumb-color="light-green-default"
-			track-size="2px"
-			class="slider-scroll"
-			track-color="background-4"
-			color="light-green-default"
-		/>
+				:min="min"
+				:max="max"
+				thumb-color="light-green-default"
+				track-size="2px"
+				class="slider-scroll"
+				track-color="background-4"
+				color="light-green-default"
+			/>
 
-		<q-input
-			borderless
-			input-class="text-body1 text-ink-1"
-			class="slider-edit q-ml-lg"
-			:model-value="modelValue"
-			@update:model-value="updateModelValue"
-		>
-			<template v-slot:append>
-				<div class="text-body1 text-ink-1">{{ unit }}</div>
-			</template>
-		</q-input>
+			<q-input
+				borderless
+				input-class="text-body1 text-ink-1"
+				class="slider-edit q-ml-lg"
+				:model-value="modelValue"
+				@update:model-value="updateModelValue"
+			>
+				<template v-slot:append>
+					<div class="text-body1 text-ink-1">{{ unit }}</div>
+				</template>
+			</q-input>
+		</div>
 	</div>
 </template>
 
 <script lang="ts" setup>
 defineProps({
+	label: {
+		type: String,
+		require: true
+	},
 	modelValue: {
 		type: Number,
 		require: true
@@ -57,7 +65,7 @@ const updateModelValue = (data: string) => {
 
 <style scoped lang="scss">
 .slider-root {
-	height: 40px;
+	height: auto;
 
 	.slider-scroll {
 		width: calc(100% - 100px);

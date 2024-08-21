@@ -42,61 +42,61 @@ export enum SOCIAL_TYPE {
 }
 
 export enum HEADER_FORMAT_TYPE {
-  COLUMN = 'column',
-  ROW = 'row'
+	COLUMN = 'column',
+	ROW = 'row'
 }
 
 export enum THEME_TYPE {
-  SOLID = 'solid',
-  GRADIENT = 'gradient',
-  IMAGE = 'image'
+	SOLID = 'solid',
+	GRADIENT = 'gradient',
+	IMAGE = 'image'
 }
 
 export enum BLOCK_STYLE_TYPE {
-  CIRCULAR = 'circular',
-  SQUARE = 'square',
-  CUSTOM = 'custom'
-}
-
-export enum IMAGE_FILTER {
-  NONE = 'none',
-  DARK = 'dark',
-  Light = 'light'
+	SQUARE = 'square',
+	ROUND = 'round',
+	CUSTOM = 'custom'
 }
 
 export enum SIZE_TYPE {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGER = 'larger'
+	SMALL = 'small',
+	MEDIUM = 'medium',
+	LARGER = 'larger'
+}
+
+export enum IMAGE_FILTER {
+	NONE = 'none',
+	DARK = 'dark',
+	Light = 'light'
 }
 
 export enum HEADER_STYLE_TYPE {
-  CLASSIC = 'classic',
-  PORTRAIT = 'portrait',
-  BANNER = 'banner'
+	CLASSIC = 'classic',
+	PORTRAIT = 'portrait',
+	BANNER = 'banner'
 }
 
 export enum PROFILE_SHAPE_TYPE {
-  CIRCULAR = 'circular',
-  SQUARE = 'square'
+	CIRCULAR = 'circular',
+	SQUARE = 'square'
 }
 
 export enum BLOCK_TYPE {
-  link = 'link',
-  text = 'text',
-  image = 'image'
+	link = 'link',
+	text = 'text',
+	image = 'image'
 }
 
 export enum FONT_TYPE {
-  ROBOTO = 'Roboto',
-  POPINS = 'Roboto',
-  ARVO = 'Arvo',
-  BITTER = 'Bitter',
-  RIGHTEOUS = 'Righteous',
-  LOBSTER = 'Lobster',
-  ORBITRON = 'Orbitron',
-  AUDIOWIDE = 'Audiowide',
-  COURGETTE = 'Courgette'
+	ROBOTO = 'Roboto',
+	POPINS = 'Popins',
+	ARVO = 'Arvo',
+	BITTER = 'Bitter',
+	RIGHTEOUS = 'Righteous',
+	LOBSTER = 'Lobster',
+	ORBITRON = 'Orbitron',
+	AUDIOWIDE = 'Audiowide',
+	COURGETTE = 'Courgette'
 }
 
 export interface User {
@@ -116,26 +116,28 @@ export interface User {
   appearance: {
     theme: {
       style: string;
-      preset: number;
+      preset: string;
       uploadImg: string;
-      color: string;
+      background: string;
       filter: string;
-      useUpload: boolean;
       gradientTopColor: string;
       gradientBottomColor: string;
-      gradientColor: string;
+      useUpload: boolean;
       localImg: string;
-    };
-    header: {
-      textColor: string;
-    };
-    link: {
-      background: string;
-      textColor: string;
+      header: {
+        textColor: string;
+      };
+      link: {
+        background: string;
+        textColor: string;
+      };
+      block: {
+        background: string;
+        textColor: string;
+      };
     };
     block: {
-      background: string;
-      textColor: string;
+      cornerRadius: number;
       style: string;
       shadow: boolean;
       outline: boolean;
@@ -145,7 +147,7 @@ export interface User {
   };
   social: {
     data: Social[];
-    size: string;
+    size: SIZE_TYPE;
   };
   block: {
     data: Block[];
@@ -153,7 +155,6 @@ export interface User {
   layout: {
     style: number;
   };
-  isDefault?: boolean;
 }
 
 function stringToIntHash(str: string, lowerbound: number, upperbound: number) {
@@ -176,7 +177,7 @@ function stringToIntHash(str: string, lowerbound: number, upperbound: number) {
 export class UserController {
   private readonly logger = new Logger(UserController.name);
 
-  private key = 'profile_user_info_v2';
+  private key = 'profile_user_info_v2_test';
 
   constructor(
     private readonly dataStoreService: DataStoreService, // private readonly ws: WsStartGateway,
@@ -212,27 +213,29 @@ export class UserController {
         theme: {
           style: THEME_TYPE.SOLID,
           uploadImg: '',
-          preset: 0,
+          preset: 's0',
           useUpload: false,
-          color: '#ffffff',
+          background: '#ffffff',
           filter: IMAGE_FILTER.NONE,
           gradientTopColor: '#8CE3FF',
           gradientBottomColor: '#7FFF93',
-          gradientColor: 'linear-gradient(180deg, #8CE3FF 0%, #7FFF93 100%)',
           localImg: '',
-        },
-        header: {
-          textColor: '#1F1F1F',
-        },
-        link: {
-          background: '#DCF9EB',
-          textColor: '#1F1F1F',
+          header: {
+            textColor: '#1F1F1F',
+          },
+          link: {
+            background: '#DCF9EB',
+            textColor: '#1F1F1F',
+          },
+          block: {
+            background: '#DCF9EB',
+            textColor: '#1F1F1F'
+          }
         },
         block: {
-          background: '#DCF9EB',
-          textColor: '#1F1F1F',
-          style: BLOCK_STYLE_TYPE.CIRCULAR,
+          style: BLOCK_STYLE_TYPE.ROUND,
           shadow: false,
+          cornerRadius: 8,
           outline: false,
           transparency: 25,
         },
@@ -244,8 +247,7 @@ export class UserController {
       },
       block: {
         data: [],
-      },
-      isDefault: true,
+      }
     };
   }
 

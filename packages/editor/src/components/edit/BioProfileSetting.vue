@@ -109,19 +109,18 @@
 						</template>
 					</picker-component>
 				</grid-picker-group>
-			</template>
 
-			<template v-slot:secondary-1>
 				<slider-component
+					v-if="userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT"
+					:label="t('profile.profile_picture_size')"
 					v-model="userStore.user.header.profileSize"
 					:min="64"
 					:max="200"
 					unit="px"
 				/>
-			</template>
 
-			<template v-slot:secondary-2>
 				<switch-component
+					v-if="userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT"
 					:label="t('profile.profile_picture_outline')"
 					v-model="userStore.user.header.profileOutline"
 				/>
@@ -207,11 +206,11 @@
 </template>
 
 <script lang="ts" setup>
-import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
-import PickerComponent from 'src/components/base/PickerComponent.vue';
-import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
 import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
 import CheckBoxComponent from 'src/components/base/CheckBoxComponent.vue';
+import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
+import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
+import PickerComponent from 'src/components/base/PickerComponent.vue';
 import StructuredTitle from 'src/components/base/StructuredTitle.vue';
 import SliderComponent from 'src/components/base/SliderComponent.vue';
 import SwitchComponent from 'src/components/base/SwitchComponent.vue';
@@ -294,14 +293,6 @@ const pictureSecondaryItems = computed(() => {
 	return [
 		{
 			title: t('profile.profile_picture_shape'),
-			visible: userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT
-		},
-		{
-			title: t('profile.profile_picture_size'),
-			visible: userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT
-		},
-		{
-			title: '',
 			visible: userStore.user.header.style !== HEADER_STYLE_TYPE.PORTRAIT
 		}
 	];

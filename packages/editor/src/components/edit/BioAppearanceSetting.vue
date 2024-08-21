@@ -70,10 +70,10 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<image-filter-component
+							<background-preset-component
 								:use-em="true"
 								:font-size="5.12"
-								:image-url="userStore.user.appearance.theme.uploadImg"
+								:theme="userStore.user.appearance.theme"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -88,10 +88,10 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<image-filter-component
+							<background-preset-component
 								:use-em="true"
 								:font-size="5.12"
-								:image-url="userStore.user.appearance.theme.uploadImg"
+								:theme="userStore.user.appearance.theme"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -106,10 +106,10 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<image-filter-component
+							<background-preset-component
 								:use-em="true"
 								:font-size="5.12"
-								:image-url="userStore.user.appearance.theme.uploadImg"
+								:theme="userStore.user.appearance.theme"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -119,18 +119,114 @@
 				</grid-picker-group>
 			</template>
 
-			<template v-slot:secondary-1> </template>
+			<template v-slot:secondary-1>
+				<grid-picker-group
+					:columns="4"
+					column-gap="12px"
+					row-gap="12px"
+					v-if="userStore.user.appearance.theme.style === THEME_TYPE.SOLID"
+					:model-value="userStore.user.appearance.theme.preset"
+				>
+					<template v-for="item in BACKGROUND_COLOR_PRESET" :key="item.preset">
+						<picker-component
+							width="92px"
+							height="160px"
+							:value="item.preset"
+							@on-selected="onThemeSelected(item)"
+							:border="true"
+						>
+							<template v-slot:default>
+								<background-preset-component
+									:use-em="true"
+									:font-size="5.12"
+									:theme="item"
+								/>
+							</template>
+						</picker-component>
+					</template>
+				</grid-picker-group>
 
-			<template v-slot:secondary-2> </template>
+				<grid-picker-group
+					:columns="4"
+					column-gap="12px"
+					row-gap="12px"
+					v-if="userStore.user.appearance.theme.style === THEME_TYPE.GRADIENT"
+					:model-value="userStore.user.appearance.theme.preset"
+				>
+					<template
+						v-for="item in BACKGROUND_GRADIENT_PRESET"
+						:key="item.preset"
+					>
+						<picker-component
+							width="92px"
+							height="160px"
+							:value="item.preset"
+							@on-selected="onThemeSelected(item)"
+							:border="true"
+						>
+							<template v-slot:default>
+								<background-preset-component
+									:use-em="true"
+									:font-size="5.12"
+									:theme="item"
+								/>
+							</template>
+						</picker-component>
+					</template>
+				</grid-picker-group>
+			</template>
 
-			<template v-slot:secondary-3> </template>
-			<template v-slot:secondary-4> </template>
+			<template v-slot:secondary-2>
+				<div class="full-width column">
+					<color-picker-v2
+						v-if="userStore.user.appearance.theme.style === THEME_TYPE.SOLID"
+						:label="t('appearance.background')"
+						v-model="userStore.user.appearance.theme.background"
+					/>
+					<color-picker-v2
+						v-if="userStore.user.appearance.theme.style === THEME_TYPE.GRADIENT"
+						:label="t('appearance.background_color_1')"
+						v-model="userStore.user.appearance.theme.gradientTopColor"
+					/>
+					<color-picker-v2
+						v-if="userStore.user.appearance.theme.style === THEME_TYPE.GRADIENT"
+						:label="t('appearance.background_color_2')"
+						v-model="userStore.user.appearance.theme.gradientBottomColor"
+					/>
+					<color-picker-v2
+						:label="t('appearance.header_text_icons')"
+						v-model="userStore.user.appearance.theme.header.textColor"
+					/>
+				</div>
+			</template>
+
+			<template v-slot:secondary-3>
+				<div class="full-width column">
+					<color-picker-v2
+						:label="t('appearance.background')"
+						v-model="userStore.user.appearance.theme.link.background"
+					/>
+					<color-picker-v2
+						:label="t('appearance.text')"
+						v-model="userStore.user.appearance.theme.link.textColor"
+					/>
+				</div>
+			</template>
+			<template v-slot:secondary-4>
+				<div class="full-width column">
+					<color-picker-v2
+						:label="t('appearance.background')"
+						v-model="userStore.user.appearance.theme.block.background"
+					/>
+					<color-picker-v2
+						:label="t('appearance.text')"
+						v-model="userStore.user.appearance.theme.block.textColor"
+					/>
+				</div>
+			</template>
 		</structured-title>
 
-		<structured-title
-			:primary-title="t('appearance.block_style')"
-			:secondary-items="blockSecondaryItems"
-		>
+		<structured-title :primary-title="t('appearance.block_style')">
 			<template v-slot:primary>
 				<grid-picker-group v-model="userStore.user.appearance.block.style">
 					<picker-component
@@ -145,8 +241,8 @@
 						</template>
 					</picker-component>
 					<picker-component
-						:label="t('base.circular')"
-						:value="BLOCK_STYLE_TYPE.CIRCULAR"
+						:label="t('base.round')"
+						:value="BLOCK_STYLE_TYPE.ROUND"
 					>
 						<template v-slot:default="{ color }">
 							<div :style="{ background: color }" class="shape_round" />
@@ -168,21 +264,29 @@
 					</picker-component>
 				</grid-picker-group>
 
+				<slider-component
+					v-if="
+						userStore.user.appearance.block.style === BLOCK_STYLE_TYPE.CUSTOM
+					"
+					:label="t('appearance.corner_radius')"
+					v-model="userStore.user.appearance.block.cornerRadius"
+					:min="4"
+					:max="20"
+					unit="px"
+				/>
+
 				<switch-component
-					class="q-mt-lg"
 					:label="t('appearance.block_shadow')"
 					v-model="userStore.user.appearance.block.shadow"
 				/>
 
 				<switch-component
-					class="q-mt-lg"
 					:label="t('appearance.block_outline')"
 					v-model="userStore.user.appearance.block.outline"
 				/>
-			</template>
 
-			<template v-slot:secondary-0>
 				<slider-component
+					:label="t('appearance.block_transparency')"
 					v-model="userStore.user.appearance.block.transparency"
 					:min="0"
 					:max="100"
@@ -216,25 +320,32 @@
 </template>
 
 <script lang="ts" setup>
+import BackgroundPresetComponent from 'src/components/layout/BackgroundPresetComponent.vue';
+import CheckBoxComponent from 'src/components/base/CheckBoxComponent.vue';
 import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
 import StructuredTitle from 'src/components/base/StructuredTitle.vue';
 import PickerComponent from 'src/components/base/PickerComponent.vue';
 import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
-import CheckBoxComponent from 'src/components/base/CheckBoxComponent.vue';
-import ImageFilterComponent from 'src/components/layout/ImageFilterComponent.vue';
 import SwitchComponent from 'src/components/base/SwitchComponent.vue';
 import SliderComponent from 'src/components/base/SliderComponent.vue';
+import ColorPickerV2 from 'src/components/design/ColorPickerV2.vue';
 import BioButton from 'src/components/base/BioButton.vue';
 import {
 	THEME_TYPE,
 	BLOCK_STYLE_TYPE,
 	IMAGE_FILTER,
-	FONT_ARRAY
+	AppearanceTheme
 } from 'src/types/User';
+import {
+	FONT_ARRAY,
+	BACKGROUND_COLOR_PRESET,
+	BACKGROUND_GRADIENT_PRESET
+} from 'src/types/Preset';
 import { computed } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
 import { useColor } from '@bytetrade/ui';
+import _ from 'lodash';
 
 const userStore = useUserStore();
 const { t } = useI18n();
@@ -286,29 +397,9 @@ const themeSecondaryItems = computed(() => {
 	return data;
 });
 
-const blockSecondaryItems = computed(() => {
-	if (!userStore.user) {
-		return [];
-	}
-
-	const data = [
-		{
-			title: t('appearance.block_transparency'),
-			visible: true
-		}
-	];
-	console.log(data);
-	return data;
-});
-
-const selectedColorUpdate = () => {
-	if (!userStore.user) {
-		return;
-	}
-	const gradientColor = `linear-gradient(180deg, ${userStore.user.appearance.theme.gradientTopColor} 0%, ${userStore.user.appearance.theme.gradientBottomColor} 100%)`;
-
-	if (userStore.user) {
-		userStore.user.appearance.theme.gradientColor = gradientColor;
+const onThemeSelected = (item: AppearanceTheme) => {
+	if (userStore.user && item) {
+		userStore.user.appearance.theme = _.cloneDeep(item);
 	}
 };
 

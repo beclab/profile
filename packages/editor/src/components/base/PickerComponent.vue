@@ -54,7 +54,7 @@ import { useColor } from '@bytetrade/ui';
 
 const props = defineProps({
 	value: {
-		type: String,
+		type: [String, Number],
 		require: true
 	},
 	width: {
@@ -67,7 +67,7 @@ const props = defineProps({
 	},
 	isSelected: {
 		type: Boolean,
-		default: true
+		default: false
 	},
 	border: {
 		type: Boolean,
@@ -106,21 +106,21 @@ const separator = useColor('separator');
 const setSelected = (isSelected: boolean) => {
 	selected.value = isSelected;
 	if (isSelected) {
-		emit('onSelected');
+		emit('onSelected', props.value);
 	}
 };
 
 defineExpose({ setSelected });
 
 const handleParentClick = (event) => {
-	if (handleItemClick && props.value) {
+	if (handleItemClick && props.value !== '') {
 		handleItemClick(selfRef, props.value);
 	}
 };
 
 onMounted(() => {
 	selected.value = props.isSelected;
-	if (addChildComponent && props.value) {
+	if (addChildComponent && props.value !== '') {
 		addChildComponent(selfRef, props.value);
 	}
 });

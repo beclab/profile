@@ -40,6 +40,10 @@ export interface ImageBlock extends Block {
 	ratio: string;
 }
 
+export function getGradientColor(top: string, bottom: string): string {
+	return `linear-gradient(180deg, ${top} 0%, ${bottom} 100%)`;
+}
+
 export interface User {
 	header: {
 		style: HEADER_STYLE_TYPE;
@@ -54,28 +58,9 @@ export interface User {
 		format: HEADER_FORMAT_TYPE;
 	};
 	appearance: {
-		theme: {
-			style: THEME_TYPE;
-			preset: number;
-			uploadImg: string;
-			color: string;
-			filter: IMAGE_FILTER;
-			useUpload: boolean;
-			gradientTopColor: string;
-			gradientBottomColor: string;
-			gradientColor: string;
-			localImg: string;
-		};
-		header: {
-			textColor: string;
-		};
-		link: {
-			background: string;
-			textColor: string;
-		};
+		theme: AppearanceTheme;
 		block: {
-			background: string;
-			textColor: string;
+			cornerRadius: number;
 			style: BLOCK_STYLE_TYPE;
 			shadow: boolean;
 			outline: boolean;
@@ -95,6 +80,29 @@ export interface User {
 	};
 }
 
+export interface AppearanceTheme {
+	style: THEME_TYPE;
+	preset: string;
+	uploadImg: string;
+	background: string;
+	filter: IMAGE_FILTER;
+	gradientTopColor: string;
+	gradientBottomColor: string;
+	useUpload: boolean;
+	localImg: string;
+	header: {
+		textColor: string;
+	};
+	link: {
+		background: string;
+		textColor: string;
+	};
+	block: {
+		background: string;
+		textColor: string;
+	};
+}
+
 export enum HEADER_FORMAT_TYPE {
 	COLUMN = 'column',
 	ROW = 'row'
@@ -107,8 +115,8 @@ export enum THEME_TYPE {
 }
 
 export enum BLOCK_STYLE_TYPE {
-	CIRCULAR = 'circular',
 	SQUARE = 'square',
+	ROUND = 'round',
 	CUSTOM = 'custom'
 }
 
@@ -152,15 +160,3 @@ export enum FONT_TYPE {
 	AUDIOWIDE = 'Audiowide',
 	COURGETTE = 'Courgette'
 }
-
-export const FONT_ARRAY = [
-	FONT_TYPE.ROBOTO,
-	FONT_TYPE.POPINS,
-	FONT_TYPE.ARVO,
-	FONT_TYPE.BITTER,
-	FONT_TYPE.RIGHTEOUS,
-	FONT_TYPE.LOBSTER,
-	FONT_TYPE.ORBITRON,
-	FONT_TYPE.AUDIOWIDE,
-	FONT_TYPE.COURGETTE
-];

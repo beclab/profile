@@ -46,7 +46,7 @@ function handleItemClick(button: any, value: string | number) {
 	const index = childComponents.value.findIndex((item) => item == button);
 	console.log(index);
 	executeRefresh(index);
-	if (value) {
+	if (value !== '') {
 		console.log(value);
 		emit('update:modelValue', value);
 	}

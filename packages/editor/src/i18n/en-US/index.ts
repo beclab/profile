@@ -14,6 +14,7 @@ export default {
 		size: 'Size',
 		circular: 'Circular',
 		square: 'Square',
+		round: 'Round',
 		custom: 'Custom',
 		expand: 'Expand',
 		image: 'Image',

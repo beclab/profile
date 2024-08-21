@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="row full-width justify-between items-center"
+		class="row full-width justify-between items-center q-mt-lg"
 		style="margin-bottom: -8px"
 	>
 		<div class="text-subtitle1 text-ink-1">{{ label }}</div>
@@ -20,7 +20,7 @@ defineProps({
 		require: true
 	},
 	modelValue: {
-		type: Number,
+		type: Boolean,
 		require: true
 	}
 });
