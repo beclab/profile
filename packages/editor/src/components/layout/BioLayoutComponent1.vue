@@ -71,7 +71,11 @@
 							:style="{ color: user.appearance.theme.header.textColor }"
 							:href="getSocialUrl(item)"
 						>
-							<social-svg width="2em" height="2em" :platform="item.platform" />
+							<social-svg
+								:width="socialSize"
+								:height="socialSize"
+								:platform="item.platform"
+							/>
 						</a>
 					</template>
 				</div>
@@ -250,6 +254,7 @@ import {
 	User,
 	HEADER_STYLE_TYPE,
 	PROFILE_SHAPE_TYPE,
+	SIZE_TYPE,
 	getGradientColor
 } from 'src/types/User';
 import SocialSvg from 'src/components/social/SocialSvg.vue';
@@ -297,6 +302,19 @@ const backgroundStyle = computed(() => {
 			}
 		default:
 			return {};
+	}
+});
+
+const socialSize = computed(() => {
+	switch (props.user.social.size) {
+		case SIZE_TYPE.SMALL:
+			return '1.5em';
+		case SIZE_TYPE.MEDIUM:
+			return '2em';
+		case SIZE_TYPE.LARGER:
+			return '2.5em';
+		default:
+			return '2em';
 	}
 });
 

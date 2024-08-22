@@ -18,6 +18,7 @@
 						: `img:/social/normal/${platform}.svg`
 				"
 			/>
+			<slot />
 		</div>
 	</transition>
 </template>

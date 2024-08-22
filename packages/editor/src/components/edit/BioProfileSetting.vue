@@ -129,7 +129,7 @@
 
 		<structured-title
 			:primary-title="t('profile.header_text')"
-			:secondary-items="[{ title: t('base.size') }]"
+			:secondary-items="[{ title: t('base.size'), visible: true }]"
 		>
 			<template v-slot:primary>
 				<div class="column">

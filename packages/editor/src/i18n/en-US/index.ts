@@ -52,7 +52,9 @@ export default {
 		recommend_sizes: 'We recommend sizes above 400x400px, PNG or JPG'
 	},
 	social: {
-		add_social_links: 'Add social links'
+		social_icons: 'Social Icons',
+		social_icons_will_appear_below_your_header_text:
+			'Your social icons will appear below your header text.'
 	},
 	blocks: {
 		add_a_Block: 'Add a Block',

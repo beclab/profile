@@ -18,7 +18,7 @@ const props = defineProps({
 	modelValue: {
 		type: [String, Number],
 		default: '',
-		required: true
+		required: false
 	},
 	grid: {
 		type: Boolean,

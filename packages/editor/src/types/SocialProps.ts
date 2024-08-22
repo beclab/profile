@@ -1,109 +1,200 @@
 import { Social } from 'src/types/User';
 
 export enum SOCIAL_TYPE {
-	TWITTER = 'twitter',
-	FACEBOOK = 'facebook',
-	INSTAGRAM = 'instagram',
-	TIKTOK = 'tiktok',
-	YOUTUBE = 'youtube',
-	LINKEDIN = 'linkedin',
-	PINTEREST = 'pinterest',
-	SNAPCHAT = 'snapchat',
-	SPOTIFY = 'spotify',
-	THREADS = 'threads',
-	REDDIT = 'reddit',
-	TWITCH = 'twitch',
-	GITHUB = 'github',
-	DRIBBBLE = 'dribbble',
-	DISCORD = 'discord',
-	SUBSTACK = 'substack',
-	TELEGRAM = 'telegram'
+	TWITTER = 'Twitter',
+	FACEBOOK = 'Facebook',
+	INSTAGRAM = 'Instagram',
+	TIKTOK = 'Tiktok',
+	GITHUB = 'Github',
+	CLUBHOUSE = 'Clubhouse',
+	PATREON = 'Patreon',
+	VENMO = 'Venmo',
+	CASH_APP = 'CashApp',
+	DEEZER = 'Deezer',
+	PANDORA = 'Pandora',
+	TIDAL = 'Tidal',
+	BANDCAMP = 'Bandcamp',
+	MEDIUM = 'Medium',
+	BEEHIIV = 'Beehiiv',
+	FLIPBOARD = 'Flipboard',
+	GOODREADS = 'Goodreads',
+	MASTODON = 'Mastodon',
+	STEAM = 'Steam',
+	TUMBLR = 'Tumblr'
 }
 
+// YOUTUBE = 'Youtube',
+// 	LINKEDIN = 'Linkedin',
+// 	PINTEREST = 'Pinterest',
+// 	SNAPCHAT = 'Snapchat',
+// 	SPOTIFY = 'Spotify',
+// 	THREADS = 'Threads',
+// 	REDDIT = 'Reddit',
+// 	TWITCH = 'Twitch',
+// 	DRIBBBLE = 'Dribbble',
+// 	DISCORD = 'Discord',
+// 	SUBSTACK = 'Substack',
+// 	TELEGRAM = 'Telegram',
+
 export const SocialMap: Record<string, Social> = {
-	twitter: {
-		platform: SOCIAL_TYPE.TWITTER,
-		username: '',
-		url: 'https://twitter.com/${username}'
-	},
-	facebook: {
-		platform: SOCIAL_TYPE.FACEBOOK,
-		username: '',
-		url: 'https://facebook.com/${username}'
-	},
-	instagram: {
+	Instagram: {
 		platform: SOCIAL_TYPE.INSTAGRAM,
 		username: '',
 		url: 'https://instagram.com/${username}'
 	},
-	tiktok: {
+	Facebook: {
+		platform: SOCIAL_TYPE.FACEBOOK,
+		username: '',
+		url: 'https://facebook.com/${username}'
+	},
+	Twitter: {
+		platform: SOCIAL_TYPE.TWITTER,
+		username: '',
+		url: 'https://twitter.com/${username}'
+	},
+	Tiktok: {
 		platform: SOCIAL_TYPE.TIKTOK,
 		username: '',
 		url: 'https://tiktok.com/@${username}'
 	},
-	youtube: {
-		platform: SOCIAL_TYPE.YOUTUBE,
-		username: '',
-		url: 'https://www.youtube.com/@${username}'
-	},
-	linkedin: {
-		platform: SOCIAL_TYPE.LINKEDIN,
-		username: '',
-		url: 'https://www.linkedin.com/in/${username}'
-	},
-	pinterest: {
-		platform: SOCIAL_TYPE.PINTEREST,
-		username: '',
-		url: 'https://www.pinterest.com/${username}'
-	},
-	snapchat: {
-		platform: SOCIAL_TYPE.SNAPCHAT,
-		username: '',
-		url: 'https://www.snapchat.com/add/${username}'
-	},
-	spotify: {
-		platform: SOCIAL_TYPE.SPOTIFY,
-		username: '',
-		url: 'https://open.spotify.com/user/${username}'
-	},
-	threads: {
-		platform: SOCIAL_TYPE.THREADS,
-		username: '',
-		url: 'https://threads.net/@${username}'
-	},
-	reddit: {
-		platform: SOCIAL_TYPE.REDDIT,
-		username: '',
-		url: 'https://www.reddit.com/user/${username}'
-	},
-	twitch: {
-		platform: SOCIAL_TYPE.TWITCH,
-		username: '',
-		url: 'https://twitch.tv/${username}'
-	},
-	github: {
+	Github: {
 		platform: SOCIAL_TYPE.GITHUB,
 		username: '',
 		url: 'https://github.com/${username}'
 	},
-	dribbble: {
-		platform: SOCIAL_TYPE.DRIBBBLE,
+	Clubhouse: {
+		platform: SOCIAL_TYPE.CLUBHOUSE,
 		username: '',
-		url: 'https://dribbble.com/${username}'
+		url: 'https://github.com/${username}'
 	},
-	discord: {
-		platform: SOCIAL_TYPE.DISCORD,
+	Patreon: {
+		platform: SOCIAL_TYPE.PATREON,
 		username: '',
-		url: 'https://discord.gg/${username}'
+		url: 'https://github.com/${username}'
 	},
-	substack: {
-		platform: SOCIAL_TYPE.SUBSTACK,
+	Venmo: {
+		platform: SOCIAL_TYPE.VENMO,
 		username: '',
-		url: 'https://substack.com/@${username}'
+		url: 'https://github.com/${username}'
 	},
-	telegram: {
-		platform: SOCIAL_TYPE.TELEGRAM,
+	CashApp: {
+		platform: SOCIAL_TYPE.CASH_APP,
 		username: '',
-		url: 'https://t.me/${username}'
+		url: 'https://github.com/${username}'
+	},
+	Deezer: {
+		platform: SOCIAL_TYPE.DEEZER,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Pandora: {
+		platform: SOCIAL_TYPE.PANDORA,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Tidal: {
+		platform: SOCIAL_TYPE.TIDAL,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Bandcamp: {
+		platform: SOCIAL_TYPE.BANDCAMP,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Medium: {
+		platform: SOCIAL_TYPE.MEDIUM,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Beehiiv: {
+		platform: SOCIAL_TYPE.BEEHIIV,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Flipboard: {
+		platform: SOCIAL_TYPE.FLIPBOARD,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Goodreads: {
+		platform: SOCIAL_TYPE.GOODREADS,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Mastodon: {
+		platform: SOCIAL_TYPE.MASTODON,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Steam: {
+		platform: SOCIAL_TYPE.STEAM,
+		username: '',
+		url: 'https://github.com/${username}'
+	},
+	Tumblr: {
+		platform: SOCIAL_TYPE.TUMBLR,
+		username: '',
+		url: 'https://github.com/${username}'
 	}
+	// youtube: {
+	// 	platform: SOCIAL_TYPE.YOUTUBE,
+	// 	username: '',
+	// 	url: 'https://www.youtube.com/@${username}'
+	// },
+	// linkedin: {
+	// 	platform: SOCIAL_TYPE.LINKEDIN,
+	// 	username: '',
+	// 	url: 'https://www.linkedin.com/in/${username}'
+	// },
+	// pinterest: {
+	// 	platform: SOCIAL_TYPE.PINTEREST,
+	// 	username: '',
+	// 	url: 'https://www.pinterest.com/${username}'
+	// },
+	// snapchat: {
+	// 	platform: SOCIAL_TYPE.SNAPCHAT,
+	// 	username: '',
+	// 	url: 'https://www.snapchat.com/add/${username}'
+	// },
+	// spotify: {
+	// 	platform: SOCIAL_TYPE.SPOTIFY,
+	// 	username: '',
+	// 	url: 'https://open.spotify.com/user/${username}'
+	// },
+	// threads: {
+	// 	platform: SOCIAL_TYPE.THREADS,
+	// 	username: '',
+	// 	url: 'https://threads.net/@${username}'
+	// },
+	// reddit: {
+	// 	platform: SOCIAL_TYPE.REDDIT,
+	// 	username: '',
+	// 	url: 'https://www.reddit.com/user/${username}'
+	// },
+	// twitch: {
+	// 	platform: SOCIAL_TYPE.TWITCH,
+	// 	username: '',
+	// 	url: 'https://twitch.tv/${username}'
+	// },
+	// dribbble: {
+	// 	platform: SOCIAL_TYPE.DRIBBBLE,
+	// 	username: '',
+	// 	url: 'https://dribbble.com/${username}'
+	// },
+	// discord: {
+	// 	platform: SOCIAL_TYPE.DISCORD,
+	// 	username: '',
+	// 	url: 'https://discord.gg/${username}'
+	// },
+	// substack: {
+	// 	platform: SOCIAL_TYPE.SUBSTACK,
+	// 	username: '',
+	// 	url: 'https://substack.com/@${username}'
+	// },
+	// telegram: {
+	// 	platform: SOCIAL_TYPE.TELEGRAM,
+	// 	username: '',
+	// 	url: 'https://t.me/${username}'
+	// }
 };

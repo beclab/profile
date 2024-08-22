@@ -21,26 +21,6 @@ export interface Social {
   url: string;
 }
 
-export enum SOCIAL_TYPE {
-  TWITTER = 'twitter',
-  FACEBOOK = 'facebook',
-  INSTAGRAM = 'instagram',
-  TIKTOK = 'tiktok',
-  YOUTUBE = 'youtube',
-  LINKEDIN = 'linkedin',
-  PINTEREST = 'pinterest',
-  SNAPCHAT = 'snapchat',
-  SPOTIFY = 'spotify',
-  THREADS = 'threads',
-  REDDIT = 'reddit',
-  TWITCH = 'twitch',
-  GITHUB = 'github',
-  DRIBBBLE = 'dribbble',
-  DISCORD = 'discord',
-  SUBSTACK = 'substack',
-  TELEGRAM = 'telegram',
-}
-
 export enum HEADER_FORMAT_TYPE {
 	COLUMN = 'column',
 	ROW = 'row'

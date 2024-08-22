@@ -3,36 +3,43 @@
 		:style="{ '--border': isEdit ? border : '' }"
 		class="social-edit column justify-start"
 	>
-		<div class="social-edit-board row items-center">
-			<q-icon color="ink0-3" size="20px" name="sym_r_drag_indicator" />
-			<social-svg
-				:platform="platform"
-				width="20px"
-				height="20px"
-				class="q-ml-md"
-			/>
-			<div class="edit-area row justify-start items-center">
-				<span class="platform-name">@</span>
-				<q-input
-					borderless
-					type="text"
-					class="username-input"
-					@blur="isEdit = false"
-					@focus="isEdit = true"
-					input-class="platform-name"
-					:model-value="userName"
-					@keyup.enter="onUserNameChanged(userName)"
-					@update:model-value="onUserNameChanged"
+		<div class="social-edit-row row justify-between items-center">
+			<div class="social-edit-board row items-center">
+				<q-icon color="ink-2" size="20px" name="sym_r_drag_indicator" />
+				<social-svg
+					:platform="platform"
+					width="24px"
+					height="24px"
+					class="q-ml-md"
 				/>
+				<div class="edit-area row justify-start items-center q-px-sm">
+					<span class="text-body1 text-ink-1">@</span>
+					<q-input
+						borderless
+						type="text"
+						class="username-input"
+						@blur="isEdit = false"
+						@focus="isEdit = true"
+						input-class="platform-name"
+						:model-value="userName"
+						@keyup.enter="onUserNameChanged(userName)"
+						@update:model-value="onUserNameChanged"
+					/>
+				</div>
 			</div>
 			<q-icon
-				color="grey-5"
-				size="20px"
+				color="ink-3 q-ma-sm cursor-pointer"
+				size="24px"
 				name="sym_r_delete"
 				@click="onDeleteClick"
 			/>
 		</div>
-		<span class="display-url" @click="socialOpen">{{ displayUrl }}</span>
+		<div
+			class="display-url q-mt-xs q-mr-xl text-ink-3 text-body3 cursor-pointer"
+			@click="socialOpen"
+		>
+			{{ displayUrl }}
+		</div>
 	</div>
 </template>
 
@@ -65,7 +72,7 @@ const displayUrl = ref();
 
 const onDeleteClick = () => {
 	if (userStore.user) {
-		userStore.user.socials = userStore.user.socials.filter(
+		userStore.user.social.data = userStore.user.social.data.filter(
 			(item) => item.platform !== props.platform
 		);
 	}
@@ -110,52 +117,33 @@ onMounted(() => {
 	width: 100%;
 	height: auto;
 
-	.social-edit-board {
+	.social-edit-row {
 		width: 100%;
-		height: 44px;
-		border-radius: 12px;
-		border: 1px solid $input-stroke;
-		background: $background-1;
-		padding: 12px;
+		height: 40px;
 
-		.edit-area {
-			padding-left: 8px;
-			padding-right: 24px;
-			height: 100%;
-			width: calc(100% - 72px);
+		.social-edit-board {
+			width: calc(100% - 40px);
+			height: 40px;
+			border-radius: 8px;
+			border: 1px solid $input-stroke;
+			background: $background-1;
+			padding: 0 8px;
 
-			.platform-name {
-				font-family: Roboto;
-				font-size: 12px;
-				font-weight: 500;
-				line-height: 16px;
-				letter-spacing: 0em;
-				text-align: left;
-				color: $ink-1;
-			}
-
-			.username-input {
+			.edit-area {
 				height: 100%;
-				margin-left: 3px;
-				margin-top: -37px;
-				width: calc(100% - 20px);
+				width: calc(100% - 56px);
+
+				.username-input {
+					height: 100%;
+					margin-left: 3px;
+					width: calc(100% - 20px);
+				}
 			}
 		}
 	}
 
 	.display-url {
-		margin-top: 4px;
-		padding-left: 16px;
-		padding-right: 16px;
-		font-family: Roboto;
-		font-size: 12px;
-		font-weight: 400;
-		line-height: 16px;
-		letter-spacing: 0em;
-		text-align: left;
-		cursor: pointer;
 		text-decoration: none;
-		color: $ink-3;
 	}
 }
 </style>

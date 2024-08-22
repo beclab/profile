@@ -1,6 +1,7 @@
 <template>
 	<div
-		class="column justify-center items-center full-width"
+		class="column justify-center items-center"
+		:class="icon || text ? '' : 'full-width'"
 		@click="handleParentClick"
 	>
 		<div
@@ -13,8 +14,8 @@
 		>
 			<div
 				:style="{
-					width: width,
-					height: height,
+					width: icon || text ? '40px' : width,
+					height: icon || text ? '40px' : height,
 					'--content-border': `2px solid ${border ? separator.color.value : selected ? greenDefault.color.value : separator.color.value}`
 				}"
 				class="picker-border column justify-center items-center"
@@ -138,11 +139,10 @@ onMounted(() => {
 	.picker-border {
 		border-radius: 12px;
 		overflow: hidden;
-		box-sizing: border-box;
 		border: var(--content-border);
 
 		.picker-text {
-			width: 40px;
+			width: 36px;
 			height: 40px;
 			display: flex;
 			justify-content: center;

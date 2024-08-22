@@ -137,3 +137,11 @@
 	font-weight: 100 700;
 	src: url('../assets/fonts/MaterialSymbolsRounded.woff2') format('woff2');
 }
+
+.tooltip-normal{
+	@extend .text-body3 !optional;
+	text-align: center;
+	background: $tooltip-bg;
+	color: $ink-tooltip;
+	padding: 4px 8px !important;
+}
