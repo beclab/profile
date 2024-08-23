@@ -62,9 +62,9 @@ export enum PROFILE_SHAPE_TYPE {
 }
 
 export enum BLOCK_TYPE {
-	link = 'link',
-	text = 'text',
-	image = 'image'
+  LINK = 'link',
+  TEXT = 'text',
+  IMAGE = 'image'
 }
 
 export enum FONT_TYPE {

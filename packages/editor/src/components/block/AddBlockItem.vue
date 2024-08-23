@@ -19,6 +19,7 @@ import {
 	ImageBlock,
 	LinkBlock,
 	SIZE_TYPE,
+	RATIO_TYPE,
 	TextBlock
 } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
@@ -88,12 +89,12 @@ const onItemClick = () => {
 				block = {
 					id: generateUniqueId(idList),
 					type: BLOCK_TYPE.IMAGE,
-					nickName: t('blocks.link'),
+					nickName: t('blocks.image'),
 					enabled: true,
 					title: '',
 					description: '',
 					img: '',
-					ratio: ''
+					ratio: RATIO_TYPE.RATIO_16_9
 				} as ImageBlock;
 				break;
 		}

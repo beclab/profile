@@ -87,7 +87,16 @@ export default {
 		link_url: 'Link URL',
 		link_block_size: 'Link Block Size',
 		link_outline: 'Link Outline',
-		link_shadow: 'Link Shadow'
+		link_shadow: 'Link Shadow',
+		auto: 'Auto',
+		feature_an_image: 'Feature an image.',
+		add_headline: 'Add Headline',
+		image_headline: 'Image headline',
+		image_description: 'Image Description',
+		add_description: 'Add Description',
+		aspect_ratio: 'Aspect Ratio',
+		add_images: 'Add Images',
+		image_link: 'Image Link'
 	},
 	design: {
 		layout: 'Layout',

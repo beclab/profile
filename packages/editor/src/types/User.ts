@@ -32,6 +32,7 @@ export interface TextBlock extends Block {
 export interface ImageBlock extends Block {
 	title: string;
 	description: string;
+	link: string;
 	img: string;
 	ratio: string;
 }
@@ -143,6 +144,14 @@ export enum BLOCK_TYPE {
 	LINK = 'link',
 	TEXT = 'text',
 	IMAGE = 'image'
+}
+
+export enum RATIO_TYPE {
+	AUTO = '',
+	RATIO_1_1 = '1/1',
+	RATIO_3_2 = '3/2',
+	RATIO_16_9 = '16/9',
+	RATIO_3_1 = '3/1'
 }
 
 export enum ALIGNMENT_TYPE {
