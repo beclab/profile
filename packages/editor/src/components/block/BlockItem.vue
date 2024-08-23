@@ -9,10 +9,36 @@
 			<q-toggle
 				size="xs"
 				:model-value="block.enabled"
-				@update:model-value="updateModelValue"
+				@update:model-value="updateEnabled"
 				color="light-green-default"
 			/>
-			<q-icon color="ink-2" size="20px" name="sym_r_more_horiz" />
+			<q-icon color="ink-2" size="20px" name="sym_r_more_horiz">
+				<base-popup self="top right">
+					<block-opt-item
+						v-close-popup
+						icon="sym_r_edit_square"
+						:label="t('blocks.edit')"
+						@click="edit"
+					/>
+					<block-opt-item
+						v-close-popup
+						icon="sym_r_content_copy"
+						:label="t('blocks.copy')"
+						@click="copy"
+					/>
+					<block-opt-item
+						v-close-popup
+						icon="sym_r_article_shortcut"
+						:label="t('blocks.rename')"
+					/>
+					<block-opt-item
+						v-close-popup
+						icon="sym_r_delete"
+						:label="t('blocks.delete')"
+						@click="remove"
+					/>
+				</base-popup>
+			</q-icon>
 		</div>
 	</div>
 </template>
@@ -21,6 +47,11 @@
 import { PropType } from 'vue';
 import { Block } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
+import BasePopup from 'src/components/base/BasePopup.vue';
+import BlockOptItem from 'src/components/block/BlockOptItem.vue';
+import { copyToClipboard, Notify } from 'quasar';
+import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
 	block: {
@@ -29,16 +60,10 @@ const props = defineProps({
 	}
 });
 const userStore = useUserStore();
+const { t } = useI18n();
+const router = useRouter();
 
-// const onDeleteClick = () => {
-// 	if (userStore.user) {
-// 		userStore.user.social.data = userStore.user.social.data.filter(
-// 			(item) => item.platform !== props.platform
-// 		);
-// 	}
-// };
-
-const updateModelValue = (status: boolean) => {
+const updateEnabled = (status: boolean) => {
 	if (userStore.user) {
 		const block = userStore.user.block.data.find(
 			(item) => item.id === props.block.id
@@ -46,6 +71,48 @@ const updateModelValue = (status: boolean) => {
 		if (block) {
 			block.enabled = status;
 		}
+	}
+};
+
+const edit = () => {
+	if (userStore.user) {
+		const block = userStore.user.block.data.find(
+			(item) => item.id === props.block.id
+		);
+		if (block) {
+			router.push({
+				name: 'blockEditor',
+				params: {
+					id: block.id
+				}
+			});
+		}
+	}
+};
+
+const copy = () => {
+	if (userStore.user) {
+		const block = userStore.user.block.data.find(
+			(item) => item.id === props.block.id
+		);
+		if (block) {
+			copyToClipboard(block.nickName)
+				.then(() => {
+					Notify.create(t('base.copy_success'));
+				})
+				.catch((e) => {
+					Notify.create(e.message);
+				});
+		}
+	}
+};
+
+const remove = () => {
+	if (userStore.user) {
+		const blocks = userStore.user.block.data.filter(
+			(item) => item.id !== props.block.id
+		);
+		userStore.user.block.data = blocks;
 	}
 };
 </script>

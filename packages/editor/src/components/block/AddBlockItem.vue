@@ -87,7 +87,7 @@ const onItemClick = () => {
 			case BLOCK_TYPE.IMAGE:
 				block = {
 					id: generateUniqueId(idList),
-					type: BLOCK_TYPE.LINK,
+					type: BLOCK_TYPE.IMAGE,
 					nickName: t('blocks.link'),
 					enabled: true,
 					title: '',
@@ -113,14 +113,6 @@ function generateUniqueId(existingIds) {
 
 	return newId;
 }
-
-// const onDeleteClick = () => {
-// 	if (userStore.user) {
-// 		userStore.user.social.data = userStore.user.social.data.filter(
-// 			(item) => item.platform !== props.platform
-// 		);
-// 	}
-// };
 </script>
 
 <style scoped lang="scss">

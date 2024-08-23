@@ -15,7 +15,7 @@
 			</div>
 			<div class="add-block-grid column full-width q-px-lg q-pb-lg">
 				<template v-for="item in blockArray" :key="item">
-					<add-block :type="item" @on-item-click="onBlockAdd" />
+					<add-block-item :type="item" @on-item-click="onBlockAdd" />
 				</template>
 			</div>
 		</q-card>
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import AddBlock from 'src/components/block/AddBlock.vue';
+import AddBlockItem from 'src/components/block/AddBlockItem.vue';
 import { useDialogPluginComponent } from 'quasar';
 import { BLOCK_TYPE } from 'src/types/User';
 import { useI18n } from 'vue-i18n';
@@ -34,9 +34,12 @@ const { dialogRef, onDialogCancel, onDialogOK } = useDialogPluginComponent();
 const { t } = useI18n();
 const router = useRouter();
 
-const onBlockAdd = () => {
+const onBlockAdd = (id: string) => {
 	router.push({
-		path: '/text'
+		name: 'blockEditor',
+		params: {
+			id
+		}
 	});
 	onDialogOK();
 };

@@ -62,7 +62,6 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-// import TabItem from 'src/components/base/TabItem.vue';
 import ProfileEditor from 'src/pages/edit/ProfileEditor.vue';
 import SocialEditor from 'src/pages/edit/SocialEditor.vue';
 import BlockEditor from 'src/pages/edit/BlockEditor.vue';

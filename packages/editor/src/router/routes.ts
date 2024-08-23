@@ -15,6 +15,7 @@ const editor: RouteRecordRaw[] = [
 					},
 					{
 						path: 'block/:id',
+						name: 'blockEditor',
 						component: () => import('pages/edit/block/BlockItemEditor.vue')
 					}
 				]

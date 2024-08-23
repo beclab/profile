@@ -20,7 +20,8 @@ export default {
 		custom: 'Custom',
 		expand: 'Expand',
 		image: 'Image',
-		none: 'None'
+		none: 'None',
+		copy_success: 'Copy Success'
 	},
 	profile: {
 		your_name: 'Your Name',
@@ -66,7 +67,11 @@ export default {
 		add_link: 'Add Link',
 		add_image: 'Add Image',
 		add_text: 'Add Text',
-		link_title: 'Link Title'
+		link_title: 'Link Title',
+		edit: 'Edit',
+		copy: 'Copy',
+		rename: 'Rename',
+		delete: 'Delete'
 	},
 	design: {
 		layout: 'Layout',
