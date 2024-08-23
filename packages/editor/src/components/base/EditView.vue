@@ -11,7 +11,7 @@
 					'--paddingLeft': slotIcon ? '0' : '12px'
 				}"
 				input-class="text-body1 text-ink-1"
-				input-style="resize: none"
+				input-style="resize: none;margin-top: 7px"
 				borderless
 				dense
 				name="search"

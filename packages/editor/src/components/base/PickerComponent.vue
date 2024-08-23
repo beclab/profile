@@ -29,14 +29,14 @@
 				<q-icon
 					v-if="icon"
 					:size="size"
-					:color="selected ? 'light-green-default' : 'separator'"
+					:color="selected ? 'light-green-default' : 'ink2'"
 					:name="icon"
 				/>
 
 				<div
 					v-if="text"
 					class="picker-text text-body1"
-					:class="selected ? 'text-light-green-default' : 'text-separator'"
+					:class="selected ? 'text-light-green-default' : 'ink2'"
 				>
 					{{ text }}
 				</div>
@@ -88,7 +88,7 @@ const props = defineProps({
 	},
 	size: {
 		type: String,
-		default: '32px'
+		default: '20px'
 	},
 	label: {
 		type: String,

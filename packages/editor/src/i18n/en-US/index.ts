@@ -22,7 +22,11 @@ export default {
 		expand: 'Expand',
 		image: 'Image',
 		none: 'None',
-		copy_success: 'Copy Success'
+		copy_success: 'Copy Success',
+		required: 'required',
+		optional: 'optional',
+		title: 'Title',
+		subtitle: 'Subtitle'
 	},
 	profile: {
 		your_name: 'Your Name',
@@ -72,7 +76,18 @@ export default {
 		edit: 'Edit',
 		copy: 'Copy',
 		rename: 'Rename',
-		delete: 'Delete'
+		delete: 'Delete',
+		format_your_text:
+			'General text block to write anything you want. You can format your text with Markdown.',
+		add_title: 'Add Title',
+		text_alignment: 'Text Alignment',
+		transparent_background: 'Transparent Background',
+		url_or_email: 'URL Or Email',
+		add_a_valid_url: 'Add a valid URL.',
+		link_url: 'Link URL',
+		link_block_size: 'Link Block Size',
+		link_outline: 'Link Outline',
+		link_shadow: 'Link Shadow'
 	},
 	design: {
 		layout: 'Layout',

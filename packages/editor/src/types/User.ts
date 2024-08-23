@@ -36,11 +36,6 @@ export interface ImageBlock extends Block {
 	ratio: string;
 }
 
-export interface ImageBlock extends Block {
-	height: string;
-	ratio: string;
-}
-
 export function getGradientColor(top: string, bottom: string): string {
 	return `linear-gradient(180deg, ${top} 0%, ${bottom} 100%)`;
 }
@@ -153,7 +148,7 @@ export enum BLOCK_TYPE {
 export enum ALIGNMENT_TYPE {
 	LEFT = 'left',
 	CENTER = 'center',
-	right = 'RIGHT'
+	RIGHT = 'right'
 }
 
 export enum FONT_TYPE {

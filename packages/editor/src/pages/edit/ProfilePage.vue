@@ -133,18 +133,18 @@
 		>
 			<template v-slot:primary>
 				<div class="column">
-					<span class="profile-label full-width">
+					<div class="edit-label full-width">
 						{{ t('base.name') }}
-					</span>
+					</div>
 					<edit-view
 						v-if="userStore.user"
 						class="label-width q-mt-xs"
 						:placeholder="t('profile.your_name')"
 						v-model="userStore.user.header.nickName"
 					/>
-					<span class="profile-label full-width q-mt-md">
+					<div class="edit-label full-width q-mt-md">
 						{{ t('profile.bio') }}
-					</span>
+					</div>
 					<edit-view
 						v-if="userStore.user"
 						height="96px"
