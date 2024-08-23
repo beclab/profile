@@ -174,6 +174,32 @@
 						</picker-component>
 					</template>
 				</grid-picker-group>
+
+				<grid-picker-group
+					:columns="4"
+					column-gap="12px"
+					row-gap="12px"
+					v-if="userStore.user.appearance.theme.style === THEME_TYPE.IMAGE"
+					:model-value="userStore.user.appearance.theme.preset"
+				>
+					<template v-for="item in BACKGROUND_IMAGE_PRESET" :key="item.preset">
+						<picker-component
+							width="92px"
+							height="160px"
+							:value="item.preset"
+							@on-selected="onThemeSelected(item)"
+							:border="true"
+						>
+							<template v-slot:default>
+								<background-preset-component
+									:use-em="true"
+									:font-size="5.12"
+									:theme="item"
+								/>
+							</template>
+						</picker-component>
+					</template>
+				</grid-picker-group>
 			</template>
 
 			<template v-slot:secondary-2>
@@ -339,7 +365,8 @@ import {
 import {
 	FONT_ARRAY,
 	BACKGROUND_COLOR_PRESET,
-	BACKGROUND_GRADIENT_PRESET
+	BACKGROUND_GRADIENT_PRESET,
+	BACKGROUND_IMAGE_PRESET
 } from 'src/types/Preset';
 import { computed } from 'vue';
 import { useUserStore } from 'src/stores/user';

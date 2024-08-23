@@ -550,3 +550,446 @@ export const BACKGROUND_GRADIENT_PRESET: AppearanceTheme[] = [
 		}
 	}
 ];
+
+export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i0',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '01.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i1',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '02.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i2',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '03.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i3',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '04.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i4',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '05.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i5',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '06.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i6',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '07.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i7',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '08.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i8',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '09.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i9',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '10.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i10',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '11.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i11',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '12.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i12',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '13.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i13',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '14.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i14',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '15.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i15',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '16.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i16',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '17.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i7',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '18.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i8',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '19.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	},
+	{
+		style: THEME_TYPE.IMAGE,
+		preset: 'i9',
+		uploadImg: '',
+		background: '#FFFFFF',
+		filter: IMAGE_FILTER.NONE,
+		useUpload: false,
+		gradientTopColor: '#FFFFFF',
+		gradientBottomColor: '#FFFFFF',
+		localImg: '20.jpg',
+		header: {
+			textColor: '#FFFFFF'
+		},
+		link: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		},
+		block: {
+			background: '#EFF7FF',
+			textColor: '#1F1F1F'
+		}
+	}
+];
