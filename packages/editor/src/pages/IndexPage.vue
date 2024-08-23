@@ -11,64 +11,49 @@
 		</div>
 		<div v-else class="index-editor">
 			<div class="left-editor-view">
-				<div class="row" style="margin-left: 20px">
-					<tab-item
-						:index="0"
-						v-model:selected-index="selectedIndex"
-						:title="t('base.profile')"
-						name="sym_r_account_circle"
-					/>
-
-					<tab-item
-						:index="1"
-						v-model:selected-index="selectedIndex"
-						:title="t('base.social')"
-						name="sym_r_diversity_2"
-					/>
-
-					<tab-item
-						:index="2"
-						v-model:selected-index="selectedIndex"
-						:title="t('base.blocks')"
-						name="sym_r_grid_view"
-					/>
-
-					<tab-item
-						:index="3"
-						v-model:selected-index="selectedIndex"
-						:title="t('base.design')"
-						name="sym_r_draw"
-					/>
+				<div class="row justify-center items-center" style="height: 56px">
+					<q-tabs
+						v-if="tab && tabs"
+						:model-value="tab"
+						@update:modelValue="onTabUpdate"
+						dense
+						inline-label
+						narrow-indicator
+						active-color="light-green-default"
+						indicator-color="light-green-default"
+						active-class="tab-item-title-selected"
+					>
+						<template v-for="item in tabs" :key="item.value">
+							<q-tab :name="item.value" :label="item.label" :icon="item.icon" />
+						</template>
+					</q-tabs>
 				</div>
+
 				<div class="editor-workspace row justify-center scroll">
-					<bio-profile-setting
-						v-if="selectedIndex === 0"
-						v-model:userConfig="userStore.user"
-					/>
-					<bio-social-setting
-						v-if="selectedIndex === 1"
-						v-model:userConfig="userStore.user"
-					/>
-					<bio-block-setting v-if="selectedIndex === 2" />
-					<!--					<bio-design-setting-->
-					<!--						v-if="selectedIndex === 3"-->
-					<!--						v-model:userConfig="userStore.user"-->
-					<!--					/>-->
-					<bio-appearance-setting
-						v-if="selectedIndex === 3"
-						v-model:userConfig="userStore.user"
-					/>
+					<q-tab-panels v-model="tab" class="full-width" animated keep-alive>
+						<q-tab-panel :name="tabs[0].value">
+							<profile-editor />
+						</q-tab-panel>
+
+						<q-tab-panel :name="tabs[1].value">
+							<social-editor />
+						</q-tab-panel>
+
+						<q-tab-panel :name="tabs[2].value">
+							<block-editor />
+						</q-tab-panel>
+
+						<q-tab-panel :name="tabs[3].value">
+							<appearance-editor />
+						</q-tab-panel>
+					</q-tab-panels>
 				</div>
 			</div>
 			<div class="right-editor-view">
 				<bio-share-header />
 				<div class="preview-background row justify-center">
 					<div class="preview">
-						<BioLayoutComponent1
-							:user="userStore.user"
-							:font-size="10.24"
-							@on-area-click="onAreaClick"
-						/>
+						<bio-layout-component1 :user="userStore.user" :font-size="10.24" />
 					</div>
 				</div>
 			</div>
@@ -77,11 +62,11 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import TabItem from 'components/base/TabItem.vue';
-import BioProfileSetting from 'components/edit/BioProfileSetting.vue';
-import BioSocialSetting from 'components/edit/BioSocialSetting.vue';
-import BioBlockSetting from 'components/edit/BioBlockSetting.vue';
-// import BioDesignSetting from 'components/edit/BioDesignSetting.vue';
+// import TabItem from 'src/components/base/TabItem.vue';
+import ProfileEditor from 'src/pages/edit/ProfileEditor.vue';
+import SocialEditor from 'src/pages/edit/SocialEditor.vue';
+import BlockEditor from 'src/pages/edit/BlockEditor.vue';
+import AppearanceEditor from 'src/pages/edit/AppearanceEditor.vue';
 import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
 import { useUserStore } from 'src/stores/user';
@@ -89,11 +74,38 @@ import { debounce } from 'quasar';
 import axios from 'axios';
 import { User } from '../types/User';
 import { useI18n } from 'vue-i18n';
-import BioAppearanceSetting from 'src/components/edit/BioAppearanceSetting.vue';
 
 const userStore = useUserStore();
 const { t } = useI18n();
-const selectedIndex = ref<number>(0);
+
+const tabs = [
+	{
+		label: t('base.header'),
+		value: 'Header',
+		icon: 'sym_r_responsive_layout'
+	},
+	{
+		label: t('base.social'),
+		value: 'Social',
+		icon: 'sym_r_diversity_2'
+	},
+	{
+		label: t('base.blocks'),
+		value: 'Blocks',
+		icon: 'sym_r_note_stack'
+	},
+	{
+		label: t('base.appearance'),
+		value: 'Appearance',
+		icon: 'sym_r_draw'
+	}
+];
+
+const tab = ref(tabs[0].value);
+
+const onTabUpdate = (value: string) => {
+	tab.value = value;
+};
 
 const updateUserInfo = debounce(async function (user: User) {
 	axios.post('/api/user', user);
@@ -113,11 +125,6 @@ watch(
 		deep: true
 	}
 );
-
-const onAreaClick = (index: number) => {
-	console.log(index);
-	selectedIndex.value = index;
-};
 </script>
 
 <style lang="scss">

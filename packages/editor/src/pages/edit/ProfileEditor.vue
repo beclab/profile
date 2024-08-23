@@ -1,5 +1,5 @@
 <template>
-	<bio-edit-container v-if="userStore.user">
+	<edit-container v-if="userStore.user">
 		<structured-title
 			:primary-title="t('profile.header_style')"
 			:secondary-items="headerStyleSecondaryItems"
@@ -202,13 +202,13 @@
 				</grid-picker-group>
 			</template>
 		</structured-title>
-	</bio-edit-container>
+	</edit-container>
 </template>
 
 <script lang="ts" setup>
 import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
 import CheckBoxComponent from 'src/components/base/CheckBoxComponent.vue';
-import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
+import EditContainer from 'src/pages/edit/EditContainer.vue';
 import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
 import PickerComponent from 'src/components/base/PickerComponent.vue';
 import StructuredTitle from 'src/components/base/StructuredTitle.vue';
@@ -238,7 +238,7 @@ import _ from 'lodash';
 watch(
 	() => userStore.user,
 	(newValue) => {
-		const deepClonedUser = _.cloneDeep(newValue); // 深拷贝
+		const deepClonedUser = _.cloneDeep(newValue);
 
 		classicUser.value = {
 			...deepClonedUser,

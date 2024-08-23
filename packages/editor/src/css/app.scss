@@ -18,6 +18,15 @@
 	outline: none;
 }
 
+.q-tab {
+	padding: 0 16px;
+	min-height: 56px !important;
+	transition: color .3s,background-color .3s;
+	white-space: nowrap;
+	text-decoration: none;
+	text-transform: capitalize;
+}
+
 .q-toggle__inner--truthy .q-toggle__track {
 	opacity: 1 !important;
 }
@@ -45,6 +54,14 @@
 .q-field--dark .q-field__suffix,
 .q-field--dark .q-field__input {
 	color: $ink-2 !important;
+}
+
+.q-tab__content {
+	padding: 0;
+}
+
+.q-tab-panel {
+	padding: 0 !important;
 }
 
 .material-symbols-rounded {
@@ -116,18 +133,6 @@
 
 .cropper-view-box {
 	outline: none !important;
-}
-
-.q-tab__content {
-	padding: 0;
-}
-
-.q-tabs--dense .q-tab {
-	min-height: 25px;
-}
-
-.q-tab-panel {
-	padding: 16px 0 16px 16px !important;
 }
 
 @font-face {

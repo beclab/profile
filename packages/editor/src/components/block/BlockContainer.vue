@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { onMounted, PropType, ref } from 'vue';
 
-import { BLOCK_TYPE } from '../../types/User';
+import { BLOCK_TYPE } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
 const userStore = useUserStore();

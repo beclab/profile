@@ -81,7 +81,7 @@ async function openDialog() {
 			if (!userStore.user) {
 				return;
 			}
-			userStore.user.avatarUrl = data;
+			userStore.user.header.avatarUrl = data;
 		})
 		.onCancel(() => {
 			console.log('Cancel');

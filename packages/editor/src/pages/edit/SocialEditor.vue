@@ -1,5 +1,5 @@
 <template>
-	<bio-edit-container v-if="userStore.user">
+	<edit-container v-if="userStore.user">
 		<structured-title
 			:primary-title="t('social.social_icons')"
 			:primary-description="
@@ -63,13 +63,13 @@
 				</grid-picker-group>
 			</template>
 		</structured-title>
-	</bio-edit-container>
+	</edit-container>
 </template>
 
 <script lang="ts" setup>
 import { VueDraggableNext } from 'vue-draggable-next';
 import SocialExpandButton from 'src/components/social/SocialExpandButton.vue';
-import BioEditContainer from 'src/components/edit/BioEditContainer.vue';
+import EditContainer from 'src/pages/edit/EditContainer.vue';
 import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
 import PickerComponent from 'src/components/base/PickerComponent.vue';
 import StructuredTitle from 'src/components/base/StructuredTitle.vue';

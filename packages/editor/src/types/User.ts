@@ -5,6 +5,7 @@ export interface Social {
 }
 
 export interface Block {
+	id: string;
 	type: string;
 	nickName: string;
 	enabled: boolean;
@@ -14,7 +15,7 @@ export interface LinkBlock extends Block {
 	url: string;
 	title: string;
 	subTitle: string;
-	size: string;
+	size: SIZE_TYPE;
 	textAlignment: string;
 	outline: boolean;
 	shadow: boolean;
@@ -24,7 +25,7 @@ export interface LinkBlock extends Block {
 export interface TextBlock extends Block {
 	title: string;
 	description: string;
-	textAlignment: string;
+	textAlignment: ALIGNMENT_TYPE;
 	transparent: boolean;
 }
 
@@ -144,9 +145,15 @@ export enum PROFILE_SHAPE_TYPE {
 }
 
 export enum BLOCK_TYPE {
-	link = 'link',
-	text = 'text',
-	image = 'image'
+	LINK = 'link',
+	TEXT = 'text',
+	IMAGE = 'image'
+}
+
+export enum ALIGNMENT_TYPE {
+	LEFT = 'left',
+	CENTER = 'center',
+	right = 'RIGHT'
 }
 
 export enum FONT_TYPE {

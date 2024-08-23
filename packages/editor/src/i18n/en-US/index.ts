@@ -1,9 +1,11 @@
 export default {
 	base: {
+		header: 'header',
 		profile: 'Profile',
 		social: 'Social',
 		blocks: 'Blocks',
 		design: 'Design',
+		appearance: 'appearance',
 		share: 'Share',
 		name: 'Name',
 		url: 'URL',
@@ -57,7 +59,7 @@ export default {
 			'Your social icons will appear below your header text.'
 	},
 	blocks: {
-		add_a_Block: 'Add a Block',
+		add_block: 'Add Block',
 		link: 'Link',
 		image: 'Image',
 		text: 'Text',

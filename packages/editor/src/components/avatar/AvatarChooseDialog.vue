@@ -136,30 +136,30 @@ onMounted(async () => {
 		selected.value = data;
 	});
 
-	console.log(userStore.user?.avatarUrl);
-	if (!userStore.user?.avatarUrl) {
+	console.log(userStore.user?.header.avatarUrl);
+	if (!userStore.user?.header.avatarUrl) {
 		return;
 	}
 
-	if (userStore.user?.avatarUrl?.startsWith('http')) {
+	if (userStore.user?.header.avatarUrl?.startsWith('http')) {
 		selected.value = {
-			imageUrl: userStore.user?.avatarUrl,
-			avatar: userStore.user?.avatarUrl
+			imageUrl: userStore.user?.header.avatarUrl,
+			avatar: userStore.user?.header.avatarUrl
 		};
 	} else {
 		// const re = new RegExp('^[1-3][0-9]\\.png');
 		// const re2 = new RegExp('^[0-9]\\.png');
 		const re = new RegExp('^[1-3]?[0-9]\\.png');
-		if (re.test(userStore.user?.avatarUrl)) {
+		if (re.test(userStore.user?.header.avatarUrl)) {
 			console.log('re true');
 			selected.value = {
-				imageUrl: userStore.user?.avatarUrl,
-				avatar: userStore.user?.avatarUrl
+				imageUrl: userStore.user?.header.avatarUrl,
+				avatar: userStore.user?.header.avatarUrl
 			};
 		} else {
 			console.log('re false');
 			try {
-				const vp = JSON.parse(userStore.user?.avatarUrl);
+				const vp = JSON.parse(userStore.user?.header.avatarUrl);
 				if (vp) {
 					const vcstr = Encoder.bytesToString(
 						Encoder.base64UrlToBytes(vp.verifiableCredential![0].split('.')[1])
@@ -179,14 +179,14 @@ onMounted(async () => {
 					console.log(imageUrl);
 					selected.value = {
 						imageUrl: imageUrl,
-						avatar: userStore.user?.avatarUrl
+						avatar: userStore.user?.header.avatarUrl
 					};
 				}
 			} catch (e) {
 				console.log(e);
 				selected.value = {
-					imageUrl: userStore.user?.avatarUrl,
-					avatar: userStore.user?.avatarUrl
+					imageUrl: userStore.user?.header.avatarUrl,
+					avatar: userStore.user?.header.avatarUrl
 				};
 			}
 		}
