@@ -11,12 +11,12 @@ const editor: RouteRecordRaw[] = [
 				children: [
 					{
 						path: '',
-						component: () => import('pages/edit/block/BlockIndex.vue')
+						component: () => import('pages/edit/block/BlockIndexPage.vue')
 					},
 					{
 						path: 'block/:id',
 						name: 'blockEditor',
-						component: () => import('pages/edit/block/BlockItemEditor.vue')
+						component: () => import('pages/edit/block/BlockEditorPage.vue')
 					}
 				]
 			}

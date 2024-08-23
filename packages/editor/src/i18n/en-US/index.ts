@@ -14,6 +14,7 @@ export default {
 		create: 'Create',
 		let_people_own_their_data_again: 'Let people own their data again',
 		size: 'Size',
+		back: 'Back',
 		circular: 'Circular',
 		square: 'Square',
 		round: 'Round',

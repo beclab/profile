@@ -32,19 +32,19 @@
 				<div class="editor-workspace row justify-center scroll">
 					<q-tab-panels v-model="tab" class="full-width" animated keep-alive>
 						<q-tab-panel :name="tabs[0].value">
-							<profile-editor />
+							<profile-page />
 						</q-tab-panel>
 
 						<q-tab-panel :name="tabs[1].value">
-							<social-editor />
+							<social-page />
 						</q-tab-panel>
 
 						<q-tab-panel :name="tabs[2].value">
-							<block-editor />
+							<block-page />
 						</q-tab-panel>
 
 						<q-tab-panel :name="tabs[3].value">
-							<appearance-editor />
+							<appearance-page />
 						</q-tab-panel>
 					</q-tab-panels>
 				</div>
@@ -62,12 +62,12 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import ProfileEditor from 'src/pages/edit/ProfileEditor.vue';
-import SocialEditor from 'src/pages/edit/SocialEditor.vue';
-import BlockEditor from 'src/pages/edit/BlockEditor.vue';
-import AppearanceEditor from 'src/pages/edit/AppearanceEditor.vue';
-import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
+import BioShareHeader from 'src/components/share/BioShareHeader.vue';
+import AppearancePage from 'src/pages/edit/AppearancePage.vue';
+import ProfilePage from 'src/pages/edit/ProfilePage.vue';
+import SocialPage from 'src/pages/edit/SocialPage.vue';
+import BlockPage from 'src/pages/edit/BlockPage.vue';
 import { useUserStore } from 'src/stores/user';
 import { debounce } from 'quasar';
 import axios from 'axios';
