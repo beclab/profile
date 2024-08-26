@@ -355,6 +355,10 @@ const props = defineProps({
 	fontSize: {
 		type: Number,
 		default: 16
+	},
+	pc: {
+		type: Boolean,
+		default: false
 	}
 });
 
@@ -382,7 +386,7 @@ const backgroundStyle = computed(() => {
 				};
 			} else {
 				return {
-					'background-image': `url("/background/${props.user.appearance.theme.localImg}")`,
+					'background-image': `url("/background/${props.pc ? 'pc' : 'mobile'}/${props.user.appearance.theme.localImg}")`,
 					'background-size': 'cover'
 				};
 			}

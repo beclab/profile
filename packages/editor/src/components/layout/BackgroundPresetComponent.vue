@@ -41,7 +41,7 @@ const backgroundStyle = computed(() => {
 					};
 				} else {
 					return {
-						'background-image': `url("/background/${props.theme.localImg}")`,
+						'background-image': `url("/background/mobile/${props.theme.localImg}")`,
 						'background-size': 'cover'
 					};
 				}

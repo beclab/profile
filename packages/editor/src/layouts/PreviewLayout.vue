@@ -3,6 +3,7 @@
 		<bio-layout-component1
 			:font-size="platform.is.desktop ? 20 : 25"
 			:user="userStore.user"
+			:pc="platform.is.desktop"
 		/>
 	</div>
 </template>
