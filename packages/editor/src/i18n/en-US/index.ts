@@ -76,7 +76,10 @@ export default {
 		edit: 'Edit',
 		copy: 'Copy',
 		rename: 'Rename',
+		rename_block: 'Rename Block',
+		block_name: 'Block Name',
 		delete: 'Delete',
+		enter_the_block_name: 'Please enter the block name',
 		format_your_text:
 			'General text block to write anything you want. You can format your text with Markdown.',
 		add_title: 'Add Title',

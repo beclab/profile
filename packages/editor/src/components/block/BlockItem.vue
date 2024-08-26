@@ -30,6 +30,7 @@
 						v-close-popup
 						icon="sym_r_article_shortcut"
 						:label="t('blocks.rename')"
+						@click="rename"
 					/>
 					<block-opt-item
 						v-close-popup
@@ -45,13 +46,14 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { Block } from 'src/types/User';
+import { Block, generateUniqueId, HEADER_STYLE_TYPE } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
 import BasePopup from 'src/components/base/BasePopup.vue';
 import BlockOptItem from 'src/components/block/BlockOptItem.vue';
-import { copyToClipboard, Notify } from 'quasar';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import { BtDialog, useColor } from '@bytetrade/ui';
+import _ from 'lodash';
 
 const props = defineProps({
 	block: {
@@ -62,6 +64,7 @@ const props = defineProps({
 const userStore = useUserStore();
 const { t } = useI18n();
 const router = useRouter();
+const blackBrand = useColor('ink-on-brand-black');
 
 const updateEnabled = (status: boolean) => {
 	if (userStore.user) {
@@ -96,12 +99,41 @@ const copy = () => {
 			(item) => item.id === props.block.id
 		);
 		if (block) {
-			copyToClipboard(block.nickName)
-				.then(() => {
-					Notify.create(t('base.copy_success'));
+			const newBlock = _.cloneDeep(block);
+			const idList = userStore.user.block.data.filter((item) => item.id);
+			block.id = generateUniqueId(idList);
+			userStore.user.block.data.push(newBlock);
+		}
+	}
+};
+
+const rename = () => {
+	if (userStore.user) {
+		const block = userStore.user.block.data.find(
+			(item) => item.id === props.block.id
+		);
+		if (block) {
+			BtDialog.show({
+				title: t('blocks.rename_block'),
+				okStyle: {
+					background: 'linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)',
+					color: blackBrand.color.value
+				},
+				cancel: true,
+				prompt: {
+					model: block.nickName,
+					type: 'text', // optional
+					name: t('blocks.block_name'),
+					placeholder: t('blocks.enter_the_block_name')
+				}
+			})
+				.then(async (res) => {
+					if (res) {
+						block.nickName = res as string;
+					}
 				})
-				.catch((e) => {
-					Notify.create(e.message);
+				.catch((err) => {
+					console.log('click ok', err);
 				});
 		}
 	}

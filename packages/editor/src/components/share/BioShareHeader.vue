@@ -1,15 +1,24 @@
 <template>
 	<div class="preview-share-container row items-center justify-between">
-		<div class="preview-share-edit row justify-between text-ink-2">
-			<div class="preview-share-url">
+		<div class="preview-share-edit row justify-between">
+			<div class="preview-share-url text-body3 text-ink-2">
 				{{ url }}
 			</div>
-			<q-icon
-				name="sym_r_content_copy"
-				color="grey-5"
-				size="20px"
-				@click="copyUrl"
-			/>
+			<div class="row justify-end items-center">
+				<q-icon
+					name="sym_r_content_copy"
+					color="ink-3"
+					size="16px"
+					@click="copyUrl"
+				/>
+				<q-icon
+					name="sym_r_share_windows"
+					color="ink-3"
+					class="q-ml-xs"
+					size="16px"
+					@click="open"
+				/>
+			</div>
 		</div>
 		<bio-button class="text-body3" :label="t('base.share')" icon="sym_r_share">
 			<bio-share-popup :url="url" :name="name" />
@@ -49,6 +58,10 @@ const copyUrl = () => {
 		});
 };
 
+const open = () => {
+	window.open(url.value);
+};
+
 watch(
 	() => userStore.info,
 	(value: TerminusInfo | null) => {
@@ -83,13 +96,10 @@ watch(
 		padding: 6px 8px 6px 12px;
 
 		.preview-share-url {
+			width: calc(100% - 36px);
+			white-space: nowrap;
+			overflow: hidden;
 			text-overflow: ellipsis;
-			font-family: Roboto;
-			font-size: 12px;
-			font-weight: 400;
-			line-height: 16px;
-			letter-spacing: 0em;
-			text-align: left;
 		}
 	}
 }

@@ -100,6 +100,15 @@ export interface AppearanceTheme {
 	};
 }
 
+export function generateUniqueId(existingIds) {
+	let newId;
+	do {
+		newId = Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+	} while (existingIds.includes(newId));
+
+	return newId;
+}
+
 export enum HEADER_FORMAT_TYPE {
 	COLUMN = 'column',
 	ROW = 'row'

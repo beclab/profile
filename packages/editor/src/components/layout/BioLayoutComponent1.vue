@@ -283,7 +283,9 @@
 									? `2px solid ${ink1.color.value}`
 									: '',
 								borderRadius: blockRadius,
-								background: blockBackground,
+								background: item.transparent
+									? blockBackground
+									: user.appearance.theme.block.background,
 								color: user.appearance.theme.block.textColor,
 								textAlign:
 									item.textAlignment === ALIGNMENT_TYPE.LEFT

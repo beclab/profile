@@ -20,7 +20,8 @@ import {
 	LinkBlock,
 	SIZE_TYPE,
 	RATIO_TYPE,
-	TextBlock
+	TextBlock,
+	generateUniqueId
 } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
@@ -105,15 +106,6 @@ const onItemClick = () => {
 		}
 	}
 };
-
-function generateUniqueId(existingIds) {
-	let newId;
-	do {
-		newId = Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
-	} while (existingIds.includes(newId));
-
-	return newId;
-}
 </script>
 
 <style scoped lang="scss">
