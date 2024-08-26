@@ -156,6 +156,10 @@ module.exports = configure(function (ctx) {
 				'/api': {
 					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
 					changeOrigin: true
+				},
+				'/images': {
+					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
+					changeOrigin: true
 				}
 				// '/bfl': {
 				//   target: 'https://profile.zyh2433219116.snowinning.com/',

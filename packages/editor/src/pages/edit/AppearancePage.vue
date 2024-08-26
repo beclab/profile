@@ -70,11 +70,7 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<background-preset-component
-								:use-em="true"
-								:font-size="5.12"
-								:theme="userStore.user.appearance.theme"
-							/>
+							<background-preset-component :theme="noneFilter" />
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -88,11 +84,7 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<background-preset-component
-								:use-em="true"
-								:font-size="5.12"
-								:theme="userStore.user.appearance.theme"
-							/>
+							<background-preset-component :theme="darkFilter" />
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -106,11 +98,7 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<background-preset-component
-								:use-em="true"
-								:font-size="5.12"
-								:theme="userStore.user.appearance.theme"
-							/>
+							<background-preset-component :theme="lightFilter" />
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -137,8 +125,7 @@
 						>
 							<template v-slot:default>
 								<background-preset-component
-									:use-em="true"
-									:font-size="5.12"
+									:font-size="3.9253"
 									:theme="item"
 								/>
 							</template>
@@ -166,8 +153,7 @@
 						>
 							<template v-slot:default>
 								<background-preset-component
-									:use-em="true"
-									:font-size="5.12"
+									:font-size="3.9253"
 									:theme="item"
 								/>
 							</template>
@@ -192,8 +178,7 @@
 						>
 							<template v-slot:default>
 								<background-preset-component
-									:use-em="true"
-									:font-size="5.12"
+									:font-size="3.9253"
 									:theme="item"
 								/>
 							</template>
@@ -346,15 +331,15 @@
 </template>
 
 <script lang="ts" setup>
-import BackgroundPresetComponent from 'src/components/layout/BackgroundPresetComponent.vue';
+import BackgroundPresetComponent from 'src/components/layout/preset/BackgroundPresetComponent.vue';
 import CheckBoxComponent from 'src/components/base/CheckBoxComponent.vue';
-import EditContainer from 'src/pages/edit/EditContainer.vue';
 import StructuredTitle from 'src/components/base/StructuredTitle.vue';
 import PickerComponent from 'src/components/base/PickerComponent.vue';
 import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
 import SwitchComponent from 'src/components/base/SwitchComponent.vue';
 import SliderComponent from 'src/components/base/SliderComponent.vue';
 import ColorPickerV2 from 'src/components/design/ColorPickerV2.vue';
+import EditContainer from 'src/pages/edit/EditContainer.vue';
 import BioButton from 'src/components/base/BioButton.vue';
 import {
 	THEME_TYPE,
@@ -368,7 +353,7 @@ import {
 	BACKGROUND_GRADIENT_PRESET,
 	BACKGROUND_IMAGE_PRESET
 } from 'src/types/Preset';
-import { computed } from 'vue';
+import { computed, watch, ref } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
 import { useColor } from '@bytetrade/ui';
@@ -376,8 +361,10 @@ import _ from 'lodash';
 
 const userStore = useUserStore();
 const { t } = useI18n();
-
 const link1 = useColor('link-1');
+const noneFilter = ref();
+const darkFilter = ref();
+const lightFilter = ref();
 
 const themeSecondaryItems = computed(() => {
 	if (!userStore.user) {
@@ -424,6 +411,22 @@ const themeSecondaryItems = computed(() => {
 	return data;
 });
 
+watch(
+	() => userStore.user?.appearance.theme,
+	(newValue) => {
+		noneFilter.value = _.cloneDeep(newValue);
+		darkFilter.value = _.cloneDeep(newValue);
+		lightFilter.value = _.cloneDeep(newValue);
+		noneFilter.value.filter = IMAGE_FILTER.NONE;
+		darkFilter.value.filter = IMAGE_FILTER.DARK;
+		lightFilter.value.filter = IMAGE_FILTER.Light;
+	},
+	{
+		deep: true,
+		immediate: true
+	}
+);
+
 const onThemeSelected = (item: AppearanceTheme) => {
 	if (userStore.user && item) {
 		userStore.user.appearance.theme = _.cloneDeep(item);
@@ -456,43 +459,5 @@ const fail = (response: unknown) => {
 .shape_round {
 	@extend .shape_square;
 	border-radius: 32px;
-}
-
-.text-font {
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 24px;
-}
-
-.color-background {
-	width: 100%;
-	height: 100%;
-	border-radius: 12px;
-}
-
-.gradient-background {
-	width: 100%;
-	height: 100%;
-
-	.gradient-half-top {
-		width: 100%;
-		height: 50%;
-		border-top-left-radius: 12px;
-		border-top-right-radius: 12px;
-	}
-
-	.gradient-half-bottom {
-		width: 100%;
-		height: 50%;
-		border-bottom-left-radius: 12px;
-		border-bottom-right-radius: 12px;
-	}
-}
-
-.background-image {
-	border-radius: 12px;
-	height: 232px;
-	width: 116px;
 }
 </style>

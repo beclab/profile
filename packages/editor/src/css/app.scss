@@ -53,6 +53,10 @@
 	padding-left: 4px;
 }
 
+.q-field__native, .q-field__prefix, .q-field__suffix, .q-field__input {
+	padding: 0 0;
+}
+
 .q-field--dark .q-field__native,
 .q-field--dark .q-field__prefix,
 .q-field--dark .q-field__suffix,

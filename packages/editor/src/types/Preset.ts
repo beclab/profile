@@ -588,11 +588,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -610,11 +610,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#F4F9FF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#F4F9FF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -632,11 +632,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -654,11 +654,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFF8F8',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFF8F8',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -676,11 +676,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -698,11 +698,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#F2F9FF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#F2F9FF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -720,11 +720,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -742,11 +742,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFAF0',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFAF0',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -764,11 +764,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#F5FDFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#F5FDFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -786,11 +786,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#EFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#EFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -808,11 +808,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFE9E5',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFE9E5',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -830,11 +830,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFBEC',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFBEC',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -852,11 +852,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -874,11 +874,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -896,11 +896,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#EFFFFB',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#EFFFFB',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -918,11 +918,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFEFF9',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFEFF9',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -940,11 +940,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#FFFBF4',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#FFFBF4',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -962,11 +962,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#EFFFFF',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#EFFFFF',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -984,11 +984,11 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 			textColor: '#FFFFFF'
 		},
 		link: {
-			background: '#EFF7FF',
+			background: '#F1FFFC',
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#EFF7FF',
+			background: '#F1FFFC',
 			textColor: '#1F1F1F'
 		}
 	}

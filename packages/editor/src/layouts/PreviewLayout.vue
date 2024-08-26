@@ -1,6 +1,6 @@
 <template>
 	<div class="preview-layout" v-if="userStore.user">
-		<bio-layout-component1
+		<preview-layout-component
 			:font-size="platform.is.desktop ? 20 : 25"
 			:user="userStore.user"
 			:pc="platform.is.desktop"
@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
-import { useQuasar } from 'quasar';
+import PreviewLayoutComponent from 'src/components/layout/PreviewLayoutComponent.vue';
 import { useUserStore } from 'src/stores/user';
+import { useQuasar } from 'quasar';
 //import { ref } from 'vue';
 
 const userStore = useUserStore();

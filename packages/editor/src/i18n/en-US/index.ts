@@ -62,7 +62,8 @@ export default {
 	social: {
 		social_icons: 'Social Icons',
 		social_icons_will_appear_below_your_header_text:
-			'Your social icons will appear below your header text.'
+			'Your social icons will appear below your header text.',
+		failed_to_open_social_link: 'Failed to open social link'
 	},
 	blocks: {
 		add_block: 'Add Block',

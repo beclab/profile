@@ -67,7 +67,6 @@ const onTextUpdate = (value: string) => {
 
 		.username-input {
 			height: 100%;
-			margin-top: 5px;
 			margin-left: 8px;
 			width: calc(100% - 20px);
 		}

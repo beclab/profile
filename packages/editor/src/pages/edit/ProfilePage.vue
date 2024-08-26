@@ -17,10 +17,9 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<bio-layout-component1
-								:use-em="true"
-								:font-size="5.12"
-								:user="classicUser"
+							<header-preset-component
+								:header="classicHeader"
+								:social="presetSocial"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -35,10 +34,9 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<bio-layout-component1
-								:use-em="true"
-								:font-size="5.12"
-								:user="portraitUser"
+							<header-preset-component
+								:header="portraitHeader"
+								:social="presetSocial"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -53,10 +51,9 @@
 						:border="true"
 					>
 						<template v-slot:default>
-							<bio-layout-component1
-								:use-em="true"
-								:font-size="5.12"
-								:user="bannerUser"
+							<header-preset-component
+								:header="bannerHeader"
+								:social="presetSocial"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -206,63 +203,65 @@
 </template>
 
 <script lang="ts" setup>
-import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
+import HeaderPresetComponent from 'src/components/layout/preset/HeaderPresetComponent.vue';
 import CheckBoxComponent from 'src/components/base/CheckBoxComponent.vue';
-import EditContainer from 'src/pages/edit/EditContainer.vue';
 import GridPickerGroup from 'src/components/base/GridPickerGroup.vue';
 import PickerComponent from 'src/components/base/PickerComponent.vue';
 import StructuredTitle from 'src/components/base/StructuredTitle.vue';
 import SliderComponent from 'src/components/base/SliderComponent.vue';
 import SwitchComponent from 'src/components/base/SwitchComponent.vue';
 import UploadComponent from 'src/components/base/UploadComponent.vue';
+import EditContainer from 'src/pages/edit/EditContainer.vue';
 import FormatSvg from 'src/components/base/FormatSvg.vue';
 import EditView from 'src/components/base/EditView.vue';
 import BioAvatar from 'src/components/base/BioAvatar.vue';
 import {
+	HEADER_FORMAT_TYPE,
 	HEADER_STYLE_TYPE,
 	PROFILE_SHAPE_TYPE,
-	SIZE_TYPE,
-	HEADER_FORMAT_TYPE
+	SIZE_TYPE
 } from 'src/types/User';
+import { SOCIAL_TYPE } from 'src/types/SocialProps';
 import { useUserStore } from 'src/stores/user';
-import { useI18n } from 'vue-i18n';
 import { computed, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import _ from 'lodash';
 
 const userStore = useUserStore();
 const { t } = useI18n();
-const classicUser = ref();
-const portraitUser = ref();
-const bannerUser = ref();
-import _ from 'lodash';
+const classicHeader = ref();
+const portraitHeader = ref();
+const bannerHeader = ref();
+const presetSocial = ref({
+	data: [
+		{
+			platform: SOCIAL_TYPE.INSTAGRAM,
+			url: '',
+			username: ''
+		},
+		{
+			platform: SOCIAL_TYPE.TIKTOK,
+			url: '',
+			username: ''
+		},
+		{
+			platform: SOCIAL_TYPE.TWITTER,
+			url: '',
+			username: ''
+		}
+	],
+	size: SIZE_TYPE.MEDIUM
+});
 
 watch(
-	() => userStore.user,
+	() => userStore.user?.header,
 	(newValue) => {
-		const deepClonedUser = _.cloneDeep(newValue);
-
-		classicUser.value = {
-			...deepClonedUser,
-			header: {
-				...deepClonedUser.header,
-				style: HEADER_STYLE_TYPE.CLASSIC
-			}
-		};
-
-		portraitUser.value = {
-			...deepClonedUser,
-			header: {
-				...deepClonedUser.header,
-				style: HEADER_STYLE_TYPE.PORTRAIT
-			}
-		};
-
-		bannerUser.value = {
-			...deepClonedUser,
-			header: {
-				...deepClonedUser.header,
-				style: HEADER_STYLE_TYPE.BANNER
-			}
-		};
+		classicHeader.value = _.cloneDeep(newValue);
+		portraitHeader.value = _.cloneDeep(newValue);
+		bannerHeader.value = _.cloneDeep(newValue);
+		classicHeader.value.style = HEADER_STYLE_TYPE.CLASSIC;
+		portraitHeader.value.style = HEADER_STYLE_TYPE.PORTRAIT;
+		bannerHeader.value.style = HEADER_STYLE_TYPE.BANNER;
 	},
 	{
 		deep: true,

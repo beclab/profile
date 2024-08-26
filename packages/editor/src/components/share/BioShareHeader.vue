@@ -8,13 +8,14 @@
 				<q-icon
 					name="sym_r_content_copy"
 					color="ink-3"
+					class="cursor-pointer"
 					size="16px"
 					@click="copyUrl"
 				/>
 				<q-icon
 					name="sym_r_share_windows"
 					color="ink-3"
-					class="q-ml-xs"
+					class="q-ml-xs cursor-pointer"
 					size="16px"
 					@click="open"
 				/>

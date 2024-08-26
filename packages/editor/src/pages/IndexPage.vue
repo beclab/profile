@@ -53,7 +53,10 @@
 				<bio-share-header />
 				<div class="preview-background row justify-center">
 					<div class="preview">
-						<bio-layout-component1 :user="userStore.user" :font-size="10.24" />
+						<preview-layout-component
+							:user="userStore.user"
+							:font-size="10.24"
+						/>
 					</div>
 				</div>
 			</div>
@@ -62,7 +65,7 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import BioLayoutComponent1 from 'src/components/layout/BioLayoutComponent1.vue';
+import PreviewLayoutComponent from 'src/components/layout/PreviewLayoutComponent.vue';
 import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import AppearancePage from 'src/pages/edit/AppearancePage.vue';
 import ProfilePage from 'src/pages/edit/ProfilePage.vue';

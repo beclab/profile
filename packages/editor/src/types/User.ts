@@ -42,18 +42,7 @@ export function getGradientColor(top: string, bottom: string): string {
 }
 
 export interface User {
-	header: {
-		style: HEADER_STYLE_TYPE;
-		banner: string;
-		avatarUrl: string;
-		profileShape: PROFILE_SHAPE_TYPE;
-		profileSize: number;
-		profileOutline: boolean;
-		nickName: string;
-		description: string;
-		textSize: SIZE_TYPE;
-		format: HEADER_FORMAT_TYPE;
-	};
+	header: UserHeader;
 	appearance: {
 		theme: AppearanceTheme;
 		block: {
@@ -65,16 +54,31 @@ export interface User {
 		};
 		font: string;
 	};
-	social: {
-		data: Social[];
-		size: SIZE_TYPE;
-	};
+	social: UserSocial;
 	block: {
 		data: Block[];
 	};
 	layout: {
 		style: number;
 	};
+}
+
+export interface UserHeader {
+	style: HEADER_STYLE_TYPE;
+	banner: string;
+	avatarUrl: string;
+	profileShape: PROFILE_SHAPE_TYPE;
+	profileSize: number;
+	profileOutline: boolean;
+	nickName: string;
+	description: string;
+	textSize: SIZE_TYPE;
+	format: HEADER_FORMAT_TYPE;
+}
+
+export interface UserSocial {
+	data: Social[];
+	size: SIZE_TYPE;
 }
 
 export interface AppearanceTheme {
@@ -157,10 +161,10 @@ export enum BLOCK_TYPE {
 
 export enum RATIO_TYPE {
 	AUTO = '',
-	RATIO_1_1 = '1/1',
-	RATIO_3_2 = '3/2',
-	RATIO_16_9 = '16/9',
-	RATIO_3_1 = '3/1'
+	RATIO_1_1 = '1',
+	RATIO_3_2 = '1.5',
+	RATIO_16_9 = '1.77778',
+	RATIO_3_1 = '3'
 }
 
 export enum ALIGNMENT_TYPE {
