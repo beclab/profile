@@ -32,7 +32,6 @@
 		</div>
 		<grid-picker-group class="q-mt-xs" :grid="false" v-model="blockRef.size">
 			<picker-component text="S" :value="SIZE_TYPE.SMALL" />
-			<picker-component class="q-ml-md" text="M" :value="SIZE_TYPE.MEDIUM" />
 			<picker-component class="q-ml-md" text="L" :value="SIZE_TYPE.LARGER" />
 		</grid-picker-group>
 		<div class="edit-label full-width q-mt-lg">

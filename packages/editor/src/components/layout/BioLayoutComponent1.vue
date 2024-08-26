@@ -1,248 +1,325 @@
 <template>
 	<div
 		v-if="user"
-		:style="{ fontSize: `${fontSize}px` }"
+		:style="{ fontSize: `${fontSize}px`, fontFamily: user.appearance.font }"
 		class="container-wrapper"
 	>
-		<div
-			class="preview-container column items-center"
-			:class="
-				props.user.header.style === HEADER_STYLE_TYPE.PORTRAIT
-					? ''
-					: 'preview-container-padding'
-			"
-			:style="backgroundStyle"
-		>
+		<q-scroll-area class="full-width full-height">
 			<div
-				v-if="props.user.header.style === HEADER_STYLE_TYPE.CLASSIC"
-				class="justify-center items-center"
+				class="preview-container column items-center"
 				:class="
-					props.user.header.format
-						? 'classic-header-format-' +
-							props.user.header.format.toLowerCase() +
-							' ' +
-							props.user.header.format.toLowerCase()
-						: 'classic-header-format-column column'
+					user.header.style === HEADER_STYLE_TYPE.PORTRAIT
+						? ''
+						: 'preview-container-padding'
 				"
+				:style="backgroundStyle"
 			>
-				<profile-terminus-avatar
-					class="avatar-picture"
-					:info="userStore.info"
-					:show-border="props.user.header.profileOutline"
-					:size="props.user.header.profileSize / 16 + 'em'"
-					:radius="
-						props.user.header.profileShape === PROFILE_SHAPE_TYPE.CIRCULAR
-							? '50%'
-							: '0.75em'
-					"
+				<div
+					v-if="props.user.appearance.theme.style === THEME_TYPE.IMAGE"
+					class="overlay"
+					:style="backgroundOverlay"
 				/>
 				<div
-					class="header-text column"
-					:style="{ '--avatarSize': props.user.header.profileSize / 16 + 'em' }"
-				>
-					<div
-						v-if="user.header.nickName"
-						:class="
-							props.user.header.textSize
-								? 'nickname-' + props.user.header.textSize.toLowerCase()
-								: 'nickname-medium'
-						"
-						:style="{ color: user.appearance.theme.header.textColor }"
-					>
-						{{ user.header.nickName }}
-					</div>
-					<div
-						v-if="user.header.description"
-						:class="
-							props.user.header.textSize
-								? 'description-' + props.user.header.textSize.toLowerCase()
-								: 'description-medium'
-						"
-						:style="{ color: user.appearance.theme.header.textColor }"
-					>
-						{{ user.header.description }}
-					</div>
-				</div>
-				<div class="simple-social-view">
-					<template v-for="item in user.social.data" :key="item.url">
-						<a
-							target="_blank"
-							class="bio-social"
-							:style="{ color: user.appearance.theme.header.textColor }"
-							:href="getSocialUrl(item)"
-						>
-							<social-svg
-								:width="socialSize"
-								:height="socialSize"
-								:platform="item.platform"
-							/>
-						</a>
-					</template>
-				</div>
-			</div>
-
-			<div
-				v-if="props.user.header.style === HEADER_STYLE_TYPE.PORTRAIT"
-				class="portrait-header-format-column column justify-center items-center"
-			>
-				<profile-terminus-avatar
-					class="avatar-picture"
-					:info="userStore.info"
-					:show-border="false"
-					size="23.4375em"
-					radius="0"
-				>
-					<div class="avatar-mask" />
-				</profile-terminus-avatar>
-				<div class="header-text column">
-					<div
-						v-if="user.header.nickName"
-						:class="
-							props.user.header.textSize
-								? 'nickname-' + props.user.header.textSize.toLowerCase()
-								: 'nickname-medium'
-						"
-						:style="{ color: user.appearance.theme.header.textColor }"
-					>
-						{{ user.header.nickName }}
-					</div>
-					<div
-						v-if="user.header.description"
-						:class="
-							props.user.header.textSize
-								? 'description-' + props.user.header.textSize.toLowerCase()
-								: 'description-medium'
-						"
-						:style="{ color: user.appearance.theme.header.textColor }"
-					>
-						{{ user.header.description }}
-					</div>
-				</div>
-				<div class="simple-social-view">
-					<template v-for="item in user.social.data" :key="item.url">
-						<a
-							target="_blank"
-							class="bio-social"
-							:style="{ color: user.appearance.theme.header.textColor }"
-							:href="getSocialUrl(item)"
-						>
-							<social-svg width="2em" height="2em" :platform="item.platform" />
-						</a>
-					</template>
-				</div>
-			</div>
-
-			<div
-				v-if="props.user.header.style === HEADER_STYLE_TYPE.BANNER"
-				class="banner-header-format-column column justify-center items-center"
-			>
-				<div class="avatar-banner" :style="bannerStyle" />
-
-				<profile-terminus-avatar
-					class="avatar-picture"
-					:style="{
-						'--avatarMarginTop':
-							11.75 - 2.5 - props.user.header.profileSize / 16 / 2 + 'em'
-					}"
-					:info="userStore.info"
-					:show-border="props.user.header.profileOutline"
-					:size="props.user.header.profileSize / 16 + 'em'"
-					:radius="
-						props.user.header.profileShape === PROFILE_SHAPE_TYPE.CIRCULAR
-							? '50%'
-							: '0.75em'
+					v-if="user.header.style === HEADER_STYLE_TYPE.CLASSIC"
+					class="justify-center items-center"
+					:class="
+						user.header.format
+							? 'classic-header-format-' +
+								user.header.format.toLowerCase() +
+								' ' +
+								user.header.format.toLowerCase()
+							: 'classic-header-format-column column'
 					"
-				/>
-				<div class="header-text column">
-					<div
-						v-if="user.header.nickName"
-						:class="
-							props.user.header.textSize
-								? 'nickname-' + props.user.header.textSize.toLowerCase()
-								: 'nickname-medium'
+				>
+					<profile-terminus-avatar
+						class="avatar-picture"
+						:info="userStore.info"
+						:show-border="user.header.profileOutline"
+						:size="user.header.profileSize / 16 + 'em'"
+						:radius="
+							user.header.profileShape === PROFILE_SHAPE_TYPE.CIRCULAR
+								? '50%'
+								: '0.75em'
 						"
-						:style="{ color: user.appearance.theme.header.textColor }"
-					>
-						{{ user.header.nickName }}
-					</div>
+					/>
 					<div
-						v-if="user.header.description"
-						:class="
-							props.user.header.textSize
-								? 'description-' + props.user.header.textSize.toLowerCase()
-								: 'description-medium'
-						"
-						:style="{ color: user.appearance.theme.header.textColor }"
+						class="header-text column"
+						:style="{
+							'--avatarSize': user.header.profileSize / 16 + 'em'
+						}"
 					>
-						{{ user.header.description }}
-					</div>
-				</div>
-				<div class="simple-social-view">
-					<template v-for="item in user.social.data" :key="item.url">
-						<a
-							target="_blank"
-							class="bio-social"
+						<div
+							v-if="user.header.nickName"
+							:class="
+								user.header.textSize
+									? 'nickname-' + user.header.textSize.toLowerCase()
+									: 'nickname-medium'
+							"
 							:style="{ color: user.appearance.theme.header.textColor }"
-							:href="getSocialUrl(item)"
 						>
-							<social-svg width="2em" height="2em" :platform="item.platform" />
-						</a>
-					</template>
+							{{ user.header.nickName }}
+						</div>
+						<div
+							v-if="user.header.description"
+							:class="
+								user.header.textSize
+									? 'description-' + user.header.textSize.toLowerCase()
+									: 'description-medium'
+							"
+							:style="{ color: user.appearance.theme.header.textColor }"
+						>
+							{{ user.header.description }}
+						</div>
+					</div>
+					<div class="simple-social-view">
+						<template v-for="item in user.social.data" :key="item.url">
+							<a
+								target="_blank"
+								class="bio-social"
+								:style="{ color: user.appearance.theme.header.textColor }"
+								:href="getSocialUrl(item)"
+							>
+								<social-svg
+									:width="socialSize"
+									:height="socialSize"
+									:platform="item.platform"
+								/>
+							</a>
+						</template>
+					</div>
 				</div>
-			</div>
 
-			<div v-if="isDefault" class="default-view">
-				<img src="/profile-pure.svg" alt="logo" />
-				<div class="content">
-					{{ t('base.let_people_own_their_data_again') }}
+				<div
+					v-if="user.header.style === HEADER_STYLE_TYPE.PORTRAIT"
+					class="portrait-header-format-column column justify-center items-center"
+				>
+					<profile-terminus-avatar
+						class="avatar-picture"
+						:info="userStore.info"
+						:show-border="false"
+						:mask="true"
+						radius="0"
+					/>
+					<div class="header-text column">
+						<div
+							v-if="user.header.nickName"
+							:class="
+								user.header.textSize
+									? 'nickname-' + user.header.textSize.toLowerCase()
+									: 'nickname-medium'
+							"
+							:style="{ color: user.appearance.theme.header.textColor }"
+						>
+							{{ user.header.nickName }}
+						</div>
+						<div
+							v-if="user.header.description"
+							:class="
+								user.header.textSize
+									? 'description-' + user.header.textSize.toLowerCase()
+									: 'description-medium'
+							"
+							:style="{ color: user.appearance.theme.header.textColor }"
+						>
+							{{ user.header.description }}
+						</div>
+					</div>
+					<div class="simple-social-view">
+						<template v-for="item in user.social.data" :key="item.url">
+							<a
+								target="_blank"
+								class="bio-social"
+								:style="{ color: user.appearance.theme.header.textColor }"
+								:href="getSocialUrl(item)"
+							>
+								<social-svg
+									width="2em"
+									height="2em"
+									:platform="item.platform"
+								/>
+							</a>
+						</template>
+					</div>
 				</div>
-			</div>
-			<div class="links">
-				<template v-for="item in enabledLinks" :key="item.url">
-					<a
-						v-if="item.type === BLOCK_TYPE.link"
+
+				<div
+					v-if="user.header.style === HEADER_STYLE_TYPE.BANNER"
+					class="banner-header-format-column column justify-center items-center"
+				>
+					<div class="avatar-banner" :style="bannerStyle" />
+
+					<profile-terminus-avatar
+						class="avatar-picture"
 						:style="{
-							'border-color': user.appearance.theme.link.textColor,
-							'background-color': user.appearance.theme.link.background,
-							color: user.appearance.theme.link.textColor
+							'--avatarMarginTop':
+								11.75 - 2.5 - user.header.profileSize / 16 / 2 + 'em'
 						}"
-					>
-						<img
-							class="link-img"
-							v-if="item.img && item.img !== ''"
-							:src="item.img"
-						/>
-						{{ item.title }}</a
-					>
-					<a
-						v-if="item.type === BLOCK_TYPE.text"
-						:style="{
-							'border-color': user.appearance.theme.block.textColor,
-							'background-color': user.appearance.theme.block.background,
-							color: user.appearance.theme.block.textColor
-						}"
-					>
-						{{ item.title }}</a
-					>
-					<div class="image-parent" v-if="item.type === BLOCK_TYPE.image">
-						<img
-							class="image-background"
-							:src="item.img ? item.img : '/block_image_default.svg'"
-						/>
-						<a
-							class="image-title"
+						:info="userStore.info"
+						:show-border="user.header.profileOutline"
+						:size="user.header.profileSize / 16 + 'em'"
+						:radius="
+							user.header.profileShape === PROFILE_SHAPE_TYPE.CIRCULAR
+								? '50%'
+								: '0.75em'
+						"
+					/>
+					<div class="header-text column">
+						<div
+							v-if="user.header.nickName"
+							:class="
+								user.header.textSize
+									? 'nickname-' + user.header.textSize.toLowerCase()
+									: 'nickname-medium'
+							"
+							:style="{ color: user.appearance.theme.header.textColor }"
+						>
+							{{ user.header.nickName }}
+						</div>
+						<div
+							v-if="user.header.description"
+							:class="
+								user.header.textSize
+									? 'description-' + user.header.textSize.toLowerCase()
+									: 'description-medium'
+							"
+							:style="{ color: user.appearance.theme.header.textColor }"
+						>
+							{{ user.header.description }}
+						</div>
+					</div>
+					<div class="simple-social-view">
+						<template v-for="item in user.social.data" :key="item.url">
+							<a
+								target="_blank"
+								class="bio-social"
+								:style="{ color: user.appearance.theme.header.textColor }"
+								:href="getSocialUrl(item)"
+							>
+								<social-svg
+									width="2em"
+									height="2em"
+									:platform="item.platform"
+								/>
+							</a>
+						</template>
+					</div>
+				</div>
+
+				<div v-if="isDefault" class="default-view">
+					<img src="/profile-pure.svg" alt="logo" />
+					<div class="content">
+						{{ t('base.let_people_own_their_data_again') }}
+					</div>
+				</div>
+				<div
+					class="blocks-margin full-width"
+					:style="{
+						paddingLeft:
+							user.header.style === HEADER_STYLE_TYPE.PORTRAIT ? '1.25em' : '',
+						paddingRight:
+							user.header.style === HEADER_STYLE_TYPE.PORTRAIT ? '1.25em' : ''
+					}"
+				>
+					<template v-for="item in enabledLinks" :key="item.url">
+						<div
+							class="blocks-div row items-center"
+							v-if="item.type === BLOCK_TYPE.LINK"
+							@click="onOpenWindow(item.url)"
 							:style="{
-								'border-color': user.appearance.theme.block.textColor,
-								'background-color': user.appearance.theme.block.background,
+								boxShadow: item.shadow
+									? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+									: '',
+								border: item.outline ? `2px solid ${ink1.color.value}` : '',
+								borderRadius: blockRadius,
+								background: blockBackground,
+								color: user.appearance.theme.link.textColor
+							}"
+						>
+							<q-img
+								class="link-img"
+								v-if="item.img && item.img !== ''"
+								:src="item.img"
+							/>
+							<div
+								class="link-text column"
+								:style="{
+									width: item.img ? 'calc(100% - 4em)' : '100%',
+									textAlign:
+										item.textAlignment === ALIGNMENT_TYPE.LEFT
+											? 'left'
+											: item.textAlignment === ALIGNMENT_TYPE.RIGHT
+												? 'right'
+												: 'center'
+								}"
+							>
+								<div
+									:class="
+										item.size === SIZE_TYPE.SMALL
+											? 'link-title-small'
+											: 'link-title-larger'
+									"
+								>
+									{{ item.title }}
+								</div>
+								<div
+									:class="
+										item.size === SIZE_TYPE.SMALL
+											? 'link-sub-title-small'
+											: 'link-sub-title-larger'
+									"
+								>
+									{{ item.subTitle }}
+								</div>
+							</div>
+						</div>
+						<div
+							v-if="item.type === BLOCK_TYPE.TEXT"
+							class="blocks-div column"
+							:style="{
+								boxShadow: user.appearance.block.shadow
+									? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+									: '',
+								border: user.appearance.block.outline
+									? `2px solid ${ink1.color.value}`
+									: '',
+								borderRadius: blockRadius,
+								background: blockBackground,
 								color: user.appearance.theme.block.textColor
 							}"
 						>
-							{{ item.title }}
-						</a>
-					</div>
-				</template>
+							<div class="text-title">
+								{{ item.title }}
+							</div>
+							<div class="text-description">
+								{{ item.description }}
+							</div>
+						</div>
+						<div class="image-parent" v-if="item.type === BLOCK_TYPE.IMAGE">
+							<img
+								class="image-background"
+								:src="item.img ? item.img : '/block_image_default.svg'"
+							/>
+							<a
+								class="image-title"
+								:style="{
+									boxShadow: user.appearance.block.shadow
+										? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+										: '',
+									border: user.appearance.block.outline
+										? `2px solid ${ink1.color.value}`
+										: '',
+									borderRadius: blockRadius,
+									background: blockBackground,
+									color: user.appearance.theme.block.textColor
+								}"
+							>
+								{{ item.title }}
+							</a>
+						</div>
+					</template>
+				</div>
 			</div>
-		</div>
+		</q-scroll-area>
 	</div>
 </template>
 <script lang="ts" setup>
@@ -255,12 +332,20 @@ import {
 	HEADER_STYLE_TYPE,
 	PROFILE_SHAPE_TYPE,
 	SIZE_TYPE,
-	getGradientColor
+	ALIGNMENT_TYPE,
+	getGradientColor,
+	BLOCK_STYLE_TYPE,
+	IMAGE_FILTER
 } from 'src/types/User';
 import SocialSvg from 'src/components/social/SocialSvg.vue';
 import { useUserStore } from 'src/stores/user';
 import ProfileTerminusAvatar from '../avatar/ProfileTerminusAvatar.vue';
 import { useI18n } from 'vue-i18n';
+import { useColor } from '@bytetrade/ui';
+import { colorsRgba } from 'quasar/dist/types/utils/colors';
+import { colors } from 'quasar';
+import hexToRgb = colors.hexToRgb;
+import rgbToHex = colors.rgbToHex;
 
 const props = defineProps({
 	user: {
@@ -276,6 +361,7 @@ const props = defineProps({
 const userStore = useUserStore();
 // const emit = defineEmits(['onAreaClick']);
 const { t } = useI18n();
+const ink1 = useColor('ink-1');
 
 const backgroundStyle = computed(() => {
 	switch (props.user.appearance.theme.style) {
@@ -305,6 +391,34 @@ const backgroundStyle = computed(() => {
 	}
 });
 
+const backgroundOverlay = computed(() => {
+	switch (props.user.appearance.theme.filter) {
+		case IMAGE_FILTER.DARK:
+			return {
+				background: 'rgba(0, 0, 0, 0.3)'
+			};
+		case IMAGE_FILTER.Light:
+			return {
+				background: 'rgba(255, 255, 255, 0.30)'
+			};
+		default:
+			return '';
+	}
+});
+
+const blockRadius = computed(() => {
+	switch (props.user.appearance.block.style) {
+		case BLOCK_STYLE_TYPE.ROUND:
+			return '32px';
+		case BLOCK_STYLE_TYPE.SQUARE:
+			return '0px';
+		case BLOCK_STYLE_TYPE.CUSTOM:
+			return props.user.appearance.block.cornerRadius + 'px';
+		default:
+			return '32px';
+	}
+});
+
 const socialSize = computed(() => {
 	switch (props.user.social.size) {
 		case SIZE_TYPE.SMALL:
@@ -318,6 +432,14 @@ const socialSize = computed(() => {
 	}
 });
 
+const blockBackground = computed(() => {
+	const rgba: colorsRgba = hexToRgb(
+		props.user.appearance.theme.block.background
+	);
+	rgba.a = 100 - props.user.appearance.block.transparency;
+	return rgbToHex(rgba);
+});
+
 const bannerStyle = computed(() => {
 	if (props.user.header.banner) {
 		return {
@@ -326,7 +448,7 @@ const bannerStyle = computed(() => {
 		};
 	}
 	return {
-		'background-image': `url("/banner/banner_default.png")`,
+		'background-image': `url("/banner/banner_default.jpg")`,
 		'background-size': 'cover'
 	};
 });
@@ -343,8 +465,12 @@ const enabledLinks = computed(() => {
 const isDefault = computed(() => {
 	return !(props.user.block && props.user.block.data.length > 0);
 });
+
+const onOpenWindow = (url: string) => {
+	window.open(url);
+};
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 ::-webkit-scrollbar {
 	/*隐藏滚轮*/
 	display: none;
@@ -356,14 +482,23 @@ const isDefault = computed(() => {
 	overflow: hidden;
 	position: relative;
 
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
 	.preview-container-padding {
-		padding: 2.5em 1.25em;
+		width: 100%;
+		padding: 2.5em 1.25em 0;
 	}
 
 	.preview-container {
+		min-height: 49.8em;
 		width: 100%;
-		height: 100%;
-		overflow-y: auto;
 
 		.classic-header-format-column {
 			width: 100%;
@@ -544,18 +679,6 @@ const isDefault = computed(() => {
 
 			.avatar-picture {
 				margin-bottom: 1.25em;
-
-				.avatar-mask {
-					width: 100%;
-					height: 9.375em;
-					background: linear-gradient(
-						180deg,
-						rgba(255, 255, 255, 0) 0%,
-						#fff 100%
-					);
-					position: absolute;
-					bottom: 0;
-				}
 			}
 
 			.header-text {
@@ -735,72 +858,96 @@ const isDefault = computed(() => {
 			}
 		}
 
-		.link-img {
-			width: 1.6em;
-			height: 1.6em;
-			margin-right: 0.8em;
-			border-radius: 0.5em;
-		}
+		.blocks-margin {
+			margin-top: 0.75em;
+			margin-bottom: 0.75em;
 
-		.image-parent {
-			width: 16.6em;
-			height: 11.52em;
-			position: relative;
-			display: block;
-			margin: auto auto 1.2em;
-			display: flex;
-		}
+			.image-parent {
+				width: 100%;
+				margin-top: 1.25em;
 
-		.image-background {
-			width: 16.6em;
-			height: 11.52em;
-			border-radius: 0.5em;
-			justify-content: center;
-			align-items: center;
-			object-fit: cover;
-		}
+				.image-background {
+					width: 100%;
+					object-fit: cover;
+				}
+			}
 
-		.image-title {
-			position: absolute;
-			bottom: 0;
-			justify-content: center;
-			align-items: center;
-			width: 16.6em !important;
-			border-top-right-radius: 0 !important;
-			border-top-left-radius: 0 !important;
-			margin-bottom: 0 !important;
-		}
+			.blocks-div {
+				width: 100%;
+				margin-top: 1.25em;
+				padding: 1.25em;
 
-		.links {
-			margin-top: 2em;
-			text-align: center;
-		}
+				.text-title {
+					overflow: hidden;
+					text-align: center;
+					text-overflow: ellipsis;
+					font-size: 1.5rem;
+					font-style: normal;
+					font-weight: 700;
+					line-height: 2rem;
+				}
 
-		.links a {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: pre-line;
-			border-radius: 0.5em;
-			border-width: 1px;
-			border-style: solid;
-			max-width: 16.6em;
-			height: auto;
-			min-height: 2.8em;
-			display: block;
-			margin: auto;
-			margin-bottom: 1.2em;
-			display: flex;
-			// flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			text-decoration: none;
-			color: inherit;
-			font-family: 'Roboto';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 1em;
-			line-height: 1.6em;
-			text-align: center;
+				.text-description {
+					overflow: hidden;
+					text-align: center;
+					text-overflow: ellipsis;
+					font-size: 1rem;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 1.5rem;
+				}
+
+				.link-img {
+					width: 3.25em;
+					height: 3.25em;
+					border-radius: 50%;
+				}
+
+				.link-text {
+					margin-left: 0.75em;
+
+					.link-title {
+						width: 100%;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: pre-line;
+						height: auto;
+						cursor: pointer;
+					}
+
+					.link-title-small {
+						@extend .link-title;
+						font-size: 1.25rem;
+						font-style: normal;
+						font-weight: 700;
+						line-height: 1.75rem;
+					}
+
+					.link-title-larger {
+						@extend .link-title;
+						font-size: 1.5rem;
+						font-style: normal;
+						font-weight: 700;
+						line-height: 2rem;
+					}
+
+					.link-sub-title-small {
+						@extend .link-title;
+						font-size: 0.875rem;
+						font-style: normal;
+						font-weight: 400;
+						line-height: 1.25rem;
+					}
+
+					.link-sub-title-larger {
+						@extend .link-title;
+						font-size: 1.125rem;
+						font-style: normal;
+						font-weight: 400;
+						line-height: 1.625rem;
+					}
+				}
+			}
 		}
 
 		.default-view {

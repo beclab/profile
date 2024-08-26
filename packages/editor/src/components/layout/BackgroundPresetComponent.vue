@@ -52,7 +52,7 @@ const backgroundStyle = computed(() => {
 	return {};
 });
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 ::-webkit-scrollbar {
 	/*隐藏滚轮*/
 	display: none;

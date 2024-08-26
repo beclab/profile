@@ -36,7 +36,7 @@ export const BACKGROUND_COLOR_PRESET: AppearanceTheme[] = [
 			textColor: '#1F1F1F'
 		},
 		block: {
-			background: '#1F1F1F',
+			background: '#DCF9EB',
 			textColor: '#1F1F1F'
 		}
 	},
@@ -585,7 +585,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '02.jpg',
 		header: {
-			textColor: '#FFFFFF'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#EFF7FF',
@@ -739,7 +739,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '09.jpg',
 		header: {
-			textColor: '#FFFFFF'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#EFF7FF',
@@ -761,7 +761,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '10.jpg',
 		header: {
-			textColor: '#FFFFFF'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#EFF7FF',
@@ -805,7 +805,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '12.jpg',
 		header: {
-			textColor: '#FFFFFF'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#EFF7FF',
@@ -915,7 +915,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '17.jpg',
 		header: {
-			textColor: '#FFFFFF'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#EFF7FF',
@@ -928,7 +928,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 	},
 	{
 		style: THEME_TYPE.IMAGE,
-		preset: 'i7',
+		preset: 'i17',
 		uploadImg: '',
 		background: '#FFFFFF',
 		filter: IMAGE_FILTER.NONE,
@@ -937,7 +937,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '18.jpg',
 		header: {
-			textColor: '#FFFFFF'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#EFF7FF',
@@ -950,7 +950,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 	},
 	{
 		style: THEME_TYPE.IMAGE,
-		preset: 'i8',
+		preset: 'i18',
 		uploadImg: '',
 		background: '#FFFFFF',
 		filter: IMAGE_FILTER.NONE,
@@ -972,7 +972,7 @@ export const BACKGROUND_IMAGE_PRESET: AppearanceTheme[] = [
 	},
 	{
 		style: THEME_TYPE.IMAGE,
-		preset: 'i9',
+		preset: 'i19',
 		uploadImg: '',
 		background: '#FFFFFF',
 		filter: IMAGE_FILTER.NONE,
