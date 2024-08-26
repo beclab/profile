@@ -72,7 +72,8 @@ const updateModelValue = (data: string) => {
 	}
 
 	.slider-edit {
-		padding: 0 12px;
+		padding: 8px 12px;
+		height: 40px;
 		border-radius: 8px;
 		border: 1px solid $input-stroke;
 		width: 80px;

@@ -284,7 +284,13 @@
 									: '',
 								borderRadius: blockRadius,
 								background: blockBackground,
-								color: user.appearance.theme.block.textColor
+								color: user.appearance.theme.block.textColor,
+								textAlign:
+									item.textAlignment === ALIGNMENT_TYPE.LEFT
+										? 'left'
+										: item.textAlignment === ALIGNMENT_TYPE.RIGHT
+											? 'right'
+											: 'center'
 							}"
 						>
 							<div class="text-title">
@@ -883,7 +889,6 @@ const onOpenWindow = (url: string) => {
 
 				.text-title {
 					overflow: hidden;
-					text-align: center;
 					text-overflow: ellipsis;
 					font-size: 1.5rem;
 					font-style: normal;
@@ -893,7 +898,6 @@ const onOpenWindow = (url: string) => {
 
 				.text-description {
 					overflow: hidden;
-					text-align: center;
 					text-overflow: ellipsis;
 					font-size: 1rem;
 					font-style: normal;

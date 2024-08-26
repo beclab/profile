@@ -34,10 +34,6 @@ defineProps({
 	height: auto !important;
 }
 
-.q-field__control {
-	height: auto !important;
-}
-
 .bt-menu {
 	width: auto;
 	padding: 8px;
