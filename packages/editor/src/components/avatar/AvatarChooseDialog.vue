@@ -13,48 +13,29 @@
 			<div class="row justify-center">
 				<div class="avatar-choose-view">
 					<q-card-section style="padding: 0">
-						<q-tabs
-							v-model="tab"
-							dense
-							outside-arrows
-							indicator-color="transparent"
-							class="text-grey"
-							align="justify"
-							narrow-indicator
+						<div
+							class="row items-center"
+							style="margin-top: 20px; margin-left: 17px"
 						>
-							<div class="tab-title-background row items-center">
-								<q-tab style="padding: 0" name="default">
-									<template v-slot:default>
-										<bt-tab-item
-											:selected="tab === 'default'"
-											:label="t('profile.robot_avatar')"
-										/>
-									</template>
-								</q-tab>
-
-								<div class="tab-title-line" />
-
-								<q-tab style="padding: 0" name="nft">
-									<template v-slot:default>
-										<bt-tab-item
-											:selected="tab === 'nft'"
-											:label="t('profile.nft_avatar')"
-										/>
-									</template>
-								</q-tab>
-
-								<div class="tab-title-line" />
-
-								<q-tab style="padding: 0" name="upload">
-									<template v-slot:default>
-										<bt-tab-item
-											:selected="tab === 'upload'"
-											:label="t('profile.custom_avatar')"
-										/>
-									</template>
-								</q-tab>
-							</div>
-						</q-tabs>
+							<bt-tab-item
+								class="cursor-pointer"
+								:selected="tab === 'default'"
+								:label="t('profile.robot_avatar')"
+								@click="tab = 'default'"
+							/>
+							<bt-tab-item
+								class="cursor-pointer"
+								:selected="tab === 'nft'"
+								:label="t('profile.nft_avatar')"
+								@click="tab = 'nft'"
+							/>
+							<bt-tab-item
+								class="cursor-pointer"
+								:selected="tab === 'upload'"
+								:label="t('profile.custom_avatar')"
+								@click="tab = 'upload'"
+							/>
+						</div>
 
 						<q-tab-panels
 							v-model="tab"
@@ -86,13 +67,14 @@
 			<div class="row justify-end items-center" style="margin-top: 32px">
 				<bio-button
 					:default-selected="false"
-					:width="75"
+					class="text-body3"
 					:label="t('base.cancel')"
 					@click="onDialogCancel"
 					style="margin-right: 20px"
 				/>
 				<bio-button
 					:width="75"
+					class="text-body3"
 					:label="t('base.create')"
 					@click="onOKClick"
 					style="margin-right: 20px"
@@ -103,16 +85,16 @@
 </template>
 
 <script lang="ts" setup>
+import ProfileAvatarBoard from './ProfileAvatarBoard.vue';
+import BioButton from 'src/components/base/BioButton.vue';
 import { useDialogPluginComponent } from 'quasar';
 import { ref, onMounted, onUnmounted } from 'vue';
 import DefaultAvatar from './DefaultAvatar.vue';
 import UploadAvatar from './UploadAvatar.vue';
 import NFTAvatar from './NFTAvatar.vue';
-import BioButton from 'components/base/BioButton.vue';
 import { bus } from 'src/utils/bus';
 import { useUserStore } from 'src/stores/user';
 import { Encoder } from '@bytetrade/core';
-import ProfileAvatarBoard from './ProfileAvatarBoard.vue';
 import BtTabItem from '../base/BtTabItem.vue';
 import { useI18n } from 'vue-i18n';
 

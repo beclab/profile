@@ -122,28 +122,43 @@
 								{{ item.description }}
 							</div>
 						</div>
-						<div class="image-parent" v-if="item.type === BLOCK_TYPE.IMAGE">
+						<div
+							class="image-parent column"
+							v-if="item.type === BLOCK_TYPE.IMAGE"
+						>
+							<div
+								class="image-title"
+								:style="{
+									color: user.appearance.theme.block.textColor
+								}"
+							>
+								{{ item.title }}
+							</div>
+							<div
+								class="image-description"
+								:style="{
+									color: user.appearance.theme.block.textColor
+								}"
+							>
+								{{ item.description }}
+							</div>
 							<q-img
 								:ratio="item.ratio"
 								fit="cover"
-								:src="item.img ? item.img : '/block_image_default.svg'"
-							/>
-							<a
-								class="image-title"
+								:class="item.link ? 'cursor-pointer' : ''"
 								:style="{
+									marginTop: '0.5em',
+									borderRadius: blockRadius,
 									boxShadow: user.appearance.block.shadow
 										? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
 										: '',
 									border: user.appearance.block.outline
 										? `2px solid ${ink1.color.value}`
-										: '',
-									borderRadius: blockRadius,
-									background: blockBackground,
-									color: user.appearance.theme.block.textColor
+										: ''
 								}"
-							>
-								{{ item.title }}
-							</a>
+								@click="onOpenWindow(item.link)"
+								:src="item.img ? item.img : '/block_image_default.svg'"
+							/>
 						</div>
 					</template>
 				</div>
@@ -274,7 +289,6 @@ const onOpenWindow = (url: string) => {
 .container-wrapper {
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 	position: relative;
 
 	.overlay {
@@ -296,11 +310,35 @@ const onOpenWindow = (url: string) => {
 		width: 100%;
 
 		.blocks-margin {
+			width: 100%;
 			margin-top: 0.75em;
 			margin-bottom: 0.75em;
 
 			.image-parent {
+				width: 100%;
 				margin-top: 1.25em;
+
+				.image-title {
+					max-width: 100%;
+					overflow-wrap: break-word;
+					word-break: break-all;
+					font-size: 1.125rem;
+					font-style: normal;
+					font-weight: 500;
+					text-align: center;
+					line-height: 1.625rem;
+				}
+
+				.image-description {
+					max-width: 100%;
+					overflow-wrap: break-word;
+					word-break: break-all;
+					text-align: center;
+					font-size: 0.875rem;
+					font-style: normal;
+					font-weight: 400;
+					line-height: 1.25rem;
+				}
 			}
 
 			.blocks-div {
@@ -309,8 +347,9 @@ const onOpenWindow = (url: string) => {
 				padding: 1.25em;
 
 				.text-title {
-					overflow: hidden;
-					text-overflow: ellipsis;
+					max-width: 100%;
+					overflow-wrap: break-word;
+					word-break: break-all;
 					font-size: 1.5rem;
 					font-style: normal;
 					font-weight: 700;
@@ -318,8 +357,9 @@ const onOpenWindow = (url: string) => {
 				}
 
 				.text-description {
-					overflow: hidden;
-					text-overflow: ellipsis;
+					max-width: 100%;
+					overflow-wrap: break-word;
+					word-break: break-all;
 					font-size: 1rem;
 					font-style: normal;
 					font-weight: 400;
@@ -333,13 +373,15 @@ const onOpenWindow = (url: string) => {
 				}
 
 				.link-text {
+					max-width: 100%;
 					margin-left: 0.75em;
 
 					.link-title {
-						width: 100%;
-						overflow: hidden;
-						text-overflow: ellipsis;
+						max-width: 100%;
 						white-space: pre-line;
+						overflow-wrap: break-word;
+						word-break: break-all;
+						width: 100%;
 						height: auto;
 						cursor: pointer;
 					}

@@ -11,7 +11,7 @@
 					'--paddingLeft': slotIcon ? '0' : '12px'
 				}"
 				input-class="text-body1 text-ink-1"
-				input-style="resize: none"
+				input-style="resize: none;padding: 8px !important;"
 				borderless
 				dense
 				name="search"
@@ -81,19 +81,11 @@ function onInput(value: string) {
 
 	.input-parent {
 		height: 100%;
-		padding-left: 12px;
-		padding-right: 12px;
 		overflow: hidden;
 
 		.inner-input {
 			width: var(--width);
-			font-family: Roboto;
-			font-size: 12px;
 			padding-left: (--paddingLeft);
-			padding-right: 12px;
-			font-weight: 400;
-			line-height: 16px;
-			letter-spacing: 0;
 			color: 1px solid $ink-2;
 		}
 	}
