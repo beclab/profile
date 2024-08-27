@@ -293,10 +293,10 @@ export class UserController {
     this.logger.log(body);
 
     const data = await this.dataStoreService.GetKey(this.key);
-    if (data && data.avatarUrl && data.avatarUrl != body.avatarUrl) {
+    if (data && data.header && data.header.avatarUrl && body &&  body.header && data.header.avatarUrl != body.header.avatarUrl) {
       this.logger.log('update avatar');
       await createInstance(request).post('/bfl/settings/v1alpha1/set-avatar', {
-        avatar: body.avatarUrl,
+        avatar: body.header.avatarUrl,
       });
     } else {
       this.logger.log('data');

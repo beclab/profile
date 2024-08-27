@@ -3,7 +3,12 @@
 		<div class="row justify-start items-center">
 			<q-icon color="ink-2" size="20px" name="sym_r_drag_indicator" />
 			<q-img :src="`block/${block.type}.svg`" class="block-type q-ml-md" />
-			<div class="text-body1 text-ink-1 q-ml-md">{{ block.nickName }}</div>
+			<div
+				class="text-body1 q-ml-md"
+				:class="block.enabled ? 'text-ink-1' : 'text-ink-3'"
+			>
+				{{ block.nickName }}
+			</div>
 		</div>
 		<div class="row justify-end items-center">
 			<q-toggle

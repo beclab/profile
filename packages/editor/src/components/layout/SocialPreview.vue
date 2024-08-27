@@ -11,16 +11,20 @@
 				:style="{ color: color }"
 				@click="getSocialUrl(item)"
 			>
-				<social-svg width="2em" height="2em" :platform="item.platform" />
+				<social-svg
+					:width="socialSize"
+					:height="socialSize"
+					:platform="item.platform"
+				/>
 			</div>
 		</template>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import SocialSvg from '../social/SocialSvg';
-import { PropType } from 'vue/dist/vue';
-import { Social, UserSocial } from '/@/types/User';
+import SocialSvg from 'src/components/social/SocialSvg';
+import { computed, PropType } from 'vue';
+import { SIZE_TYPE, Social, UserSocial } from 'src/types/User';
 import { BtNotify, NotifyDefinedType } from '@bytetrade/ui';
 import { useI18n } from 'vue-i18n';
 const props = defineProps({
@@ -43,6 +47,19 @@ const props = defineProps({
 });
 
 const { t } = useI18n();
+
+const socialSize = computed(() => {
+	switch (props.social.size) {
+		case SIZE_TYPE.SMALL:
+			return '1.5em';
+		case SIZE_TYPE.MEDIUM:
+			return '2em';
+		case SIZE_TYPE.LARGER:
+			return '2.5em';
+		default:
+			return '2em';
+	}
+});
 
 function getSocialUrl(item: Social) {
 	if (!props.clickable) {

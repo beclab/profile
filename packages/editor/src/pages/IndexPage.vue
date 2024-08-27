@@ -53,10 +53,7 @@
 				<bio-share-header />
 				<div class="preview-background row justify-center">
 					<div class="preview">
-						<preview-layout-component
-							:user="userStore.user"
-							:font-size="10.24"
-						/>
+						<preview-layout :user="userStore.user" :font-size="10.24" />
 					</div>
 				</div>
 			</div>
@@ -64,18 +61,18 @@
 	</q-page>
 </template>
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import PreviewLayoutComponent from 'src/components/layout/PreviewLayoutComponent.vue';
+import PreviewLayout from 'src/components/layout/PreviewLayout.vue';
 import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import AppearancePage from 'src/pages/edit/AppearancePage.vue';
 import ProfilePage from 'src/pages/edit/ProfilePage.vue';
 import SocialPage from 'src/pages/edit/SocialPage.vue';
 import BlockPage from 'src/pages/edit/BlockPage.vue';
 import { useUserStore } from 'src/stores/user';
-import { debounce } from 'quasar';
-import axios from 'axios';
 import { User } from '../types/User';
 import { useI18n } from 'vue-i18n';
+import { debounce } from 'quasar';
+import { ref, watch } from 'vue';
+import axios from 'axios';
 
 const userStore = useUserStore();
 const { t } = useI18n();

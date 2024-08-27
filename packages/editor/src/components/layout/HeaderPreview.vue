@@ -178,7 +178,7 @@ const props = defineProps({
 	},
 	socialClickable: {
 		type: Boolean,
-		require: true
+		default: true
 	}
 });
 

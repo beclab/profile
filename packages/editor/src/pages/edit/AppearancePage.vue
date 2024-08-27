@@ -50,6 +50,7 @@
 				</grid-picker-group>
 
 				<BtUploader
+					v-if="themeType === THEME_TYPE.IMAGE"
 					width="440"
 					height="40"
 					:size="5"
@@ -60,7 +61,6 @@
 					@fail="fail"
 				>
 					<bio-button
-						v-if="themeType === THEME_TYPE.IMAGE"
 						class="q-mt-lg text-body1"
 						size="24px"
 						:label="t('appearance.upload_an_image')"

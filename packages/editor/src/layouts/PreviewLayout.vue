@@ -1,6 +1,6 @@
 <template>
 	<div class="preview-layout" v-if="userStore.user">
-		<preview-layout-component
+		<preview-layout
 			:font-size="platform.is.desktop ? 20 : 25"
 			:user="userStore.user"
 			:pc="platform.is.desktop"
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import PreviewLayoutComponent from 'src/components/layout/PreviewLayoutComponent.vue';
+import PreviewLayout from 'src/components/layout/PreviewLayout.vue';
 import { useUserStore } from 'src/stores/user';
 import { useQuasar } from 'quasar';
 //import { ref } from 'vue';

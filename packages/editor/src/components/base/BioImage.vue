@@ -6,8 +6,8 @@
 		accept=".jpg, image/*"
 		action="/images/upload/v1"
 		@ok="ok"
-		width="72"
-		height="72"
+		width="88"
+		height="88"
 		@fail="fail"
 	>
 		<q-img v-if="imgUrl" class="bio-img" :src="imgUrl" />
@@ -50,19 +50,19 @@ const fail = (response: unknown) => {
 
 <style scoped lang="scss">
 .bio-img {
-	width: 72px;
-	height: 72px;
+	width: 88px;
+	height: 88px;
 	border-radius: 8px;
 }
 
 .bio-img-background {
-	width: 72px;
+	width: 88px;
 	height: 48px;
 }
 
 .bio-img-none {
-	width: 72px;
-	height: 72px;
+	width: 88px;
+	height: 88px;
 	border-radius: 8px;
 	background: $background-3;
 	border: $separator-2;

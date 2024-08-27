@@ -102,14 +102,14 @@ onMounted(() => {
 <style scoped lang="scss">
 .link-root {
 	width: 100%;
-	height: 100%;
+	height: 128px;
 	border: 1px solid $input-stroke;
 	border-radius: 8px;
 
 	.link-text {
 		margin-left: 12px;
-		width: calc(100% - 84px);
-		height: 72px;
+		width: calc(100% - 100px);
+		height: 88px;
 	}
 }
 </style>

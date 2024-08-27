@@ -29,6 +29,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useUserStore } from 'src/stores/user';
+import { getGradientColor, THEME_TYPE } from 'src/types/User';
 const userStore = useUserStore();
 
 defineProps({
@@ -40,27 +41,36 @@ const backgroundStyle = computed(() => {
 	if (!userStore.user) {
 		return {};
 	}
-	switch (userStore.user.background.style) {
-		case 0:
-			return { 'background-color': '#ffffff' };
-		case 1:
-			return {
-				background: `url("${userStore.user.background.uploadImg}")`,
-				'background-size': 'cover'
+	let backgroundStyle = {};
+	switch (userStore.user.appearance.theme.style) {
+		case THEME_TYPE.SOLID:
+			backgroundStyle = {
+				backgroundColor: userStore.user.appearance.theme.background
 			};
-		case 2:
-			return { 'background-color': userStore.user.background.color };
-		case 3:
-			return { background: userStore.user.background.gradientColor };
-		case 4:
-		case 5:
-			return {
-				'background-image': `url("/api/public/background/${userStore.user.background.localImg}")`,
-				'background-size': 'cover'
+			break;
+		case THEME_TYPE.GRADIENT:
+			backgroundStyle = {
+				background: getGradientColor(
+					userStore.user.appearance.theme.gradientTopColor,
+					userStore.user.appearance.theme.gradientBottomColor
+				)
 			};
-		default:
-			return {};
+			break;
+		case THEME_TYPE.IMAGE:
+			if (userStore.user.appearance.theme.useUpload) {
+				backgroundStyle = {
+					background: `url("${userStore.user.appearance.theme.uploadImg}")`,
+					backgroundSize: 'cover'
+				};
+			} else {
+				backgroundStyle = {
+					backgroundImage: `url("/background/mobile/${userStore.user.appearance.theme.localImg}")`,
+					backgroundSize: 'cover'
+				};
+			}
+			break;
 	}
+	return backgroundStyle;
 });
 </script>
 

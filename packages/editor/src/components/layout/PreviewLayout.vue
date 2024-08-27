@@ -1,9 +1,5 @@
 <template>
-	<div
-		v-if="user"
-		:style="{ fontSize: `${fontSize}px`, fontFamily: user.appearance.font }"
-		class="container-wrapper"
-	>
+	<div v-if="user" :style="parentStyle" class="container-wrapper">
 		<q-scroll-area class="full-width full-height">
 			<div
 				class="preview-container column items-center"
@@ -12,58 +8,112 @@
 						? ''
 						: 'preview-container-padding'
 				"
-				:style="backgroundStyle"
 			>
 				<div
 					v-if="user.appearance.theme.style === THEME_TYPE.IMAGE"
 					class="overlay"
 					:style="backgroundOverlay"
 				/>
-				<header-preview
-					:header="user.header"
-					:social="user.social"
-					:text-color="user.appearance.theme.header.textColor"
-				/>
-
-				<div v-if="isDefault" class="default-view">
-					<img src="/profile-pure.svg" alt="logo" />
-					<div class="content">
-						{{ t('base.let_people_own_their_data_again') }}
-					</div>
-				</div>
 				<div
-					class="blocks-margin full-width"
-					:style="{
-						paddingLeft:
-							user.header.style === HEADER_STYLE_TYPE.PORTRAIT ? '1.25em' : '',
-						paddingRight:
-							user.header.style === HEADER_STYLE_TYPE.PORTRAIT ? '1.25em' : ''
-					}"
+					class="column items-center"
+					:style="{ maxWidth: pc ? '37.5em' : '' }"
 				>
-					<template v-for="item in enabledLinks" :key="item.url">
-						<div
-							class="blocks-div row items-center"
-							v-if="item.type === BLOCK_TYPE.LINK"
-							@click="onOpenWindow(item.url)"
-							:style="{
-								boxShadow: item.shadow
-									? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+					<header-preview
+						:header="user.header"
+						:social="user.social"
+						:text-color="user.appearance.theme.header.textColor"
+					/>
+
+					<div v-if="isDefault" class="default-view">
+						<img src="/profile-pure.svg" alt="logo" />
+						<div class="content">
+							{{ t('base.let_people_own_their_data_again') }}
+						</div>
+					</div>
+					<div
+						class="blocks-margin full-width"
+						:style="{
+							paddingLeft:
+								user.header.style === HEADER_STYLE_TYPE.PORTRAIT
+									? '1.25em'
 									: '',
-								border: item.outline ? `2px solid ${ink1.color.value}` : '',
-								borderRadius: blockRadius,
-								background: blockBackground,
-								color: user.appearance.theme.link.textColor
-							}"
-						>
-							<q-img
-								class="link-img"
-								v-if="item.img && item.img !== ''"
-								:src="item.img"
-							/>
+							paddingRight:
+								user.header.style === HEADER_STYLE_TYPE.PORTRAIT ? '1.25em' : ''
+						}"
+					>
+						<template v-for="item in enabledLinks" :key="item.id">
 							<div
-								class="link-text column"
+								class="blocks-div row items-center"
+								v-if="item.type === BLOCK_TYPE.LINK"
+								@click="onOpenWindow(item.url)"
 								:style="{
-									width: item.img ? 'calc(100% - 4em)' : '100%',
+									boxShadow: item.shadow
+										? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+										: '',
+									border: item.outline ? `2px solid ${ink1.color.value}` : '',
+									borderRadius: blockRadius,
+									background: blockBackground,
+									color: user.appearance.theme.link.textColor
+								}"
+							>
+								<q-img
+									:class="
+										item.size === SIZE_TYPE.SMALL
+											? 'link-img-small'
+											: 'link-img-larger'
+									"
+									v-if="item.icon && item.icon !== ''"
+									:src="item.icon"
+								/>
+								<div
+									class="link-text column"
+									:style="{
+										width: item.icon
+											? `calc(100% - ${item.size === SIZE_TYPE.SMALL ? '4em' : '4.75em'})`
+											: '100%',
+										textAlign:
+											item.textAlignment === ALIGNMENT_TYPE.LEFT
+												? 'left'
+												: item.textAlignment === ALIGNMENT_TYPE.RIGHT
+													? 'right'
+													: 'center'
+									}"
+								>
+									<div
+										:class="
+											item.size === SIZE_TYPE.SMALL
+												? 'link-title-small'
+												: 'link-title-larger'
+										"
+									>
+										{{ item.title }}
+									</div>
+									<div
+										:class="
+											item.size === SIZE_TYPE.SMALL
+												? 'link-sub-title-small'
+												: 'link-sub-title-larger'
+										"
+									>
+										{{ item.subTitle }}
+									</div>
+								</div>
+							</div>
+							<div
+								v-if="item.type === BLOCK_TYPE.TEXT"
+								class="blocks-div column"
+								:style="{
+									boxShadow: user.appearance.block.shadow
+										? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+										: '',
+									border: user.appearance.block.outline
+										? `2px solid ${ink1.color.value}`
+										: '',
+									borderRadius: blockRadius,
+									background: item.transparent
+										? blockBackground
+										: user.appearance.theme.block.background,
+									color: user.appearance.theme.block.textColor,
 									textAlign:
 										item.textAlignment === ALIGNMENT_TYPE.LEFT
 											? 'left'
@@ -72,95 +122,53 @@
 												: 'center'
 								}"
 							>
+								<div class="text-title">
+									{{ item.title }}
+								</div>
+								<div class="text-description">
+									{{ item.description }}
+								</div>
+							</div>
+							<div
+								class="image-parent column"
+								v-if="item.type === BLOCK_TYPE.IMAGE"
+							>
 								<div
-									:class="
-										item.size === SIZE_TYPE.SMALL
-											? 'link-title-small'
-											: 'link-title-larger'
-									"
+									class="image-title"
+									:style="{
+										color: user.appearance.theme.block.textColor
+									}"
 								>
 									{{ item.title }}
 								</div>
 								<div
-									:class="
-										item.size === SIZE_TYPE.SMALL
-											? 'link-sub-title-small'
-											: 'link-sub-title-larger'
-									"
+									class="image-description"
+									:style="{
+										color: user.appearance.theme.block.textColor
+									}"
 								>
-									{{ item.subTitle }}
+									{{ item.description }}
 								</div>
+								<q-img
+									:ratio="item.ratio"
+									fit="cover"
+									:class="item.link ? 'cursor-pointer' : ''"
+									:style="{
+										marginTop: '0.5em',
+										borderRadius: blockRadius,
+										boxShadow: user.appearance.block.shadow
+											? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
+											: '',
+										border: user.appearance.block.outline
+											? `2px solid ${ink1.color.value}`
+											: ''
+									}"
+									@click="onOpenWindow(item.link)"
+									:src="item.img ? item.img : '/block_image_default.svg'"
+								/>
 							</div>
-						</div>
-						<div
-							v-if="item.type === BLOCK_TYPE.TEXT"
-							class="blocks-div column"
-							:style="{
-								boxShadow: user.appearance.block.shadow
-									? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
-									: '',
-								border: user.appearance.block.outline
-									? `2px solid ${ink1.color.value}`
-									: '',
-								borderRadius: blockRadius,
-								background: item.transparent
-									? blockBackground
-									: user.appearance.theme.block.background,
-								color: user.appearance.theme.block.textColor,
-								textAlign:
-									item.textAlignment === ALIGNMENT_TYPE.LEFT
-										? 'left'
-										: item.textAlignment === ALIGNMENT_TYPE.RIGHT
-											? 'right'
-											: 'center'
-							}"
-						>
-							<div class="text-title">
-								{{ item.title }}
-							</div>
-							<div class="text-description">
-								{{ item.description }}
-							</div>
-						</div>
-						<div
-							class="image-parent column"
-							v-if="item.type === BLOCK_TYPE.IMAGE"
-						>
-							<div
-								class="image-title"
-								:style="{
-									color: user.appearance.theme.block.textColor
-								}"
-							>
-								{{ item.title }}
-							</div>
-							<div
-								class="image-description"
-								:style="{
-									color: user.appearance.theme.block.textColor
-								}"
-							>
-								{{ item.description }}
-							</div>
-							<q-img
-								:ratio="item.ratio"
-								fit="cover"
-								:class="item.link ? 'cursor-pointer' : ''"
-								:style="{
-									marginTop: '0.5em',
-									borderRadius: blockRadius,
-									boxShadow: user.appearance.block.shadow
-										? '0px 8px 0px 0px rgba(0, 0, 0, 0.20)'
-										: '',
-									border: user.appearance.block.outline
-										? `2px solid ${ink1.color.value}`
-										: ''
-								}"
-								@click="onOpenWindow(item.link)"
-								:src="item.img ? item.img : '/block_image_default.svg'"
-							/>
-						</div>
-					</template>
+						</template>
+					</div>
 				</div>
 			</div>
 		</q-scroll-area>
@@ -205,32 +213,41 @@ const props = defineProps({
 const { t } = useI18n();
 const ink1 = useColor('ink-1');
 
-const backgroundStyle = computed(() => {
+const parentStyle = computed(() => {
+	const baseStyle = {
+		fontSize: `${props.fontSize}px`,
+		fontFamily: props.user.appearance.font
+	};
+	let backgroundStyle = {};
 	switch (props.user.appearance.theme.style) {
 		case THEME_TYPE.SOLID:
-			return { 'background-color': props.user.appearance.theme.background };
+			backgroundStyle = {
+				backgroundColor: props.user.appearance.theme.background
+			};
+			break;
 		case THEME_TYPE.GRADIENT:
-			return {
+			backgroundStyle = {
 				background: getGradientColor(
 					props.user.appearance.theme.gradientTopColor,
 					props.user.appearance.theme.gradientBottomColor
 				)
 			};
+			break;
 		case THEME_TYPE.IMAGE:
 			if (props.user.appearance.theme.useUpload) {
-				return {
+				backgroundStyle = {
 					background: `url("${props.user.appearance.theme.uploadImg}")`,
-					'background-size': 'cover'
+					backgroundSize: 'cover'
 				};
 			} else {
-				return {
-					'background-image': `url("/background/${props.pc ? 'pc' : 'mobile'}/${props.user.appearance.theme.localImg}")`,
-					'background-size': 'cover'
+				backgroundStyle = {
+					backgroundImage: `url("/background/${props.pc ? 'pc' : 'mobile'}/${props.user.appearance.theme.localImg}")`,
+					backgroundSize: 'cover'
 				};
 			}
-		default:
-			return {};
+			break;
 	}
+	return { ...backgroundStyle, ...baseStyle };
 });
 
 const backgroundOverlay = computed(() => {
@@ -366,14 +383,19 @@ const onOpenWindow = (url: string) => {
 					line-height: 1.5rem;
 				}
 
-				.link-img {
+				.link-img-small {
 					width: 3.25em;
 					height: 3.25em;
 					border-radius: 50%;
 				}
 
+				.link-img-larger {
+					width: 4em;
+					height: 4em;
+					border-radius: 50%;
+				}
+
 				.link-text {
-					max-width: 100%;
 					margin-left: 0.75em;
 
 					.link-title {

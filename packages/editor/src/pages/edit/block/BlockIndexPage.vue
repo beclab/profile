@@ -9,11 +9,11 @@
 		/>
 		<vue-draggable-next
 			v-if="userStore.user && userStore.user.block.data"
-			:list="userStore.user?.block.data"
+			:list="userStore.user.block.data"
 		>
 			<transition-group name="list">
 				<template
-					v-for="(item, index) in userStore.user?.block.data"
+					v-for="(item, index) in userStore.user.block.data"
 					:key="index"
 				>
 					<block-item :block="item" />
