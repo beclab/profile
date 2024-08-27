@@ -401,7 +401,7 @@ const themeSecondaryItems = computed(() => {
 
 	let backgroundTitle = '';
 
-	switch (userStore.user.appearance.theme.style) {
+	switch (themeType.value) {
 		case THEME_TYPE.SOLID:
 			backgroundTitle = t('appearance.solid_color_theme');
 			break;
@@ -416,7 +416,7 @@ const themeSecondaryItems = computed(() => {
 	const data = [
 		{
 			title: t('appearance.filter'),
-			visible: userStore.user.appearance.theme.style === THEME_TYPE.IMAGE
+			visible: themeType.value === THEME_TYPE.IMAGE
 		},
 		{
 			title: backgroundTitle,
