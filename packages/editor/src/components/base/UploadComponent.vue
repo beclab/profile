@@ -16,6 +16,14 @@
 			class="bio-img"
 			:src="imgUrl"
 		/>
+		<q-img
+			v-else-if="placeholder"
+			:style="{ width: width, height: height }"
+			class="bio-img"
+			:src="placeholder"
+		>
+			<q-img class="image-change" src="image_change.png" />
+		</q-img>
 		<div
 			v-else
 			:style="{ width: width, height: height }"
@@ -28,6 +36,7 @@
 
 <script lang="ts" setup>
 import { useQuasar } from 'quasar';
+import { BtNotify, NotifyDefinedType } from '@bytetrade/ui';
 
 const $q = useQuasar();
 
@@ -35,6 +44,10 @@ defineProps({
 	imgUrl: {
 		type: String,
 		require: true
+	},
+	placeholder: {
+		type: String,
+		require: false
 	},
 	width: {
 		type: String,
@@ -53,8 +66,6 @@ const ok = (response: {
 	message: string;
 }) => {
 	console.log('ok ');
-	console.log(response.data);
-
 	if (response.code !== 200) {
 		$q.notify(response.message);
 		return;
@@ -64,13 +75,26 @@ const ok = (response: {
 };
 
 const fail = (response: unknown) => {
-	console.log('fail', response);
+	BtNotify.show({
+		type: NotifyDefinedType.FAILED,
+		message: response
+	});
 };
 </script>
 
 <style scoped lang="scss">
 .bio-img {
 	border-radius: 8px;
+	position: relative;
+}
+
+.image-change {
+	position: absolute;
+	top: calc(50% - 22px);
+	left: calc(50% - 22px);
+	width: 44px;
+	height: 44px;
+	background: transparent;
 }
 
 .bio-img-none {

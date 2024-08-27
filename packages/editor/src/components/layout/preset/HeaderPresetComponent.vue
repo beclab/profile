@@ -19,6 +19,26 @@
 				:social-clickable="false"
 				text-color="#1F1F1F"
 			/>
+			<div
+				class="classic-block-mask"
+				v-if="header.style === HEADER_STYLE_TYPE.CLASSIC"
+			/>
+			<div
+				class="classic-block-mask"
+				v-if="header.style === HEADER_STYLE_TYPE.CLASSIC"
+			/>
+			<div
+				class="portrait-block-mask"
+				v-if="header.style === HEADER_STYLE_TYPE.PORTRAIT"
+			/>
+			<div
+				class="banner-block-mask"
+				v-if="header.style === HEADER_STYLE_TYPE.BANNER"
+			/>
+			<div
+				class="banner-block-mask"
+				v-if="header.style === HEADER_STYLE_TYPE.BANNER"
+			/>
 		</div>
 	</div>
 </template>
@@ -47,4 +67,26 @@ defineProps({
 	}
 });
 </script>
-<style scoped lang="scss" />
+<style scoped lang="scss">
+.classic-block-mask {
+	margin-top: 1.875em;
+	width: 18.75em;
+	height: 8.2em;
+	background: #f6f6f6;
+	border-radius: 1.56em;
+}
+.portrait-block-mask {
+	margin-top: 1.875em;
+	width: 18.75em;
+	height: 7.97em;
+	background: #f6f6f6;
+	border-radius: 1.56em;
+}
+.banner-block-mask {
+	margin-top: 1.875em;
+	width: 18.75em;
+	height: 6.56em;
+	background: #f6f6f6;
+	border-radius: 1.56em;
+}
+</style>

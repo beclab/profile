@@ -15,7 +15,7 @@
 			:placeholder="t('blocks.image_headline')"
 			v-model="blockRef.title"
 		/>
-		<div class="edit-label full-width q-mt-lg">
+		<div class="text-subtitle1 full-width q-mt-lg">
 			{{ t('blocks.add_description') }}
 		</div>
 		<edit-view

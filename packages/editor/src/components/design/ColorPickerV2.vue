@@ -52,7 +52,7 @@ const updateModelValue = (data: string) => {
 	height: auto;
 
 	.color-edit {
-		padding: 8px 12px;
+		padding: 2px 12px;
 		border-radius: 8px;
 		border: 1px solid $input-stroke;
 		width: 100px;

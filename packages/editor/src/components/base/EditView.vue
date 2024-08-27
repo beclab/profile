@@ -73,7 +73,7 @@ function onInput(value: string) {
 
 <style lang="scss" scoped>
 .input-item {
-	height: var(--height, 32px);
+	height: var(--height, 40px);
 	width: 100%;
 	border: 1px solid $input-stroke;
 	border-radius: 8px;

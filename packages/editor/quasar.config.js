@@ -37,7 +37,7 @@ module.exports = configure(function (ctx) {
 		boot: ['i18n', 'smartEnginEntrance', 'bytetradeUi'],
 
 		// https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
-		css: [process.env.ACTION === 'EDITOR' ? 'app.scss' : ''],
+		css: ['app.scss'],
 
 		// https://github.com/quasarframework/quasar/tree/dev/extras
 		extras: [

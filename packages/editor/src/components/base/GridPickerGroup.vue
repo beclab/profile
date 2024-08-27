@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, provide, nextTick, onMounted } from 'vue';
+import { ref, provide, watch, onMounted } from 'vue';
 
 const props = defineProps({
 	modelValue: {
@@ -43,9 +43,7 @@ const childValues = ref<any[]>([]);
 const emit = defineEmits(['update:modelValue']);
 
 function handleItemClick(button: any, value: string | number) {
-	const index = childComponents.value.findIndex((item) => item == button);
-	console.log(index);
-	executeRefresh(index);
+	readyRefresh(value);
 	if (value !== '') {
 		console.log(value);
 		emit('update:modelValue', value);
@@ -55,35 +53,44 @@ function handleItemClick(button: any, value: string | number) {
 const addChildComponent = (componentRef: any, value: string | number) => {
 	childComponents.value.push(componentRef);
 	childValues.value.push(value);
-	// console.log(childComponents)
 };
 
 provide('addChildComponent', addChildComponent);
 provide('handleItemClick', handleItemClick);
 
 const executeRefresh = (selected: number) => {
-	nextTick(() => {
-		childComponents.value.forEach((item, index) => {
-			if (index === selected) {
-				item.value.exposed.setSelected(true);
-			} else {
-				item.value.exposed.setSelected(false);
-			}
-		});
+	childComponents.value.forEach((item, index) => {
+		if (index === selected) {
+			item.value.exposed.setSelected(true);
+		} else {
+			item.value.exposed.setSelected(false);
+		}
 	});
 };
 
-onMounted(() => {
-	if (props.modelValue) {
-		const index = childValues.value.findIndex(
-			(item) => item === props.modelValue
-		);
+const readyRefresh = (value: any) => {
+	if (value) {
+		const index = childValues.value.findIndex((item) => item === value);
 		console.log(childValues.value);
 		console.log(props.modelValue);
 		if (index >= 0) {
 			executeRefresh(index);
 		}
+	} else {
+		executeRefresh(-1);
 	}
+};
+
+watch(
+	() => props.modelValue,
+	() => {
+		console.log('on watch');
+		readyRefresh(props.modelValue);
+	}
+);
+
+onMounted(() => {
+	readyRefresh(props.modelValue);
 });
 </script>
 

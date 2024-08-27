@@ -5,7 +5,7 @@
 			:secondary-items="themeSecondaryItems"
 		>
 			<template v-slot:primary>
-				<grid-picker-group v-model="userStore.user.appearance.theme.style">
+				<grid-picker-group v-model="themeType">
 					<picker-component :value="THEME_TYPE.SOLID">
 						<template v-slot:default="{ color, selected }">
 							<div
@@ -48,13 +48,25 @@
 						</template>
 					</picker-component>
 				</grid-picker-group>
-				<bio-button
-					v-if="userStore.user.appearance.theme.style === THEME_TYPE.IMAGE"
-					class="q-mt-lg text-body1"
-					size="24px"
-					:label="t('appearance.upload_an_image')"
-					icon="sym_r_add"
-				/>
+
+				<BtUploader
+					width="440"
+					height="40"
+					:size="5"
+					fileName="image"
+					accept="image/*"
+					action="/images/upload/v1"
+					@ok="ok"
+					@fail="fail"
+				>
+					<bio-button
+						v-if="themeType === THEME_TYPE.IMAGE"
+						class="q-mt-lg text-body1"
+						size="24px"
+						:label="t('appearance.upload_an_image')"
+						icon="sym_r_add"
+					/>
+				</BtUploader>
 			</template>
 
 			<template v-slot:secondary-0>
@@ -112,7 +124,7 @@
 					:columns="4"
 					column-gap="12px"
 					row-gap="12px"
-					v-if="userStore.user.appearance.theme.style === THEME_TYPE.SOLID"
+					v-if="themeType === THEME_TYPE.SOLID"
 					:model-value="userStore.user.appearance.theme.preset"
 				>
 					<template v-for="item in BACKGROUND_COLOR_PRESET" :key="item.preset">
@@ -137,7 +149,7 @@
 					:columns="4"
 					column-gap="12px"
 					row-gap="12px"
-					v-if="userStore.user.appearance.theme.style === THEME_TYPE.GRADIENT"
+					v-if="themeType === THEME_TYPE.GRADIENT"
 					:model-value="userStore.user.appearance.theme.preset"
 				>
 					<template
@@ -165,7 +177,7 @@
 					:columns="4"
 					column-gap="12px"
 					row-gap="12px"
-					v-if="userStore.user.appearance.theme.style === THEME_TYPE.IMAGE"
+					v-if="themeType === THEME_TYPE.IMAGE"
 					:model-value="userStore.user.appearance.theme.preset"
 				>
 					<template v-for="item in BACKGROUND_IMAGE_PRESET" :key="item.preset">
@@ -193,20 +205,24 @@
 						v-if="userStore.user.appearance.theme.style === THEME_TYPE.SOLID"
 						:label="t('appearance.background')"
 						v-model="userStore.user.appearance.theme.background"
+						@update:modelValue="onColorChange"
 					/>
 					<color-picker-v2
 						v-if="userStore.user.appearance.theme.style === THEME_TYPE.GRADIENT"
 						:label="t('appearance.background_color_1')"
 						v-model="userStore.user.appearance.theme.gradientTopColor"
+						@update:modelValue="onColorChange"
 					/>
 					<color-picker-v2
 						v-if="userStore.user.appearance.theme.style === THEME_TYPE.GRADIENT"
 						:label="t('appearance.background_color_2')"
 						v-model="userStore.user.appearance.theme.gradientBottomColor"
+						@update:modelValue="onColorChange"
 					/>
 					<color-picker-v2
 						:label="t('appearance.header_text_icons')"
 						v-model="userStore.user.appearance.theme.header.textColor"
+						@update:modelValue="onColorChange"
 					/>
 				</div>
 			</template>
@@ -216,10 +232,12 @@
 					<color-picker-v2
 						:label="t('appearance.background')"
 						v-model="userStore.user.appearance.theme.link.background"
+						@update:modelValue="onColorChange"
 					/>
 					<color-picker-v2
 						:label="t('appearance.text')"
 						v-model="userStore.user.appearance.theme.link.textColor"
+						@update:modelValue="onColorChange"
 					/>
 				</div>
 			</template>
@@ -228,10 +246,12 @@
 					<color-picker-v2
 						:label="t('appearance.background')"
 						v-model="userStore.user.appearance.theme.block.background"
+						@update:modelValue="onColorChange"
 					/>
 					<color-picker-v2
 						:label="t('appearance.text')"
 						v-model="userStore.user.appearance.theme.block.textColor"
+						@update:modelValue="onColorChange"
 					/>
 				</div>
 			</template>
@@ -353,10 +373,10 @@ import {
 	BACKGROUND_GRADIENT_PRESET,
 	BACKGROUND_IMAGE_PRESET
 } from 'src/types/Preset';
-import { computed, watch, ref } from 'vue';
+import { computed, watch, ref, onMounted } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
-import { useColor } from '@bytetrade/ui';
+import { BtNotify, NotifyDefinedType, useColor } from '@bytetrade/ui';
 import _ from 'lodash';
 
 const userStore = useUserStore();
@@ -365,6 +385,14 @@ const link1 = useColor('link-1');
 const noneFilter = ref();
 const darkFilter = ref();
 const lightFilter = ref();
+const themeType = ref(THEME_TYPE.SOLID);
+
+onMounted(() => {
+	if (userStore.user) {
+		console.log('test', userStore.user.appearance.theme.style);
+		themeType.value = userStore.user.appearance.theme.style;
+	}
+});
 
 const themeSecondaryItems = computed(() => {
 	if (!userStore.user) {
@@ -429,24 +457,31 @@ watch(
 
 const onThemeSelected = (item: AppearanceTheme) => {
 	if (userStore.user && item) {
+		console.log(item);
+		console.log(_.cloneDeep(item));
 		userStore.user.appearance.theme = _.cloneDeep(item);
 	}
 };
 
-const imgPickerUpdate = (imgName: string) => {
+const ok = (response: { code: string; data: any; message: any }) => {
 	if (userStore.user) {
-		userStore.user.appearance.theme.localImg = imgName;
+		userStore.user.appearance.theme.preset = '';
+		userStore.user.appearance.theme.useUpload = true;
+		userStore.user.appearance.theme.uploadImg = response.data.imageUrl;
 	}
 };
 
-const ok = (response: { success: string; path: string }) => {
-	if (userStore.user) {
-		userStore.user.appearance.theme.uploadImg = response.path;
-	}
+const fail = (response: { code: string; data: any; message: any }) => {
+	BtNotify.show({
+		type: NotifyDefinedType.FAILED,
+		message: response.message
+	});
 };
 
-const fail = (response: unknown) => {
-	console.log('fail', response);
+const onColorChange = () => {
+	if (userStore.user) {
+		userStore.user.appearance.theme.preset = '';
+	}
 };
 </script>
 <style lang="scss">

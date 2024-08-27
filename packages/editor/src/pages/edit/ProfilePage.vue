@@ -66,6 +66,7 @@
 			<template v-slot:secondary-0>
 				<upload-component
 					v-model:img-url="userStore.user.header.banner"
+					placeholder="banner/banner_default.jpg"
 					width="440px"
 					height="220px"
 				/>
@@ -274,15 +275,13 @@ const headerStyleSecondaryItems = computed(() => {
 		return [];
 	}
 
-	const data = [
+	return [
 		{
 			title: t('profile.banner'),
 			description: t('profile.upload_avatar_desc'),
 			visible: userStore.user.header.style === HEADER_STYLE_TYPE.BANNER
 		}
 	];
-	console.log(data);
-	return data;
 });
 
 const pictureSecondaryItems = computed(() => {

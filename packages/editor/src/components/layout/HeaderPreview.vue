@@ -51,8 +51,7 @@
 		</div>
 		<social-preview
 			:style="{
-				marginTop:
-					header.format === HEADER_FORMAT_TYPE.COLUMN ? '2em' : '0.75em'
+				marginTop: header.format === HEADER_FORMAT_TYPE.COLUMN ? '' : '0.75em'
 			}"
 			:social="social"
 			:color="textColor"
@@ -66,7 +65,6 @@
 		class="portrait-header-format-column column justify-center items-center"
 	>
 		<profile-terminus-avatar
-			class="avatar-picture"
 			:info="userStore.info"
 			:show-border="false"
 			:mask="true"

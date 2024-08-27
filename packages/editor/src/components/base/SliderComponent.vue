@@ -26,7 +26,12 @@ A 5,5 0 1,0 15,10"
 				@update:model-value="updateModelValue"
 			>
 				<template v-slot:append>
-					<div class="text-body1 text-ink-1">{{ unit }}</div>
+					<div
+						class="text-body1 text-ink-1 full-height"
+						style="text-align: center"
+					>
+						{{ unit }}
+					</div>
 				</template>
 			</q-input>
 		</div>
@@ -72,7 +77,7 @@ const updateModelValue = (data: string) => {
 	}
 
 	.slider-edit {
-		padding: 8px 12px;
+		padding: 2px 12px;
 		height: 40px;
 		border-radius: 8px;
 		border: 1px solid $input-stroke;
