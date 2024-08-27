@@ -111,7 +111,7 @@ const srcResource = computed(() => {
 		return '';
 	}
 
-	// not set ternimusName
+	// not set terminusName
 	if (!props.info.terminusName) {
 		return `https://file.bttcdn.com/avatar3/1.png`;
 	}

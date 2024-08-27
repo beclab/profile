@@ -58,9 +58,9 @@
 					</q-card-section>
 				</div>
 				<div class="avatar-crop-view row justify-center items-center">
-					<ProfileAvatarBoard size="184px" :show-border="tab === 'nft'">
+					<profile-avatar-board size="184px" :show-border="tab === 'nft'">
 						<q-img class="avatar-preview" :src="selected.imageUrl" />
-					</ProfileAvatarBoard>
+					</profile-avatar-board>
 				</div>
 			</div>
 
