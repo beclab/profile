@@ -1,5 +1,5 @@
 <template>
-	<q-page class="index-root row justify-center bg-background-1">
+	<div class="index-root row justify-center bg-background-1">
 		<div v-if="!userStore.user" class="index-loading">
 			<BtLoading
 				:show="true"
@@ -58,7 +58,7 @@
 				</div>
 			</div>
 		</div>
-	</q-page>
+	</div>
 </template>
 <script setup lang="ts">
 import PreviewLayout from 'src/components/layout/PreviewLayout.vue';
@@ -163,6 +163,7 @@ watch(
 			.right-preview {
 				width: 40%;
 				height: 100vh;
+				overflow: scroll;
 				min-width: 322px;
 				max-width: 522px;
 
@@ -236,6 +237,7 @@ watch(
 
 			.right-preview {
 				width: 40%;
+				overflow: scroll;
 				height: 100vh;
 				min-width: 322px;
 				max-width: 522px;
