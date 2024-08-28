@@ -3,29 +3,39 @@
 		class="bio-img"
 		:size="5"
 		fileName="image"
-		accept=".jpg, image/*"
+		accept=".jpg, .jpeg, .png, .gif, image/*"
 		action="/images/upload/v1"
 		@ok="ok"
+		@loading="update"
 		width="88"
 		height="88"
 		@fail="fail"
 	>
-		<q-img v-if="imgUrl" class="bio-img" :src="imgUrl" />
+		<q-img v-if="imgUrl" class="bio-img" :src="imgUrl">
+			<template v-slot:loading>
+				<base-inner-loading width="88" height="88" />
+			</template>
+		</q-img>
 		<div v-else class="bio-img-none column justify-center items-center">
-			<q-icon size="32px" color="ink-3" name="sym_r_imagesmode" />
+			<base-inner-loading v-if="loading" width="88" height="88" />
+			<q-icon v-else size="32px" color="ink-3" name="sym_r_imagesmode" />
 		</div>
 	</BtUploader>
 </template>
 
 <script lang="ts" setup>
 import { useQuasar } from 'quasar';
-
-const $q = useQuasar();
+import BaseInnerLoading from 'src/components/base/BaseInnerLoading.vue';
+import { ref } from 'vue';
+import { BtNotify, NotifyDefinedType } from '@bytetrade/ui';
 
 defineProps({
 	imgUrl: String
 });
+
+const $q = useQuasar();
 const emit = defineEmits(['update:imgUrl']);
+const loading = ref();
 
 const ok = (response: {
 	code: number;
@@ -45,6 +55,14 @@ const ok = (response: {
 
 const fail = (response: unknown) => {
 	console.log('fail', response);
+	BtNotify.show({
+		type: NotifyDefinedType.FAILED,
+		message: response
+	});
+};
+
+const update = (status: boolean) => {
+	loading.value = status;
 };
 </script>
 

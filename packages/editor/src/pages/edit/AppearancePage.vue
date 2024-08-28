@@ -55,16 +55,25 @@
 					height="40"
 					:size="5"
 					fileName="image"
-					accept="image/*"
+					accept=".jpg, .jpeg, .png, .gif, image/*"
 					action="/images/upload/v1"
 					@ok="ok"
+					@loading="update"
 					@fail="fail"
 				>
 					<bio-button
+						v-if="!loading"
 						class="q-mt-lg text-body1"
 						size="24px"
 						:label="t('appearance.upload_an_image')"
 						icon="sym_r_add"
+					/>
+					<bio-button
+						v-else
+						class="q-mt-lg text-body1"
+						size="24px"
+						disabled
+						:label="t('appearance.uploading')"
 					/>
 				</BtUploader>
 			</template>
@@ -373,10 +382,10 @@ import {
 	BACKGROUND_GRADIENT_PRESET,
 	BACKGROUND_IMAGE_PRESET
 } from 'src/types/Preset';
+import { BtNotify, NotifyDefinedType, useColor } from '@bytetrade/ui';
 import { computed, watch, ref, onMounted } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
-import { BtNotify, NotifyDefinedType, useColor } from '@bytetrade/ui';
 import _ from 'lodash';
 
 const userStore = useUserStore();
@@ -386,6 +395,7 @@ const noneFilter = ref();
 const darkFilter = ref();
 const lightFilter = ref();
 const themeType = ref(THEME_TYPE.SOLID);
+const loading = ref(false);
 
 onMounted(() => {
 	if (userStore.user) {
@@ -482,6 +492,10 @@ const onColorChange = () => {
 	if (userStore.user) {
 		userStore.user.appearance.theme.preset = '';
 	}
+};
+
+const update = (status: boolean) => {
+	loading.value = status;
 };
 </script>
 <style lang="scss">

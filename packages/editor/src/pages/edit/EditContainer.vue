@@ -1,13 +1,7 @@
 <template>
-	<q-scroll-area
-		class="design-scroll"
-		style="height: 100%"
-		:thumb-style="scrollBarStyle.thumbStyle"
-	>
-		<div class="design-parent column items-center">
-			<div class="design-area">
-				<slot />
-			</div>
+	<q-scroll-area class="design-scroll" :thumb-style="scrollBarStyle.thumbStyle">
+		<div class="design-area column">
+			<slot />
 		</div>
 	</q-scroll-area>
 </template>
@@ -21,15 +15,12 @@ import { scrollBarStyle } from 'src/utils/helper';
 	width: 100%;
 	height: 100%;
 
-	.design-parent {
+	.design-area {
 		width: 100%;
 		height: 100%;
-
-		.design-area {
-			width: 440px;
-			height: 100%;
-			padding-bottom: 32px;
-		}
+		padding-left: calc((100% - 440px) / 2);
+		padding-right: calc((100% - 440px) / 2);
+		padding-bottom: 32px;
 	}
 }
 </style>

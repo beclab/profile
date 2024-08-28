@@ -26,7 +26,7 @@
 					type="avator"
 					:size="5"
 					fileName="image"
-					accept=".jpg, image/*"
+					accept=".jpg, .jpeg, .png, .gif, image/*"
 					action="/images/upload/v1"
 					@ok="ok"
 					@fail="fail"

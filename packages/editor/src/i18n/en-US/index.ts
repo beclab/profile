@@ -119,6 +119,7 @@ export default {
 		gradient: 'Gradient',
 		gradient_theme: 'Gradient Theme',
 		upload_an_image: 'Upload an image',
+		uploading: 'Uploading...',
 		dark: 'Dark',
 		light: 'Light',
 		filter: 'Filter',

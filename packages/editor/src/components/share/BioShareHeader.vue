@@ -90,6 +90,7 @@ watch(
 
 	.preview-share-edit {
 		width: calc(100% - 100px);
+		min-width: 200px;
 		height: 32px;
 		border-radius: 8px;
 		border: 1px solid $input-stroke;

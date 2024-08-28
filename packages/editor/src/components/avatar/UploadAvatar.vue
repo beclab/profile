@@ -6,7 +6,7 @@
 			:height="120"
 			:size="1"
 			fileName="image"
-			accept=".jpg, image/*"
+			accept=".jpg, .jpeg, .png, .gif, image/*"
 			action="/images/upload/v1"
 			:parmas="{}"
 			@ok="ok"
