@@ -3,6 +3,8 @@
 	:root {
 		--page-editor-padding: calc((100% - 440px) / 2);
 		--page-editor-padding-bottom : 32px;
+		--share-header-height: 56px;
+		--share-header-border: none;
 		//--page-padding-x: 40px;
 		//--page-header-height: 76px;
 		//--page-header-padding: 40px;
@@ -49,6 +51,8 @@
 	:root {
 		--page-editor-padding: 20px;
 		--page-editor-padding-bottom : 128px;
+		--share-header-height: 64px;
+		--share-header-border: 1px solid var(---, #0000001A);
 		//--page-header-height: 56px;
 		//--page-header-padding: 20px;
 		//--page-header-line: 0px;

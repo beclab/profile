@@ -1,15 +1,20 @@
 <template>
 	<div class="preview-layout" v-if="userStore.user">
 		<preview-layout
-			:font-size="platform.is.desktop ? 20 : 25"
+			:style="{
+				height: userStore.isMobile ? 'calc(100% - 64px)' : '100vh'
+			}"
+			:font-size="userStore.isMobile ? 20 : 25"
 			:user="userStore.user"
 			:pc="platform.is.desktop"
 		/>
+		<bio-share-header v-if="userStore.isMobile" class="po" />
 	</div>
 </template>
 
 <script lang="ts" setup>
 import PreviewLayout from 'src/components/layout/PreviewLayout.vue';
+import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import { useUserStore } from 'src/stores/user';
 import { useQuasar } from 'quasar';
 //import { ref } from 'vue';

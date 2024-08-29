@@ -170,6 +170,14 @@
 						</template>
 					</div>
 				</div>
+
+				<q-icon
+					v-if="userStore.isMobile && route.path === '/preview'"
+					size="24px"
+					class="close-icon text-ink-1 cursor-pointer"
+					name="sym_r_close"
+					@click="onClosePreview"
+				/>
 			</div>
 		</q-scroll-area>
 	</div>
@@ -194,6 +202,8 @@ import { colors } from 'quasar';
 import hexToRgb = colors.hexToRgb;
 import rgbToHex = colors.rgbToHex;
 import HeaderPreview from 'src/components/layout/HeaderPreview.vue';
+import { useUserStore } from 'src/stores/user';
+import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps({
 	user: {
@@ -212,6 +222,15 @@ const props = defineProps({
 
 const { t } = useI18n();
 const ink1 = useColor('ink-1');
+const userStore = useUserStore();
+const route = useRoute();
+const router = useRouter();
+
+const onClosePreview = () => {
+	router.back();
+};
+
+console.log(route.path);
 
 const parentStyle = computed(() => {
 	const baseStyle = {
@@ -325,6 +344,7 @@ const onOpenWindow = (url: string) => {
 	.preview-container {
 		min-height: 49.8em;
 		width: 100%;
+		position: relative;
 
 		.blocks-margin {
 			width: 100%;
@@ -463,6 +483,12 @@ const onOpenWindow = (url: string) => {
 			font-style: normal;
 			font-weight: 400;
 			line-height: 0.96rem;
+		}
+
+		.close-icon {
+			position: absolute;
+			right: 20px;
+			top: 20px;
 		}
 	}
 }
