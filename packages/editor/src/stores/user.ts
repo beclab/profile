@@ -13,6 +13,7 @@ export type UserStoreState = {
 	user: User | null;
 	nfts: NFTAddress[];
 	cloud_login: CloudLoginState;
+	isMobile: boolean;
 };
 
 export interface VerifiablePresentation {
@@ -51,7 +52,8 @@ export const useUserStore = defineStore('userStore', {
 			info: DefaultTerminusInfo,
 			user: null,
 			nfts: [],
-			cloud_login: CloudLoginState.NOT_CHECK
+			cloud_login: CloudLoginState.NOT_CHECK,
+			isMobile: window.innerWidth < 768
 		} as UserStoreState;
 	},
 

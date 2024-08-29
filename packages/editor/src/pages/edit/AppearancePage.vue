@@ -51,7 +51,7 @@
 
 				<BtUploader
 					v-if="themeType === THEME_TYPE.IMAGE"
-					width="440"
+					:width="userStore.isMobile ? '360px' : '440px'"
 					height="40"
 					:size="5"
 					fileName="image"
@@ -67,12 +67,14 @@
 						size="24px"
 						:label="t('appearance.upload_an_image')"
 						icon="sym_r_add"
+						:width="userStore.isMobile ? 360 : 440"
 					/>
 					<bio-button
 						v-else
 						class="q-mt-lg text-body1"
 						size="24px"
 						disabled
+						:width="userStore.isMobile ? 360 : 440"
 						:label="t('appearance.uploading')"
 					/>
 				</BtUploader>
@@ -84,8 +86,8 @@
 					v-model="userStore.user.appearance.theme.filter"
 				>
 					<picker-component
-						width="120px"
-						height="216px"
+						:width="userStore.isMobile ? '88px' : '120px'"
+						:height="userStore.isMobile ? '152px' : '216px'"
 						:value="IMAGE_FILTER.NONE"
 						:label="t('base.none')"
 						:border="true"
@@ -98,8 +100,8 @@
 						</template>
 					</picker-component>
 					<picker-component
-						width="120px"
-						height="216px"
+						:width="userStore.isMobile ? '88px' : '120px'"
+						:height="userStore.isMobile ? '152px' : '216px'"
 						:value="IMAGE_FILTER.DARK"
 						:label="t('appearance.dark')"
 						:border="true"
@@ -112,8 +114,8 @@
 						</template>
 					</picker-component>
 					<picker-component
-						width="120px"
-						height="216px"
+						:width="userStore.isMobile ? '88px' : '120px'"
+						:height="userStore.isMobile ? '152px' : '216px'"
 						:label="t('appearance.light')"
 						:value="IMAGE_FILTER.Light"
 						:border="true"
@@ -130,7 +132,7 @@
 
 			<template v-slot:secondary-1>
 				<grid-picker-group
-					:columns="4"
+					:columns="3"
 					column-gap="12px"
 					row-gap="12px"
 					v-if="themeType === THEME_TYPE.SOLID"
@@ -138,8 +140,8 @@
 				>
 					<template v-for="item in BACKGROUND_COLOR_PRESET" :key="item.preset">
 						<picker-component
-							width="92px"
-							height="160px"
+							:width="userStore.isMobile ? '77px' : '92px'"
+							:height="userStore.isMobile ? '128px' : '160px'"
 							:value="item.preset"
 							@on-selected="onThemeSelected(item)"
 							:border="true"
@@ -166,8 +168,8 @@
 						:key="item.preset"
 					>
 						<picker-component
-							width="92px"
-							height="160px"
+							:width="userStore.isMobile ? '77px' : '92px'"
+							:height="userStore.isMobile ? '128px' : '160px'"
 							:value="item.preset"
 							@on-selected="onThemeSelected(item)"
 							:border="true"
@@ -191,8 +193,8 @@
 				>
 					<template v-for="item in BACKGROUND_IMAGE_PRESET" :key="item.preset">
 						<picker-component
-							width="92px"
-							height="160px"
+							:width="userStore.isMobile ? '77px' : '92px'"
+							:height="userStore.isMobile ? '128px' : '160px'"
 							:value="item.preset"
 							@on-selected="onThemeSelected(item)"
 							:border="true"
@@ -498,15 +500,4 @@ const update = (status: boolean) => {
 	loading.value = status;
 };
 </script>
-<style lang="scss">
-.shape_square {
-	margin: 24px 16px;
-	width: 100px;
-	height: 40px;
-}
-
-.shape_round {
-	@extend .shape_square;
-	border-radius: 32px;
-}
-</style>
+<style lang="scss"></style>

@@ -24,7 +24,11 @@
 						active-class="tab-item-title-selected"
 					>
 						<template v-for="item in tabs" :key="item.value">
-							<q-tab :name="item.value" :label="item.label" :icon="item.icon" />
+							<q-tab
+								:name="item.value"
+								:label="item.label"
+								:icon="userStore.isMobile ? undefined : item.icon"
+							/>
 						</template>
 					</q-tabs>
 				</div>
@@ -49,13 +53,22 @@
 					</q-tab-panels>
 				</div>
 			</div>
-			<div class="right-preview">
+			<div v-if="!userStore.isMobile" class="right-preview">
 				<bio-share-header />
 				<div class="preview-background row justify-center">
 					<div class="preview">
 						<preview-layout :user="userStore.user" :font-size="10.24" />
 					</div>
 				</div>
+			</div>
+
+			<div
+				v-if="userStore.isMobile"
+				class="preview-btn row justify-center items-center bg-tooltip-bg text-white"
+				@click="goPreview"
+			>
+				<q-icon size="24px" name="sym_r_visibility" />
+				<div class="text-h6 q-ml-sm">{{ t('base.preview') }}</div>
 			</div>
 		</div>
 	</div>
@@ -68,6 +81,7 @@ import ProfilePage from 'src/pages/edit/ProfilePage.vue';
 import SocialPage from 'src/pages/edit/SocialPage.vue';
 import BlockPage from 'src/pages/edit/BlockPage.vue';
 import { useUserStore } from 'src/stores/user';
+import { useRouter } from 'vue-router';
 import { User } from '../types/User';
 import { useI18n } from 'vue-i18n';
 import { debounce } from 'quasar';
@@ -76,6 +90,7 @@ import axios from 'axios';
 
 const userStore = useUserStore();
 const { t } = useI18n();
+const router = useRouter();
 
 const tabs = [
 	{
@@ -110,6 +125,12 @@ const updateUserInfo = debounce(async function (user: User) {
 	axios.post('/api/user', user);
 }, 500);
 
+const goPreview = () => {
+	router.push({
+		path: '/preview'
+	});
+};
+
 watch(
 	() => userStore.user,
 	(value: User | null) => {
@@ -136,7 +157,38 @@ watch(
 		height: 100vh;
 	}
 
-	@media (max-width: 1280px) {
+	@media (max-width: 768px) {
+		.index-layout {
+			width: 100%;
+			height: 100vh;
+			position: relative;
+
+			.left-editor {
+				height: 100vh;
+				width: 100%;
+
+				.editor-title {
+					height: 56px;
+					width: 100%;
+				}
+
+				.editor-workspace {
+					height: calc(100% - 56px);
+					width: 100%;
+				}
+			}
+		}
+
+		.preview-btn {
+			padding: 10px 32px;
+			position: absolute;
+			bottom: 32px;
+			border-radius: 999px;
+			box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	@media (min-width: 768px) and (max-width: 1280px) {
 		.index-layout {
 			width: 100%;
 			min-width: 810px;

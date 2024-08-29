@@ -10,8 +10,8 @@
 					v-model="userStore.user.header.style"
 				>
 					<picker-component
-						width="120px"
-						height="216px"
+						:width="userStore.isMobile ? '88px' : '120px'"
+						:height="userStore.isMobile ? '152px' : '216px'"
 						:value="HEADER_STYLE_TYPE.CLASSIC"
 						:label="t('profile.classic')"
 						:border="true"
@@ -27,8 +27,8 @@
 						</template>
 					</picker-component>
 					<picker-component
-						width="120px"
-						height="216px"
+						:width="userStore.isMobile ? '88px' : '120px'"
+						:height="userStore.isMobile ? '152px' : '216px'"
 						:value="HEADER_STYLE_TYPE.PORTRAIT"
 						:label="t('profile.portrait')"
 						:border="true"
@@ -44,8 +44,8 @@
 						</template>
 					</picker-component>
 					<picker-component
-						width="120px"
-						height="216px"
+						:width="userStore.isMobile ? '88px' : '120px'"
+						:height="userStore.isMobile ? '152px' : '216px'"
 						:label="t('profile.banner')"
 						:value="HEADER_STYLE_TYPE.BANNER"
 						:border="true"
@@ -67,7 +67,7 @@
 				<upload-component
 					v-model:img-url="userStore.user.header.banner"
 					placeholder="banner/banner_default.jpg"
-					width="440px"
+					:width="userStore.isMobile ? '335px' : '440px'"
 					height="220px"
 				/>
 			</template>
@@ -83,13 +83,20 @@
 			</template>
 
 			<template v-slot:secondary-0>
-				<grid-picker-group v-model="userStore.user.header.profileShape">
+				<grid-picker-group
+					:grid="userStore.isMobile"
+					:columns="2"
+					v-model="userStore.user.header.profileShape"
+				>
 					<picker-component
 						:label="t('base.circular')"
 						:value="PROFILE_SHAPE_TYPE.CIRCULAR"
 					>
 						<template v-slot:default="{ color }">
-							<div :style="{ background: color }" class="shape_circle" />
+							<div
+								:style="{ background: color }"
+								class="profile_shape_circle"
+							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -100,7 +107,10 @@
 						:value="PROFILE_SHAPE_TYPE.SQUARE"
 					>
 						<template v-slot:default="{ color }">
-							<div :style="{ background: color }" class="shape_square" />
+							<div
+								:style="{ background: color }"
+								class="profile_shape_square"
+							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -180,8 +190,8 @@
 			<template v-slot:primary>
 				<grid-picker-group columns="2" v-model="userStore.user.header.format">
 					<picker-component
-						width="210px"
-						height="100px"
+						:width="userStore.isMobile ? '157px' : '210px'"
+						:height="userStore.isMobile ? '80px' : '100px'"
 						:value="HEADER_FORMAT_TYPE.COLUMN"
 					>
 						<template v-slot:default="{ color }">
@@ -189,8 +199,8 @@
 						</template>
 					</picker-component>
 					<picker-component
-						width="210px"
-						height="100px"
+						:width="userStore.isMobile ? '157px' : '210px'"
+						:height="userStore.isMobile ? '80px' : '100px'"
 						:value="HEADER_FORMAT_TYPE.ROW"
 					>
 						<template v-slot:default="{ color }">
@@ -296,21 +306,4 @@ const pictureSecondaryItems = computed(() => {
 	];
 });
 </script>
-<style scoped lang="scss">
-.shape_circle {
-	margin: 20px 40px;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-}
-
-.shape_square {
-	@extend .shape_circle;
-	border-radius: 8px;
-}
-
-.format-row-image {
-	width: 148px;
-	height: 60px;
-}
-</style>
+<style scoped lang="scss"></style>

@@ -42,6 +42,12 @@ export default defineComponent({
 						userStore.getNftAddress();
 					});
 			}
+
+			const updateLayout = () => {
+				userStore.isMobile = window.innerWidth < 768;
+			};
+
+			window.addEventListener('resize', updateLayout);
 		});
 	}
 });

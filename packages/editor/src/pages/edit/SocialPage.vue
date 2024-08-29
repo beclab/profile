@@ -9,7 +9,11 @@
 		>
 			<template v-slot:primary>
 				<div class="row items-start full-width">
-					<grid-picker-group :columns="8" row-gap="12px" column-gap="12px">
+					<grid-picker-group
+						:columns="userStore.isMobile ? 7 : 8"
+						row-gap="12px"
+						:column-gap="userStore.isMobile ? '8px' : '12px'"
+					>
 						<template v-for="(item, key, index) in SocialMap" :key="index">
 							<social-button
 								:platform="item.platform"

@@ -18,9 +18,9 @@ import { scrollBarStyle } from 'src/utils/helper';
 	.design-area {
 		width: 100%;
 		height: 100%;
-		padding-left: calc((100% - 440px) / 2);
-		padding-right: calc((100% - 440px) / 2);
-		padding-bottom: 32px;
+		padding-left: var(--page-editor-padding);
+		padding-right: var(--page-editor-padding);
+		padding-bottom: var(--page-editor-padding-bottom);
 	}
 }
 </style>
