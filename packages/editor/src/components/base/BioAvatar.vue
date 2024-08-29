@@ -45,18 +45,20 @@
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar';
-import { ref } from 'vue';
 import ProfileTerminusAvatar from '../avatar/ProfileTerminusAvatar.vue';
 import AvatarChooseDialog from '../avatar/AvatarChooseDialog.vue';
-import { useUserStore } from 'src/stores/user';
-import { useI18n } from 'vue-i18n';
 import { getRequireImage } from 'src/utils/helper';
+import { useUserStore } from 'src/stores/user';
+import { useRouter } from 'vue-router';
+import { useQuasar } from 'quasar';
+import { useI18n } from 'vue-i18n';
+import { ref } from 'vue';
 
-const hover = ref(false);
-const $q = useQuasar();
 const userStore = useUserStore();
+const hover = ref(false);
+const router = useRouter();
 const { t } = useI18n();
+const $q = useQuasar();
 
 defineProps({
 	size: {
@@ -74,21 +76,27 @@ defineProps({
 });
 
 async function openDialog() {
-	$q.dialog({
-		component: AvatarChooseDialog
-	})
-		.onOk((data) => {
-			if (!userStore.user) {
-				return;
-			}
-			userStore.user.header.avatarUrl = data;
-		})
-		.onCancel(() => {
-			console.log('Cancel');
-		})
-		.onDismiss(() => {
-			console.log('Called on OK or Cancel');
+	if (userStore.isMobile) {
+		router.push({
+			path: '/avatar'
 		});
+	} else {
+		$q.dialog({
+			component: AvatarChooseDialog
+		})
+			.onOk((data) => {
+				if (!userStore.user) {
+					return;
+				}
+				userStore.user.header.avatarUrl = data;
+			})
+			.onCancel(() => {
+				console.log('Cancel');
+			})
+			.onDismiss(() => {
+				console.log('Called on OK or Cancel');
+			});
+	}
 }
 
 const setHover = (isHover: boolean) => {

@@ -5,6 +5,7 @@
 		height="64"
 		viewBox="0 0 77 64"
 		fill="none"
+		:color="color"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path
@@ -80,6 +81,7 @@
 		height="52"
 		viewBox="0 0 113 52"
 		fill="none"
+		:color="color"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path

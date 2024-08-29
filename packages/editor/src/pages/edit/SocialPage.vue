@@ -17,7 +17,7 @@
 						<template v-for="(item, key, index) in SocialMap" :key="index">
 							<social-button
 								:platform="item.platform"
-								:display="index < 15 || expandRef"
+								:display="index < (userStore.isMobile ? 6 : 15) || expandRef"
 							>
 								<bt-tooltip :label="item.platform" />
 							</social-button>

@@ -27,7 +27,8 @@ export default {
 		optional: 'optional',
 		title: 'Title',
 		subtitle: 'Subtitle',
-		preview: 'Preview'
+		preview: 'Preview',
+		confirm: 'Confirm'
 	},
 	profile: {
 		your_name: 'Your Name',

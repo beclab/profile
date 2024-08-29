@@ -92,8 +92,11 @@
 						:label="t('base.none')"
 						:border="true"
 					>
-						<template v-slot:default>
-							<background-preset-component :theme="noneFilter" />
+						<template v-slot:default="{ fontSize }">
+							<background-preset-component
+								:theme="noneFilter"
+								:font-size="fontSize"
+							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -106,8 +109,11 @@
 						:label="t('appearance.dark')"
 						:border="true"
 					>
-						<template v-slot:default>
-							<background-preset-component :theme="darkFilter" />
+						<template v-slot:default="{ fontSize }">
+							<background-preset-component
+								:theme="darkFilter"
+								:font-size="fontSize"
+							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -120,8 +126,11 @@
 						:value="IMAGE_FILTER.Light"
 						:border="true"
 					>
-						<template v-slot:default>
-							<background-preset-component :theme="lightFilter" />
+						<template v-slot:default="{ fontSize }">
+							<background-preset-component
+								:theme="lightFilter"
+								:font-size="fontSize"
+							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
 							<check-box-component :model-value="selected" :label="label" />
@@ -132,7 +141,7 @@
 
 			<template v-slot:secondary-1>
 				<grid-picker-group
-					:columns="3"
+					:columns="4"
 					column-gap="12px"
 					row-gap="12px"
 					v-if="themeType === THEME_TYPE.SOLID"
@@ -146,9 +155,9 @@
 							@on-selected="onThemeSelected(item)"
 							:border="true"
 						>
-							<template v-slot:default>
+							<template v-slot:default="{ fontSize }">
 								<background-preset-component
-									:font-size="3.9253"
+									:font-size="fontSize"
 									:theme="item"
 								/>
 							</template>
@@ -174,9 +183,9 @@
 							@on-selected="onThemeSelected(item)"
 							:border="true"
 						>
-							<template v-slot:default>
+							<template v-slot:default="{ fontSize }">
 								<background-preset-component
-									:font-size="3.9253"
+									:font-size="fontSize"
 									:theme="item"
 								/>
 							</template>
@@ -199,9 +208,9 @@
 							@on-selected="onThemeSelected(item)"
 							:border="true"
 						>
-							<template v-slot:default>
+							<template v-slot:default="{ fontSize }">
 								<background-preset-component
-									:font-size="3.9253"
+									:font-size="fontSize"
 									:theme="item"
 								/>
 							</template>

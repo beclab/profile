@@ -117,6 +117,67 @@ export const useUserStore = defineStore('userStore', {
 				this.cloud_login = CloudLoginState.NO;
 				this.nfts = [];
 			}
+		},
+
+		loadAvatar() {
+			if (!this.user || !this.user.header || !this.user.header.avatarUrl) {
+				return {
+					imageUrl: '',
+					avatar: ''
+				};
+			}
+			if (this.user?.header.avatarUrl?.startsWith('http')) {
+				return {
+					imageUrl: this.user?.header.avatarUrl,
+					avatar: this.user?.header.avatarUrl
+				};
+			} else {
+				// const re = new RegExp('^[1-3][0-9]\\.png');
+				// const re2 = new RegExp('^[0-9]\\.png');
+				const re = new RegExp('^[1-3]?[0-9]\\.png');
+				if (re.test(this.user?.header.avatarUrl)) {
+					console.log('re true');
+					return {
+						imageUrl: this.user?.header.avatarUrl,
+						avatar: this.user?.header.avatarUrl
+					};
+				} else {
+					console.log('re false');
+					try {
+						const vp = JSON.parse(this.user?.header.avatarUrl);
+						if (vp) {
+							const vcstr = Encoder.bytesToString(
+								Encoder.base64UrlToBytes(
+									vp.verifiableCredential![0].split('.')[1]
+								)
+							);
+							console.log(vcstr);
+							const vc = JSON.parse(vcstr);
+							console.log(vc);
+							console.log(vc.vc.credentialSubject.image);
+							let imageUrl = vc.vc.credentialSubject.image;
+							if (imageUrl.startsWith('ipfs://')) {
+								imageUrl = imageUrl.replace(
+									'ipfs://',
+									'https://gateway.ipfs.io/ipfs/'
+								);
+							}
+
+							console.log(imageUrl);
+							return {
+								imageUrl: imageUrl,
+								avatar: this.user?.header.avatarUrl
+							};
+						}
+					} catch (e) {
+						console.log(e);
+						return {
+							imageUrl: this.user?.header.avatarUrl,
+							avatar: this.user?.header.avatarUrl
+						};
+					}
+				}
+			}
 		}
 	}
 });

@@ -1,14 +1,14 @@
 <template>
 	<div
 		class="column justify-center items-center"
-		:class="icon || text ? '' : 'full-width'"
+		:class="icon || text || auto ? '' : 'full-width'"
 		@click="handleParentClick"
 	>
 		<div
-			ref="buttonRef"
 			:style="{
 				'--root-padding': border ? '2px' : '0',
-				'--root-border': `${border ? 2 : 0}px solid ${selected ? greenDefault.color.value : 'transparent'}`
+				'--root-border': `${border ? 2 : 0}px solid ${selected ? greenDefault.color.value : 'transparent'}`,
+				width: border || auto ? 'auto' : '100%'
 			}"
 			class="picker-root column justify-center items-center"
 		>
@@ -24,6 +24,7 @@
 					name="default"
 					:color="selected ? greenDefault.color.value : separator.color.value"
 					:selected="selected"
+					:fontSize="fontSize"
 				/>
 
 				<q-icon
@@ -50,7 +51,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getCurrentInstance, inject, onMounted, ref } from 'vue';
+import { computed, getCurrentInstance, inject, onMounted, ref } from 'vue';
 import { useColor } from '@bytetrade/ui';
 
 const props = defineProps({
@@ -71,6 +72,10 @@ const props = defineProps({
 		default: false
 	},
 	border: {
+		type: Boolean,
+		required: false
+	},
+	auto: {
 		type: Boolean,
 		required: false
 	},
@@ -104,6 +109,14 @@ const emit = defineEmits(['onSelected']);
 const greenDefault = useColor('light-green-default');
 const separator = useColor('separator');
 
+const fontSize = computed(() => {
+	if (props.width?.indexOf('px') > 0) {
+		let number = parseInt(props.width?.substring(0, props.width?.length - 2));
+		return (number * 16) / 375;
+	}
+	return 5.12;
+});
+
 const setSelected = (isSelected: boolean) => {
 	selected.value = isSelected;
 	if (isSelected) {
@@ -130,7 +143,6 @@ onMounted(() => {
 <style scoped lang="scss">
 .picker-root {
 	height: auto;
-	width: 100%;
 	cursor: pointer;
 	border-radius: 16px;
 	padding: var(--root-padding);

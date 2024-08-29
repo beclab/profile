@@ -3,7 +3,10 @@
 		ref="buttonRef"
 		class="row items-center q-pa-sm"
 		:class="selected ? 'bio-selected-button' : 'bio-button'"
-		:style="{ '--width': `${width}px` }"
+		:style="{
+			'--width': width ? width + 'px' : 'auto',
+			'--height': height ? height + 'px' : 'auto'
+		}"
 		@click="handleClick"
 	>
 		<slot />
@@ -39,6 +42,10 @@ const props = defineProps({
 		required: true
 	},
 	width: {
+		type: Number,
+		required: false
+	},
+	height: {
 		type: Number,
 		required: false
 	},
@@ -80,8 +87,8 @@ onMounted(() => {
 .bio-button {
 	background: $background-1;
 	border: 1px solid $btn-stroke;
-	height: auto;
-	width: var(--width, 100%);
+	height: var(--height);
+	width: var(--width);
 	padding-left: 12px;
 	padding-right: 12px;
 	justify-content: center;
@@ -119,8 +126,8 @@ onMounted(() => {
 		--profile,
 		linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)
 	);
-	height: auto;
-	width: var(--width, 100%);
+	height: var(--height);
+	width: var(--width);
 	padding-left: 12px;
 	padding-right: 12px;
 	justify-content: center;

@@ -14,8 +14,8 @@
 				<div class="avatar-choose-view">
 					<q-card-section style="padding: 0">
 						<div
-							class="row items-center"
-							style="margin-top: 20px; margin-left: 17px"
+							class="row justify-center items-center"
+							style="margin-top: 20px"
 						>
 							<bt-tab-item
 								class="cursor-pointer"
@@ -48,11 +48,11 @@
 							</q-tab-panel>
 
 							<q-tab-panel name="upload">
-								<UploadAvatar v-model="selected" />
+								<upload-avatar v-model="selected" />
 							</q-tab-panel>
 
 							<q-tab-panel name="nft">
-								<NFTAvatar v-model="selected" />
+								<n-f-t-avatar v-model="selected" />
 							</q-tab-panel>
 						</q-tab-panels>
 					</q-card-section>
@@ -64,20 +64,18 @@
 				</div>
 			</div>
 
-			<div class="row justify-end items-center" style="margin-top: 32px">
+			<div class="row justify-end items-center q-mt-xl">
 				<bio-button
 					:default-selected="false"
-					class="text-body3"
+					class="text-body3 q-mr-lg"
 					:label="t('base.cancel')"
 					@click="onDialogCancel"
-					style="margin-right: 20px"
 				/>
 				<bio-button
 					:width="75"
-					class="text-body3"
+					class="text-body3 q-mr-lg"
 					:label="t('base.create')"
 					@click="onOKClick"
-					style="margin-right: 20px"
 				/>
 			</div>
 		</q-card>
@@ -94,7 +92,6 @@ import UploadAvatar from './UploadAvatar.vue';
 import NFTAvatar from './NFTAvatar.vue';
 import { bus } from 'src/utils/bus';
 import { useUserStore } from 'src/stores/user';
-import { Encoder } from '@bytetrade/core';
 import BtTabItem from '../base/BtTabItem.vue';
 import { useI18n } from 'vue-i18n';
 
@@ -118,62 +115,7 @@ onMounted(async () => {
 		selected.value = data;
 	});
 
-	console.log(userStore.user?.header.avatarUrl);
-	if (!userStore.user?.header.avatarUrl) {
-		return;
-	}
-
-	if (userStore.user?.header.avatarUrl?.startsWith('http')) {
-		selected.value = {
-			imageUrl: userStore.user?.header.avatarUrl,
-			avatar: userStore.user?.header.avatarUrl
-		};
-	} else {
-		// const re = new RegExp('^[1-3][0-9]\\.png');
-		// const re2 = new RegExp('^[0-9]\\.png');
-		const re = new RegExp('^[1-3]?[0-9]\\.png');
-		if (re.test(userStore.user?.header.avatarUrl)) {
-			console.log('re true');
-			selected.value = {
-				imageUrl: userStore.user?.header.avatarUrl,
-				avatar: userStore.user?.header.avatarUrl
-			};
-		} else {
-			console.log('re false');
-			try {
-				const vp = JSON.parse(userStore.user?.header.avatarUrl);
-				if (vp) {
-					const vcstr = Encoder.bytesToString(
-						Encoder.base64UrlToBytes(vp.verifiableCredential![0].split('.')[1])
-					);
-					console.log(vcstr);
-					const vc = JSON.parse(vcstr);
-					console.log(vc);
-					console.log(vc.vc.credentialSubject.image);
-					let imageUrl = vc.vc.credentialSubject.image;
-					if (imageUrl.startsWith('ipfs://')) {
-						imageUrl = imageUrl.replace(
-							'ipfs://',
-							'https://gateway.ipfs.io/ipfs/'
-						);
-					}
-
-					console.log(imageUrl);
-					selected.value = {
-						imageUrl: imageUrl,
-						avatar: userStore.user?.header.avatarUrl
-					};
-				}
-			} catch (e) {
-				console.log(e);
-				selected.value = {
-					imageUrl: userStore.user?.header.avatarUrl,
-					avatar: userStore.user?.header.avatarUrl
-				};
-			}
-		}
-	}
-	console.log(selected.value);
+	selected.value = userStore.loadAvatar();
 });
 
 onUnmounted(() => {
@@ -215,21 +157,6 @@ onUnmounted(() => {
 		height: 364px;
 		width: 374px;
 		margin-right: 6px;
-
-		.tab-title-background {
-			background: $background-3;
-			margin-top: 16px;
-			margin-left: 16px;
-			border-radius: 4px;
-			padding: 1px;
-		}
-
-		.tab-title-line {
-			width: 1px;
-			height: 14px;
-			border-radius: 0.5px;
-			background-color: $ink-3;
-		}
 	}
 
 	.avatar-crop-view {

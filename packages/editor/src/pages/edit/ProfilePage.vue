@@ -16,10 +16,11 @@
 						:label="t('profile.classic')"
 						:border="true"
 					>
-						<template v-slot:default>
+						<template v-slot:default="{ fontSize }">
 							<header-preset-component
 								:header="classicHeader"
 								:social="presetSocial"
+								:font-size="fontSize"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -33,10 +34,11 @@
 						:label="t('profile.portrait')"
 						:border="true"
 					>
-						<template v-slot:default>
+						<template v-slot:default="{ fontSize }">
 							<header-preset-component
 								:header="portraitHeader"
 								:social="presetSocial"
+								:font-size="fontSize"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -50,10 +52,11 @@
 						:value="HEADER_STYLE_TYPE.BANNER"
 						:border="true"
 					>
-						<template v-slot:default>
+						<template v-slot:default="{ fontSize }">
 							<header-preset-component
 								:header="bannerHeader"
 								:social="presetSocial"
+								:font-size="fontSize"
 							/>
 						</template>
 						<template v-slot:label="{ selected, label }">
@@ -90,6 +93,7 @@
 				>
 					<picker-component
 						:label="t('base.circular')"
+						:auto="!userStore.isMobile"
 						:value="PROFILE_SHAPE_TYPE.CIRCULAR"
 					>
 						<template v-slot:default="{ color }">
@@ -104,6 +108,8 @@
 					</picker-component>
 					<picker-component
 						:label="t('base.square')"
+						:auto="!userStore.isMobile"
+						:class="!userStore.isMobile ? 'q-ml-lg' : ''"
 						:value="PROFILE_SHAPE_TYPE.SQUARE"
 					>
 						<template v-slot:default="{ color }">

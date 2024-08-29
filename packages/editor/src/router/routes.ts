@@ -7,24 +7,22 @@ const editor: RouteRecordRaw[] = [
 		children: [
 			{
 				path: '',
-				component: () => import('pages/IndexPage.vue'),
-				children: [
-					{
-						path: '',
-						component: () => import('pages/edit/block/BlockIndexPage.vue')
-					},
-					{
-						path: 'block/:id',
-						name: 'blockEditor',
-						component: () => import('pages/edit/block/BlockEditorPage.vue')
-					}
-				]
+				component: () => import('pages/edit/block/BlockIndexPage.vue')
+			},
+			{
+				path: 'block/:id',
+				name: 'blockEditor',
+				component: () => import('pages/edit/block/BlockEditorPage.vue')
 			}
 		]
 	},
 	{
 		path: '/preview',
 		component: () => import('layouts/PreviewLayout.vue')
+	},
+	{
+		path: '/avatar',
+		component: () => import('layouts/AvatarChoosePage.vue')
 	},
 
 	// Always leave this as last one,
