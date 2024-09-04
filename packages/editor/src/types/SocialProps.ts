@@ -65,77 +65,77 @@ export const SocialMap: Record<string, Social> = {
 	Clubhouse: {
 		platform: SOCIAL_TYPE.CLUBHOUSE,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: ''
 	},
 	Patreon: {
 		platform: SOCIAL_TYPE.PATREON,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://patreon.com/${username}'
 	},
 	Venmo: {
 		platform: SOCIAL_TYPE.VENMO,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://venmo.com/${username}'
 	},
 	CashApp: {
 		platform: SOCIAL_TYPE.CASH_APP,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://cash.app/$${username}'
 	},
 	Deezer: {
 		platform: SOCIAL_TYPE.DEEZER,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://deezer.com/${username}'
 	},
 	Pandora: {
 		platform: SOCIAL_TYPE.PANDORA,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: ''
 	},
 	Tidal: {
 		platform: SOCIAL_TYPE.TIDAL,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: ''
 	},
 	Bandcamp: {
 		platform: SOCIAL_TYPE.BANDCAMP,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://${username}.bandcamp.com'
 	},
 	Medium: {
 		platform: SOCIAL_TYPE.MEDIUM,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://medium.com/@${username}'
 	},
 	Beehiiv: {
 		platform: SOCIAL_TYPE.BEEHIIV,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: ''
 	},
 	Flipboard: {
 		platform: SOCIAL_TYPE.FLIPBOARD,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://flipboard.com/@${username}'
 	},
 	Goodreads: {
 		platform: SOCIAL_TYPE.GOODREADS,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: ''
 	},
 	Mastodon: {
 		platform: SOCIAL_TYPE.MASTODON,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://mastodon.social/@${username}'
 	},
 	Steam: {
 		platform: SOCIAL_TYPE.STEAM,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://steamcommunity.com/id/${username}'
 	},
 	Tumblr: {
 		platform: SOCIAL_TYPE.TUMBLR,
 		username: '',
-		url: 'https://github.com/${username}'
+		url: 'https://tumblr.com/${username}'
 	}
 	// youtube: {
 	// 	platform: SOCIAL_TYPE.YOUTUBE,

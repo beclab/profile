@@ -221,26 +221,26 @@ const bannerStyle = computed(() => {
 
 		.nickname-small {
 			@extend .nickname;
-			font-size: 1.125em;
-			font-style: normal;
-			font-weight: 700;
-			line-height: 1.625em;
-		}
-
-		.nickname-medium {
-			@extend .nickname;
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 1.75em;
 		}
 
-		.nickname-larger {
+		.nickname-medium {
 			@extend .nickname;
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 2em;
+		}
+
+		.nickname-larger {
+			@extend .nickname;
+			font-size: 1.75em;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 2.25em;
 		}
 
 		.description {
@@ -251,26 +251,26 @@ const bannerStyle = computed(() => {
 
 		.description-small {
 			@extend .description;
-			font-size: 0.875em;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 1.25em;
-		}
-
-		.description-medium {
-			@extend .description;
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.5em;
 		}
 
-		.description-larger {
+		.description-medium {
 			@extend .description;
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.625em;
+		}
+
+		.description-larger {
+			@extend .description;
+			font-size: 1.25em;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 1.75em;
 		}
 	}
 }
@@ -294,26 +294,26 @@ const bannerStyle = computed(() => {
 
 		.nickname-small {
 			@extend .nickname;
-			font-size: 1.125em;
-			font-style: normal;
-			font-weight: 700;
-			line-height: 1.625em;
-		}
-
-		.nickname-medium {
-			@extend .nickname;
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 1.75em;
 		}
 
-		.nickname-larger {
+		.nickname-medium {
 			@extend .nickname;
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 2em;
+		}
+
+		.nickname-larger {
+			@extend .nickname;
+			font-size: 1.75em;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 2.25em;
 		}
 
 		.description {
@@ -324,26 +324,26 @@ const bannerStyle = computed(() => {
 
 		.description-small {
 			@extend .description;
-			font-size: 0.875em;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 1.25em;
-		}
-
-		.description-medium {
-			@extend .description;
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.5em;
 		}
 
-		.description-larger {
+		.description-medium {
 			@extend .description;
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.625em;
+		}
+
+		.description-larger {
+			@extend .description;
+			font-size: 1.25em;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 1.75em;
 		}
 	}
 }
@@ -370,26 +370,26 @@ const bannerStyle = computed(() => {
 
 		.nickname-small {
 			@extend .nickname;
-			font-size: 1.125em;
-			font-style: normal;
-			font-weight: 700;
-			line-height: 1.625em;
-		}
-
-		.nickname-medium {
-			@extend .nickname;
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 1.75em;
 		}
 
-		.nickname-larger {
+		.nickname-medium {
 			@extend .nickname;
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 2em;
+		}
+
+		.nickname-larger {
+			@extend .nickname;
+			font-size: 1.75em;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 2.25em;
 		}
 
 		.description {
@@ -400,26 +400,26 @@ const bannerStyle = computed(() => {
 
 		.description-small {
 			@extend .description;
-			font-size: 0.875em;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 1.25em;
-		}
-
-		.description-medium {
-			@extend .description;
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.5em;
 		}
 
-		.description-larger {
+		.description-medium {
 			@extend .description;
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.625em;
+		}
+
+		.description-larger {
+			@extend .description;
+			font-size: 1.25em;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 1.75em;
 		}
 	}
 }
@@ -454,26 +454,26 @@ const bannerStyle = computed(() => {
 
 		.nickname-small {
 			@extend .nickname;
-			font-size: 1.125em;
-			font-style: normal;
-			font-weight: 700;
-			line-height: 1.625em;
-		}
-
-		.nickname-medium {
-			@extend .nickname;
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 1.75em;
 		}
 
-		.nickname-larger {
+		.nickname-medium {
 			@extend .nickname;
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
 			line-height: 2em;
+		}
+
+		.nickname-larger {
+			@extend .nickname;
+			font-size: 1.75em;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 2.25em;
 		}
 
 		.description {
@@ -484,26 +484,26 @@ const bannerStyle = computed(() => {
 
 		.description-small {
 			@extend .description;
-			font-size: 0.875em;
-			font-style: normal;
-			font-weight: 400;
-			line-height: 1.25em;
-		}
-
-		.description-medium {
-			@extend .description;
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.5em;
 		}
 
-		.description-larger {
+		.description-medium {
 			@extend .description;
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 1.625em;
+		}
+
+		.description-larger {
+			@extend .description;
+			font-size: 1.25em;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 1.75em;
 		}
 	}
 }

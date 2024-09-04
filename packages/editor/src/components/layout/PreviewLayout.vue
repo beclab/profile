@@ -15,7 +15,7 @@
 					:style="backgroundOverlay"
 				/>
 				<div
-					class="column items-center"
+					class="column items-center full-width"
 					:style="{ maxWidth: pc ? '37.5em' : '' }"
 				>
 					<header-preview

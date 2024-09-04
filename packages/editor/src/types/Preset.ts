@@ -29,7 +29,7 @@ export const BACKGROUND_COLOR_PRESET: AppearanceTheme[] = [
 		gradientBottomColor: '#FFFFFF',
 		localImg: '',
 		header: {
-			textColor: '#DCF9EB'
+			textColor: '#1F1F1F'
 		},
 		link: {
 			background: '#DCF9EB',

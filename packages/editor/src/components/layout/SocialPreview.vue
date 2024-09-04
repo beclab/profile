@@ -66,8 +66,14 @@ function getSocialUrl(item: Social) {
 		return;
 	}
 	try {
-		const socialUrl = item.url.replace('${username}', item.username);
-		window.open(socialUrl);
+		if (item.username) {
+			if (item.url.includes('${username}')) {
+				const socialUrl = item.url.replace('${username}', item.username);
+				window.open(socialUrl);
+			} else if (item.username) {
+				window.open(item.username);
+			}
+		}
 	} catch (e) {
 		BtNotify.show({
 			type: NotifyDefinedType.FAILED,

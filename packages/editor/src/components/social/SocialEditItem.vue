@@ -96,7 +96,7 @@ const formatUrl = (value: string) => {
 			displayUrl.value = props.url;
 		}
 	} else {
-		displayUrl.value = '';
+		displayUrl.value = value;
 	}
 	console.log(displayUrl.value);
 };
