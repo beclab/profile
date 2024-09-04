@@ -382,19 +382,19 @@ import ColorPickerV2 from 'src/components/design/ColorPickerV2.vue';
 import EditContainer from 'src/pages/edit/EditContainer.vue';
 import BioButton from 'src/components/base/BioButton.vue';
 import {
-	THEME_TYPE,
+	AppearanceTheme,
 	BLOCK_STYLE_TYPE,
 	IMAGE_FILTER,
-	AppearanceTheme
+	THEME_TYPE
 } from 'src/types/User';
 import {
-	FONT_ARRAY,
 	BACKGROUND_COLOR_PRESET,
 	BACKGROUND_GRADIENT_PRESET,
-	BACKGROUND_IMAGE_PRESET
+	BACKGROUND_IMAGE_PRESET,
+	FONT_ARRAY
 } from 'src/types/Preset';
 import { BtNotify, NotifyDefinedType, useColor } from '@bytetrade/ui';
-import { computed, watch, ref, onMounted } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useUserStore } from 'src/stores/user';
 import { useI18n } from 'vue-i18n';
 import _ from 'lodash';
@@ -487,7 +487,9 @@ const onThemeSelected = (item: AppearanceTheme) => {
 };
 
 const ok = (response: { code: string; data: any; message: any }) => {
+	loading.value = false;
 	if (userStore.user) {
+		userStore.user.appearance.theme.style = THEME_TYPE.IMAGE;
 		userStore.user.appearance.theme.preset = '';
 		userStore.user.appearance.theme.useUpload = true;
 		userStore.user.appearance.theme.uploadImg = response.data.imageUrl;
@@ -495,6 +497,7 @@ const ok = (response: { code: string; data: any; message: any }) => {
 };
 
 const fail = (response: { code: string; data: any; message: any }) => {
+	loading.value = false;
 	BtNotify.show({
 		type: NotifyDefinedType.FAILED,
 		message: response.message
