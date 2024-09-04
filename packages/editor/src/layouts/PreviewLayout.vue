@@ -7,8 +7,20 @@
 			:font-size="userStore.isMobile ? 20 : 25"
 			:user="userStore.user"
 			:pc="platform.is.desktop"
-		/>
-		<bio-share-header v-if="userStore.isMobile" class="po" />
+		>
+			<div
+				v-if="userStore.isMobile && route.path === '/preview'"
+				class="close-icon column justify-center items-center"
+			>
+				<q-icon
+					size="24px"
+					class="text-ink-1 cursor-pointer"
+					name="sym_r_close"
+					@click="router.back()"
+				/>
+			</div>
+		</preview-layout>
+		<bio-share-header v-if="userStore.isMobile && route.path === '/preview'" />
 	</div>
 </template>
 
@@ -17,8 +29,9 @@ import PreviewLayout from 'src/components/layout/PreviewLayout.vue';
 import BioShareHeader from 'src/components/share/BioShareHeader.vue';
 import { useUserStore } from 'src/stores/user';
 import { useQuasar } from 'quasar';
-//import { ref } from 'vue';
-
+import { useRoute, useRouter } from 'vue-router';
+const router = useRouter();
+const route = useRoute();
 const userStore = useUserStore();
 // const currentView = ref();
 
@@ -34,5 +47,15 @@ console.log(!!platform.is.desktop);
 .preview-layout {
 	width: 100vw;
 	height: 100vh;
+
+	.close-icon {
+		position: absolute;
+		height: 40px;
+		width: 40px;
+		right: 12px;
+		top: 12px;
+		background: #ffffff99;
+		border-radius: 50%;
+	}
 }
 </style>

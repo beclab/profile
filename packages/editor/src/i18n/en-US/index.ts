@@ -28,7 +28,8 @@ export default {
 		title: 'Title',
 		subtitle: 'Subtitle',
 		preview: 'Preview',
-		confirm: 'Confirm'
+		confirm: 'Confirm',
+		this_action_cannot_be_undone: 'This action cannot be undone!'
 	},
 	profile: {
 		your_name: 'Your Name',
@@ -102,7 +103,12 @@ export default {
 		add_description: 'Add Description',
 		aspect_ratio: 'Aspect Ratio',
 		add_images: 'Add Images',
-		image_link: 'Image Link'
+		image_link: 'Image Link',
+		are_you_sure_delete_this_block:
+			'Are you sure you want to delete this block?',
+		text_block: 'Text block',
+		text_description:
+			'Type some text to remove this temporary placeholder. This placeholder will not show up on your live page. Tap to edit.'
 	},
 	design: {
 		layout: 'Layout',

@@ -105,7 +105,7 @@ watch(
 	width: 100%;
 
 	.preview-share-edit {
-		min-width: 200px;
+		min-width: 150px;
 		border-radius: 8px;
 		border: 1px solid $input-stroke;
 		overflow: hidden;

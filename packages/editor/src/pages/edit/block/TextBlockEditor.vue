@@ -12,7 +12,7 @@
 		<edit-view
 			v-if="userStore.user"
 			class="label-width q-mt-xs"
-			:placeholder="t('profile.your_name')"
+			:placeholder="t('blocks.text_block')"
 			v-model="blockRef.title"
 		/>
 		<div class="edit-label full-width q-mt-lg">
@@ -22,7 +22,7 @@
 			v-if="userStore.user"
 			height="96px"
 			class="label-width q-mt-xs"
-			:placeholder="t('profile.a_bit_about_you')"
+			:placeholder="t('blocks.text_description')"
 			v-model="blockRef.description"
 		/>
 		<div class="edit-label full-width q-mt-lg">
@@ -62,7 +62,7 @@ import PickerComponent from 'src/components/base/PickerComponent.vue';
 import BlockNickname from 'src/components/block/BlockNickname.vue';
 import EditView from 'src/components/base/EditView.vue';
 import { useUserStore } from 'src/stores/user';
-import { SIZE_TYPE, ALIGNMENT_TYPE } from 'src/types/User';
+import { ALIGNMENT_TYPE } from 'src/types/User';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useI18n } from 'vue-i18n';

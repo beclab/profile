@@ -437,7 +437,9 @@ const themeSecondaryItems = computed(() => {
 	const data = [
 		{
 			title: t('appearance.filter'),
-			visible: themeType.value === THEME_TYPE.IMAGE
+			visible:
+				themeType.value === THEME_TYPE.IMAGE &&
+				userStore.user.appearance.theme.style === THEME_TYPE.IMAGE
 		},
 		{
 			title: backgroundTitle,

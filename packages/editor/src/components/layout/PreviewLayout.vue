@@ -171,13 +171,7 @@
 					</div>
 				</div>
 
-				<q-icon
-					v-if="userStore.isMobile && route.path === '/preview'"
-					size="24px"
-					class="close-icon text-ink-1 cursor-pointer"
-					name="sym_r_close"
-					@click="onClosePreview"
-				/>
+				<slot />
 			</div>
 		</q-scroll-area>
 	</div>
@@ -222,13 +216,7 @@ const props = defineProps({
 
 const { t } = useI18n();
 const ink1 = useColor('ink-1');
-const userStore = useUserStore();
 const route = useRoute();
-const router = useRouter();
-
-const onClosePreview = () => {
-	router.back();
-};
 
 console.log(route.path);
 
@@ -314,7 +302,9 @@ const isDefault = computed(() => {
 });
 
 const onOpenWindow = (url: string) => {
-	window.open(url);
+	if (url) {
+		window.open(url);
+	}
 };
 </script>
 <style lang="scss">
@@ -349,7 +339,7 @@ const onOpenWindow = (url: string) => {
 		.blocks-margin {
 			width: 100%;
 			margin-top: 0.75em;
-			margin-bottom: 0.75em;
+			margin-bottom: 6.25em;
 
 			.image-parent {
 				width: 100%;
@@ -465,30 +455,24 @@ const onOpenWindow = (url: string) => {
 
 		.default-view {
 			position: absolute;
-			bottom: 1.76em;
+			bottom: 2em;
 			text-align: center;
 		}
 
 		.default-view img {
-			width: 1.92em;
-			height: 1.65em;
-			margin-bottom: 0.8em;
+			width: 3em;
+			height: 2.57813em;
+			margin-bottom: 1.25em;
 		}
 
 		.default-view .content {
 			color: #adadad;
 			text-align: center;
 			font-family: Roboto;
-			font-size: 0.64rem;
+			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 0.96rem;
-		}
-
-		.close-icon {
-			position: absolute;
-			right: 20px;
-			top: 20px;
+			line-height: 1.5em;
 		}
 	}
 }

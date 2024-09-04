@@ -19,7 +19,7 @@
 				color="ink-2 q-ma-sm cursor-pointer"
 				size="24px"
 				name="sym_r_delete"
-				@click="emit('update:text', '')"
+				@click="removeBlock"
 			/>
 		</div>
 		<q-separator class="full-width q-mt-lg" color="separator" />
@@ -28,6 +28,10 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useUserStore } from 'src/stores/user';
+import { BtDialog, useColor } from '@bytetrade/ui';
+import { useI18n } from 'vue-i18n';
 defineProps({
 	type: {
 		type: String,
@@ -40,11 +44,45 @@ defineProps({
 });
 
 const isEdit = ref(false);
-
+const route = useRoute();
+const userStore = useUserStore();
+const router = useRouter();
 const emit = defineEmits(['update:text']);
+const { t } = useI18n();
+const blackBrand = useColor('ink-on-brand-black');
 
 const onTextUpdate = (value: string) => {
 	emit('update:text', value);
+};
+
+const removeBlock = () => {
+	BtDialog.show({
+		title: t('blocks.are_you_sure_delete_this_block'),
+		message: t('base.this_action_cannot_be_undone'),
+		okStyle: {
+			background: 'linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)',
+			color: blackBrand.color.value
+		},
+		okText: t('base.confirm'),
+		cancel: true
+	})
+		.then((res) => {
+			if (res) {
+				console.log('click ok');
+				if (route.params.id && userStore.user) {
+					const blocks = userStore.user.block.data.filter((item) => {
+						return item.id !== route.params.id;
+					});
+					userStore.user.block.data = blocks;
+					router.back();
+				}
+			} else {
+				console.log('click cancel');
+			}
+		})
+		.catch((err) => {
+			console.log('click error', err);
+		});
 };
 </script>
 

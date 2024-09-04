@@ -1,5 +1,8 @@
 <template>
-	<div class="block-item row justify-between items-center q-pa-sm q-mt-lg">
+	<div
+		class="block-item row justify-between items-center q-pa-sm q-mt-lg cursor-pointer"
+		@click="edit"
+	>
 		<div class="row justify-start items-center">
 			<q-icon color="ink-2" size="20px" name="sym_r_drag_indicator" />
 			<q-img :src="`block/${block.type}.svg`" class="block-type q-ml-md" />
@@ -17,7 +20,7 @@
 				@update:model-value="updateEnabled"
 				color="light-green-default"
 			/>
-			<q-icon color="ink-2" size="20px" name="sym_r_more_horiz">
+			<q-icon color="ink-2" size="20px" name="sym_r_more_horiz" @click.stop>
 				<base-popup self="top right">
 					<block-opt-item
 						v-close-popup
@@ -51,7 +54,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { Block, generateUniqueId, HEADER_STYLE_TYPE } from 'src/types/User';
+import { Block, generateUniqueId } from 'src/types/User';
 import { useUserStore } from 'src/stores/user';
 import BasePopup from 'src/components/base/BasePopup.vue';
 import BlockOptItem from 'src/components/block/BlockOptItem.vue';
@@ -145,12 +148,32 @@ const rename = () => {
 };
 
 const remove = () => {
-	if (userStore.user) {
-		const blocks = userStore.user.block.data.filter(
-			(item) => item.id !== props.block.id
-		);
-		userStore.user.block.data = blocks;
-	}
+	BtDialog.show({
+		title: t('blocks.are_you_sure_delete_this_block'),
+		message: t('base.this_action_cannot_be_undone'),
+		okStyle: {
+			background: 'linear-gradient(90deg, #8ce3ff -2.75%, #7fff93 102.75%)',
+			color: blackBrand.color.value
+		},
+		okText: t('base.confirm'),
+		cancel: true
+	})
+		.then((res) => {
+			if (res) {
+				console.log('click ok');
+				if (userStore.user) {
+					const blocks = userStore.user.block.data.filter(
+						(item) => item.id !== props.block.id
+					);
+					userStore.user.block.data = blocks;
+				}
+			} else {
+				console.log('click cancel');
+			}
+		})
+		.catch((err) => {
+			console.log('click error', err);
+		});
 };
 </script>
 
