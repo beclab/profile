@@ -25,7 +25,7 @@
 					/>
 
 					<div v-if="isDefault" class="default-view">
-						<img src="/profile-pure.svg" alt="logo" />
+						<img src="/profile-default.svg" alt="logo" />
 						<div class="content">
 							{{ t('base.let_people_own_their_data_again') }}
 						</div>

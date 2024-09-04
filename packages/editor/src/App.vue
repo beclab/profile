@@ -6,6 +6,8 @@
 import { defineComponent, onMounted } from 'vue';
 import { useUserStore } from 'stores/user';
 import axios from 'axios';
+import { supportLanguages } from './i18n';
+import { i18n } from 'src/boot/i18n';
 
 export default defineComponent({
 	name: 'App',
@@ -32,6 +34,23 @@ export default defineComponent({
 	},
 	setup() {
 		const userStore = useUserStore();
+		let terminusLanguage = '';
+		let terminusLanguageInfo = document.querySelector(
+			'meta[name="terminus-language"]'
+		);
+		if (terminusLanguageInfo && terminusLanguageInfo.content) {
+			terminusLanguage = terminusLanguageInfo.content;
+		} else {
+			terminusLanguage = navigator.language;
+		}
+
+		console.log(navigator.language);
+
+		if (terminusLanguage) {
+			if (supportLanguages.find((e) => e.value === terminusLanguage)) {
+				i18n.global.locale.value = terminusLanguage;
+			}
+		}
 		onMounted(async () => {
 			if (process.env.ACTION === 'EDITOR') {
 				axios
