@@ -50,7 +50,7 @@
 			<upload-component
 				class="q-mt-md"
 				v-model:img-url="blockRef.img"
-				width="440px"
+				width="100%"
 				height="220px"
 			/>
 		</div>

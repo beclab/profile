@@ -70,7 +70,7 @@
 				<upload-component
 					v-model:img-url="userStore.user.header.banner"
 					placeholder="banner/banner_default.jpg"
-					:width="userStore.isMobile ? '335px' : '440px'"
+					width="100%"
 					height="220px"
 				/>
 			</template>

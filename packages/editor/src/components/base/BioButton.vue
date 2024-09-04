@@ -4,8 +4,8 @@
 		class="row items-center q-pa-sm"
 		:class="selected ? 'bio-selected-button' : 'bio-button'"
 		:style="{
-			'--width': width ? width + 'px' : 'auto',
-			'--height': height ? height + 'px' : 'auto'
+			'--width': width,
+			'--height': height
 		}"
 		@click="handleClick"
 	>
@@ -42,12 +42,12 @@ const props = defineProps({
 		required: true
 	},
 	width: {
-		type: Number,
-		required: false
+		type: String,
+		default: 'auto'
 	},
 	height: {
-		type: Number,
-		required: false
+		type: String,
+		default: 'auto'
 	},
 	defaultSelected: {
 		type: Boolean,

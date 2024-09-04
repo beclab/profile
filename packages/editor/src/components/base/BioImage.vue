@@ -7,8 +7,8 @@
 		action="/images/upload/v1"
 		@ok="ok"
 		@loading="update"
-		width="88"
-		height="88"
+		width="88px"
+		height="88px"
 		@fail="fail"
 	>
 		<q-img v-if="imgUrl" class="bio-img" :src="imgUrl">

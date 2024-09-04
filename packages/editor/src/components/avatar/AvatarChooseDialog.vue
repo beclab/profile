@@ -72,7 +72,7 @@
 					@click="onDialogCancel"
 				/>
 				<bio-button
-					:width="75"
+					width="75px"
 					class="text-body3 q-mr-lg"
 					:label="t('base.create')"
 					@click="onOKClick"

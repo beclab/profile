@@ -247,6 +247,7 @@ const bannerStyle = computed(() => {
 			max-width: 100%;
 			overflow: hidden;
 			text-align: center;
+			white-space: pre-wrap;
 		}
 
 		.description-small {
@@ -320,6 +321,7 @@ const bannerStyle = computed(() => {
 			max-width: 100%;
 			overflow: hidden;
 			text-align: left;
+			white-space: pre-wrap;
 		}
 
 		.description-small {
@@ -396,6 +398,7 @@ const bannerStyle = computed(() => {
 			max-width: 100%;
 			overflow: hidden;
 			text-align: center;
+			white-space: pre-wrap;
 		}
 
 		.description-small {
@@ -480,6 +483,7 @@ const bannerStyle = computed(() => {
 			max-width: 100%;
 			overflow: hidden;
 			text-align: center;
+			white-space: pre-wrap;
 		}
 
 		.description-small {

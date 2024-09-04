@@ -71,7 +71,11 @@ function getSocialUrl(item: Social) {
 				const socialUrl = item.url.replace('${username}', item.username);
 				window.open(socialUrl);
 			} else if (item.username) {
-				window.open(item.username);
+				const hasProtocol = /^https?:\/\//i.test(item.username);
+				const absoluteUrl = hasProtocol
+					? item.username
+					: 'https://' + item.username;
+				window.open(absoluteUrl);
 			}
 		}
 	} catch (e) {

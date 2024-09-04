@@ -196,8 +196,7 @@ import { colors } from 'quasar';
 import hexToRgb = colors.hexToRgb;
 import rgbToHex = colors.rgbToHex;
 import HeaderPreview from 'src/components/layout/HeaderPreview.vue';
-import { useUserStore } from 'src/stores/user';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 const props = defineProps({
 	user: {
@@ -303,7 +302,9 @@ const isDefault = computed(() => {
 
 const onOpenWindow = (url: string) => {
 	if (url) {
-		window.open(url);
+		const hasProtocol = /^https?:\/\//i.test(url);
+		const absoluteUrl = hasProtocol ? url : 'https://' + url;
+		window.open(absoluteUrl);
 	}
 };
 </script>
@@ -360,6 +361,7 @@ const onOpenWindow = (url: string) => {
 					max-width: 100%;
 					overflow-wrap: break-word;
 					word-break: break-all;
+					white-space: pre-wrap;
 					text-align: center;
 					font-size: 0.875rem;
 					font-style: normal;
@@ -387,6 +389,7 @@ const onOpenWindow = (url: string) => {
 					max-width: 100%;
 					overflow-wrap: break-word;
 					word-break: break-all;
+					white-space: pre-wrap;
 					font-size: 1rem;
 					font-style: normal;
 					font-weight: 400;

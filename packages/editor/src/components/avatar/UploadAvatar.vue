@@ -2,8 +2,8 @@
 	<div class="upload-background-root column justify-center items-center">
 		<BtUploader
 			class="upload"
-			:width="120"
-			:height="120"
+			width="120px"
+			height="120px"
 			:size="1"
 			fileName="image"
 			accept=".jpg, .jpeg, .png, .gif, image/*"

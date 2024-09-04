@@ -51,8 +51,8 @@
 
 				<BtUploader
 					v-if="themeType === THEME_TYPE.IMAGE"
-					:width="userStore.isMobile ? '360px' : '440px'"
-					height="40"
+					width="100%"
+					height="40px"
 					:size="5"
 					fileName="image"
 					accept=".jpg, .jpeg, .png, .gif, image/*"
@@ -67,14 +67,14 @@
 						size="24px"
 						:label="t('appearance.upload_an_image')"
 						icon="sym_r_add"
-						:width="userStore.isMobile ? 360 : 440"
+						width="100%"
 					/>
 					<bio-button
 						v-else
 						class="q-mt-lg text-body1"
 						size="24px"
 						disabled
-						:width="userStore.isMobile ? 360 : 440"
+						width="100%"
 						:label="t('appearance.uploading')"
 					/>
 				</BtUploader>

@@ -1,73 +1,77 @@
 <template>
-	<div class="column full-width bg-ink-1" style="height: 100vh">
+	<div class="column full-width bg-ink-1 full-height">
 		<div class="avatar-dialog q-pa-lg bg-background-1">
 			<div class="avatar-title text-ink-1 text-subtitle2">
 				{{ t('profile.profile_picture') }}
 			</div>
 
-			<div class="row justify-center items-center">
-				<bt-tab-item
-					class="cursor-pointer"
-					:selected="tab === 'default'"
-					:label="t('profile.robot_avatar')"
-					@click="tab = 'default'"
-				/>
-				<bt-tab-item
-					class="cursor-pointer"
-					:selected="tab === 'nft'"
-					:label="t('profile.nft_avatar')"
-					@click="tab = 'nft'"
-				/>
-				<bt-tab-item
-					class="cursor-pointer"
-					:selected="tab === 'upload'"
-					:label="t('profile.custom_avatar')"
-					@click="tab = 'upload'"
-				/>
-			</div>
+			<bt-scroll-area class="full-width" style="height: calc(100vh - 157px)">
+				<div class="column full-width full-height">
+					<div class="row justify-center items-center">
+						<bt-tab-item
+							class="cursor-pointer"
+							:selected="tab === 'default'"
+							:label="t('profile.robot_avatar')"
+							@click="tab = 'default'"
+						/>
+						<bt-tab-item
+							class="cursor-pointer"
+							:selected="tab === 'nft'"
+							:label="t('profile.nft_avatar')"
+							@click="tab = 'nft'"
+						/>
+						<bt-tab-item
+							class="cursor-pointer"
+							:selected="tab === 'upload'"
+							:label="t('profile.custom_avatar')"
+							@click="tab = 'upload'"
+						/>
+					</div>
 
-			<div class="avatar-crop-view row justify-center items-center q-mt-lg">
-				<profile-avatar-board size="184px" :show-border="tab === 'nft'">
-					<q-img
-						v-if="selected"
-						class="avatar-preview"
-						:src="selected.imageUrl"
-					/>
-				</profile-avatar-board>
-			</div>
-			<div class="avatar-choose-view">
-				<q-tab-panels
-					v-model="tab"
-					animated
-					style="width: 100%; height: 315px"
-					keep-alive
-				>
-					<q-tab-panel name="default" style="width: 100%; height: 100%">
-						<default-avatar v-model="selected" />
-					</q-tab-panel>
+					<div class="avatar-crop-view row justify-center items-center q-mt-lg">
+						<profile-avatar-board size="184px" :show-border="tab === 'nft'">
+							<q-img
+								v-if="selected"
+								class="avatar-preview"
+								:src="selected.imageUrl"
+							/>
+						</profile-avatar-board>
+					</div>
+					<div class="avatar-choose-view">
+						<q-tab-panels
+							v-model="tab"
+							animated
+							style="width: 100%; height: 315px"
+							keep-alive
+						>
+							<q-tab-panel name="default" style="width: 100%; height: 100%">
+								<default-avatar v-model="selected" />
+							</q-tab-panel>
 
-					<q-tab-panel name="upload">
-						<upload-avatar v-model="selected" />
-					</q-tab-panel>
+							<q-tab-panel name="upload">
+								<upload-avatar v-model="selected" />
+							</q-tab-panel>
 
-					<q-tab-panel name="nft">
-						<n-f-t-avatar v-model="selected" />
-					</q-tab-panel>
-				</q-tab-panels>
-			</div>
+							<q-tab-panel name="nft">
+								<n-f-t-avatar v-model="selected" />
+							</q-tab-panel>
+						</q-tab-panels>
+					</div>
+				</div>
+			</bt-scroll-area>
 
 			<div class="bottom-button row justify-between items-center">
 				<bio-button
-					:width="161"
-					:height="48"
+					width="161px"
+					height="48px"
 					:default-selected="false"
 					class="text-subtitle2"
 					:label="t('base.cancel')"
 					@click="router.back"
 				/>
 				<bio-button
-					:width="161"
-					:height="48"
+					width="161px"
+					height="48px"
 					class="text-subtitle2"
 					:label="t('base.confirm')"
 					@click="onOKClick"
@@ -124,9 +128,10 @@ onUnmounted(() => {
 	width: 100%;
 	border-radius: 30px 30px 0 0;
 	overflow: hidden;
-	position: relative;
 
 	.avatar-title {
+		padding-top: 10px;
+		padding-bottom: 10px;
 		height: 44px;
 		text-align: center;
 	}
@@ -155,8 +160,8 @@ onUnmounted(() => {
 
 	.bottom-button {
 		padding-top: 20px;
-		position: absolute;
-		width: calc(100% - 40px);
+		width: 100%;
+		background: $background-1;
 		bottom: 20px;
 	}
 }
