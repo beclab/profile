@@ -180,7 +180,7 @@ function stringToIntHash(str: string, lowerbound: number, upperbound: number) {
 export class UserController {
     private readonly logger = new Logger(UserController.name);
 
-    private key = 'profile_user_info_v2_test';
+    private key = 'profile_user_info_v2';
 
     constructor(
         private readonly dataStoreService: DataStoreService, // private readonly ws: WsStartGateway,

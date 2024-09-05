@@ -38,7 +38,7 @@
 			</template>
 		</div>
 		<div class="edit-label full-width q-mt-lg">
-			{{ t('blocks.add_images') }}
+			{{ t('blocks.add_image') }}
 		</div>
 		<div class="image-border column q-pa-lg q-mt-md">
 			<q-input

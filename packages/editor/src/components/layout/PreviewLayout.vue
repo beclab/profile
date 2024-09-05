@@ -187,7 +187,8 @@ import {
 	ALIGNMENT_TYPE,
 	getGradientColor,
 	BLOCK_STYLE_TYPE,
-	IMAGE_FILTER
+	IMAGE_FILTER,
+	LinkBlock
 } from 'src/types/User';
 import { useI18n } from 'vue-i18n';
 import { useColor } from '@bytetrade/ui';
@@ -293,7 +294,14 @@ const blockBackground = computed(() => {
 });
 
 const enabledLinks = computed(() => {
-	return props.user.block.data.filter((item) => item.enabled);
+	return props.user.block.data.filter((item) => {
+		if (item.type === BLOCK_TYPE.LINK) {
+			if (!(item as LinkBlock).url || !(item as LinkBlock).title) {
+				return false;
+			}
+		}
+		return item.enabled;
+	});
 });
 
 const isDefault = computed(() => {
