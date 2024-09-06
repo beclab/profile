@@ -2,7 +2,10 @@
 	<div class="preview-layout" v-if="userStore.user">
 		<preview-layout
 			:style="{
-				height: userStore.isMobile ? 'calc(100% - 64px)' : '100vh'
+				height:
+					userStore.isMobile && route.path === '/preview'
+						? 'calc(100% - 64px)'
+						: '100vh'
 			}"
 			:font-size="userStore.isMobile ? 20 : 25"
 			:user="userStore.user"
