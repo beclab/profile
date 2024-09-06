@@ -358,11 +358,11 @@ const onOpenWindow = (url: string) => {
 					max-width: 100%;
 					overflow-wrap: break-word;
 					word-break: break-all;
-					font-size: 1.125rem;
+					font-size: 1.125em;
 					font-style: normal;
 					font-weight: 500;
 					text-align: center;
-					line-height: 1.625rem;
+					line-height: 1.625em;
 				}
 
 				.image-description {
@@ -371,10 +371,10 @@ const onOpenWindow = (url: string) => {
 					word-break: break-all;
 					white-space: pre-wrap;
 					text-align: center;
-					font-size: 0.875rem;
+					font-size: 0.875em;
 					font-style: normal;
 					font-weight: 400;
-					line-height: 1.25rem;
+					line-height: 1.25em;
 				}
 			}
 
@@ -387,10 +387,10 @@ const onOpenWindow = (url: string) => {
 					max-width: 100%;
 					overflow-wrap: break-word;
 					word-break: break-all;
-					font-size: 1.5rem;
+					font-size: 1.5em;
 					font-style: normal;
 					font-weight: 700;
-					line-height: 2rem;
+					line-height: 2em;
 				}
 
 				.text-description {
@@ -398,10 +398,10 @@ const onOpenWindow = (url: string) => {
 					overflow-wrap: break-word;
 					word-break: break-all;
 					white-space: pre-wrap;
-					font-size: 1rem;
+					font-size: 1em;
 					font-style: normal;
 					font-weight: 400;
-					line-height: 1.5rem;
+					line-height: 1.5em;
 				}
 
 				.link-img-small {
@@ -431,34 +431,34 @@ const onOpenWindow = (url: string) => {
 
 					.link-title-small {
 						@extend .link-title;
-						font-size: 1.25rem;
+						font-size: 1.25em;
 						font-style: normal;
 						font-weight: 700;
-						line-height: 1.75rem;
+						line-height: 1.75em;
 					}
 
 					.link-title-larger {
 						@extend .link-title;
-						font-size: 1.5rem;
+						font-size: 1.5em;
 						font-style: normal;
 						font-weight: 700;
-						line-height: 2rem;
+						line-height: 2em;
 					}
 
 					.link-sub-title-small {
 						@extend .link-title;
-						font-size: 0.875rem;
+						font-size: 0.875em;
 						font-style: normal;
 						font-weight: 400;
-						line-height: 1.25rem;
+						line-height: 1.25em;
 					}
 
 					.link-sub-title-larger {
 						@extend .link-title;
-						font-size: 1.125rem;
+						font-size: 1.125em;
 						font-style: normal;
 						font-weight: 400;
-						line-height: 1.625rem;
+						line-height: 1.625em;
 					}
 				}
 			}
