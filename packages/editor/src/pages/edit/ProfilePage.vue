@@ -236,7 +236,8 @@ import {
 	HEADER_FORMAT_TYPE,
 	HEADER_STYLE_TYPE,
 	PROFILE_SHAPE_TYPE,
-	SIZE_TYPE
+	SIZE_TYPE,
+	UserHeader
 } from 'src/types/User';
 import { SOCIAL_TYPE } from 'src/types/SocialProps';
 import { useUserStore } from 'src/stores/user';
@@ -270,6 +271,13 @@ const presetSocial = ref({
 	size: SIZE_TYPE.MEDIUM
 });
 
+const setCommonHeader = (header: UserHeader) => {
+	header.profileOutline = false;
+	header.profileSize = 100;
+	header.textSize = SIZE_TYPE.SMALL;
+	header.description = '';
+};
+
 watch(
 	() => userStore.user?.header,
 	(newValue) => {
@@ -279,6 +287,9 @@ watch(
 		classicHeader.value.style = HEADER_STYLE_TYPE.CLASSIC;
 		portraitHeader.value.style = HEADER_STYLE_TYPE.PORTRAIT;
 		bannerHeader.value.style = HEADER_STYLE_TYPE.BANNER;
+		setCommonHeader(classicHeader.value);
+		setCommonHeader(portraitHeader.value);
+		setCommonHeader(bannerHeader.value);
 	},
 	{
 		deep: true,

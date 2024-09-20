@@ -5,7 +5,7 @@
 			width: size,
 			height: size,
 			'--avatarRadius': radius,
-			'--avatarBorder': `${showBorder ? 2 : 0}px solid #1F1F1F`
+			'--avatarBorder': `${showBorder ? 2 : 0}px solid ${borderColor}`
 		}"
 	>
 		<div
@@ -18,7 +18,7 @@
 					: ''
 			}"
 		>
-			<img
+			<q-img
 				v-if="srcResource"
 				:src="srcResource"
 				class="terminus-avatar-image"
@@ -75,6 +75,10 @@ const props = defineProps({
 	showBorder: {
 		type: Boolean,
 		default: false
+	},
+	borderColor: {
+		type: String,
+		default: '#1F1F1F'
 	},
 	showImageBorder: {
 		type: Boolean,
@@ -172,7 +176,7 @@ const srcResource = computed(() => {
 
 	.terminus-avatar-image-background {
 		border-radius: var(--avatarRadius);
-		border: var(--avatarBorder);
+		outline: var(--avatarBorder);
 		position: relative;
 		overflow: hidden;
 

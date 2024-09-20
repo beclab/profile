@@ -51,13 +51,13 @@ const { t } = useI18n();
 const socialSize = computed(() => {
 	switch (props.social.size) {
 		case SIZE_TYPE.SMALL:
-			return '1.5em';
+			return '2em';
 		case SIZE_TYPE.MEDIUM:
-			return '2em';
-		case SIZE_TYPE.LARGER:
 			return '2.5em';
+		case SIZE_TYPE.LARGER:
+			return '3em';
 		default:
-			return '2em';
+			return '2.5em';
 	}
 });
 
@@ -91,7 +91,7 @@ function getSocialUrl(item: Social) {
 .simple-social-view {
 	width: 100%;
 	display: flex;
-	margin-top: 2em;
+	margin-top: 0.75em;
 	flex-wrap: wrap;
 
 	.bio-social {

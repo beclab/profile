@@ -245,27 +245,7 @@ export class UserController {
                 font: 'Roboto',
             },
             social: {
-                data: [{
-                    platform: SOCIAL_TYPE.INSTAGRAM,
-                    username: '',
-                    url: 'https://instagram.com/${username}'
-                }, {
-                    platform: SOCIAL_TYPE.FACEBOOK,
-                    username: '',
-                    url: 'https://facebook.com/${username}'
-                }, {
-                    platform: SOCIAL_TYPE.TWITTER,
-                    username: '',
-                    url: 'https://twitter.com/${username}'
-                }, {
-                    platform: SOCIAL_TYPE.TIKTOK,
-                    username: '',
-                    url: 'https://tiktok.com/@${username}'
-                }, {
-                    platform: SOCIAL_TYPE.GITHUB,
-                    username: '',
-                    url: 'https://github.com/${username}'
-                }],
+                data: [],
                 size: SIZE_TYPE.SMALL,
             },
             block: {

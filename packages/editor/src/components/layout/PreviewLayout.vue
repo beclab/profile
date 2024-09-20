@@ -275,13 +275,13 @@ const backgroundOverlay = computed(() => {
 const blockRadius = computed(() => {
 	switch (props.user.appearance.block.style) {
 		case BLOCK_STYLE_TYPE.ROUND:
-			return '32px';
+			return '2em';
 		case BLOCK_STYLE_TYPE.SQUARE:
-			return '0px';
+			return '0';
 		case BLOCK_STYLE_TYPE.CUSTOM:
-			return props.user.appearance.block.cornerRadius + 'px';
+			return props.user.appearance.block.cornerRadius / 16 + 'em';
 		default:
-			return '32px';
+			return '2em';
 	}
 });
 
@@ -347,12 +347,11 @@ const onOpenWindow = (url: string) => {
 
 		.blocks-margin {
 			width: 100%;
-			margin-top: 0.75em;
 			margin-bottom: 6.25em;
 
 			.image-parent {
 				width: 100%;
-				margin-top: 1.25em;
+				margin-top: 2em;
 
 				.image-title {
 					max-width: 100%;
@@ -380,7 +379,7 @@ const onOpenWindow = (url: string) => {
 
 			.blocks-div {
 				width: 100%;
-				margin-top: 1.25em;
+				margin-top: 2em;
 				padding: 1.25em;
 
 				.text-title {

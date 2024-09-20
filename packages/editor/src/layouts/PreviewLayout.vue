@@ -7,7 +7,7 @@
 						? 'calc(100% - 64px)'
 						: '100vh'
 			}"
-			:font-size="userStore.isMobile ? 20 : 25"
+			:font-size="16"
 			:user="userStore.user"
 			:pc="platform.is.desktop"
 		>

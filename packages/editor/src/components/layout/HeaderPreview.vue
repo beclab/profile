@@ -15,6 +15,7 @@
 			class="avatar-picture"
 			:info="userStore.info"
 			:show-border="header.profileOutline"
+			:border-color="textColor"
 			:size="header.profileSize / 16 + 'em'"
 			:radius="
 				header.profileShape === PROFILE_SHAPE_TYPE.CIRCULAR ? '50%' : '0.75em'
@@ -51,7 +52,7 @@
 		</div>
 		<social-preview
 			:style="{
-				marginTop: header.format === HEADER_FORMAT_TYPE.COLUMN ? '' : '0.75em'
+				marginTop: header.format === HEADER_FORMAT_TYPE.COLUMN ? '' : '1.25em'
 			}"
 			:social="social"
 			:color="textColor"
@@ -66,7 +67,9 @@
 	>
 		<profile-terminus-avatar
 			:info="userStore.info"
+			:border-color="textColor"
 			:show-border="false"
+			size="100%"
 			:mask="true"
 			radius="0"
 		/>
@@ -109,6 +112,7 @@
 
 		<profile-terminus-avatar
 			class="avatar-picture"
+			:border-color="textColor"
 			:style="{
 				'--avatarMarginTop': 11.75 - 2.5 - header.profileSize / 16 / 2 + 'em'
 			}"
@@ -224,7 +228,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 1.75em;
 		}
 
 		.nickname-medium {
@@ -232,7 +235,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2em;
 		}
 
 		.nickname-larger {
@@ -240,7 +242,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.75em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2.25em;
 		}
 
 		.description {
@@ -255,7 +256,6 @@ const bannerStyle = computed(() => {
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.5em;
 		}
 
 		.description-medium {
@@ -263,7 +263,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.625em;
 		}
 
 		.description-larger {
@@ -271,7 +270,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.75em;
 		}
 	}
 }
@@ -298,7 +296,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 1.75em;
 		}
 
 		.nickname-medium {
@@ -306,7 +303,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2em;
 		}
 
 		.nickname-larger {
@@ -314,7 +310,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.75em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2.25em;
 		}
 
 		.description {
@@ -329,7 +324,6 @@ const bannerStyle = computed(() => {
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.5em;
 		}
 
 		.description-medium {
@@ -337,7 +331,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.625em;
 		}
 
 		.description-larger {
@@ -345,7 +338,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.75em;
 		}
 	}
 }
@@ -354,7 +346,7 @@ const bannerStyle = computed(() => {
 	width: 100%;
 
 	.avatar-picture {
-		margin-bottom: 1.25em;
+		margin-bottom: 0;
 	}
 
 	.header-text {
@@ -391,7 +383,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.75em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2.25em;
 		}
 
 		.description {
@@ -406,7 +397,6 @@ const bannerStyle = computed(() => {
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.5em;
 		}
 
 		.description-medium {
@@ -414,7 +404,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.625em;
 		}
 
 		.description-larger {
@@ -422,7 +411,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.75em;
 		}
 	}
 }
@@ -460,7 +448,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 1.75em;
 		}
 
 		.nickname-medium {
@@ -468,7 +455,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.5em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2em;
 		}
 
 		.nickname-larger {
@@ -476,7 +462,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.75em;
 			font-style: normal;
 			font-weight: 700;
-			line-height: 2.25em;
 		}
 
 		.description {
@@ -491,7 +476,6 @@ const bannerStyle = computed(() => {
 			font-size: 1em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.5em;
 		}
 
 		.description-medium {
@@ -499,7 +483,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.125em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.625em;
 		}
 
 		.description-larger {
@@ -507,7 +490,6 @@ const bannerStyle = computed(() => {
 			font-size: 1.25em;
 			font-style: normal;
 			font-weight: 400;
-			line-height: 1.75em;
 		}
 	}
 }

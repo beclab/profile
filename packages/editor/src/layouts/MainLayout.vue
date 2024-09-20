@@ -68,9 +68,9 @@
 			<div v-if="!userStore.isMobile" class="right-preview">
 				<bio-share-header />
 				<div class="preview-background row justify-center">
-					<div class="preview">
+					<q-responsive :ratio="9 / 18" class="preview">
 						<preview-layout :user="userStore.user" :font-size="10.24" />
-					</div>
+					</q-responsive>
 				</div>
 			</div>
 
@@ -224,10 +224,11 @@ watch(
 		}
 	}
 
-	@media (min-width: 768px) and (max-width: 1280px) {
+	@media (min-width: 768px) {
 		.index-layout {
 			width: 100%;
 			min-width: 810px;
+			max-width: 1280px;
 			height: 100vh;
 
 			.left-editor {
@@ -260,92 +261,15 @@ watch(
 					background-image: url('/public/preview_phone_background.png');
 					background-size: cover;
 					background-position: center;
-					height: calc(100% - 4.67rem);
-
-					@media (max-width: 1024px) {
-						.preview {
-							margin-top: 32px;
-							flex: 0 1 auto;
-							position: relative;
-							width: 66%;
-							height: 66%;
-							min-height: 480px;
-							border: 5.12px solid #000;
-							border-radius: 20.48px;
-							background: #fff;
-							overflow: hidden;
-							box-shadow: inset 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
-							filter: drop-shadow(0 0.8rem 2.4rem rgba(0, 0, 0, 0.25));
-						}
-					}
-
-					@media (min-width: 1025px) and (max-width: 1280px) {
-						.preview {
-							margin-top: 32px;
-							flex: 0 1 auto;
-							position: relative;
-							width: 66%;
-							height: 66%;
-							min-height: 600px;
-							border: 5.12px solid #000;
-							border-radius: 20.48px;
-							background: #fff;
-							overflow: hidden;
-							box-shadow: inset 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
-							filter: drop-shadow(0 0.8rem 2.4rem rgba(0, 0, 0, 0.25));
-						}
-					}
-				}
-			}
-		}
-	}
-
-	@media (min-width: 1281px) {
-		.index-layout {
-			width: 1280px;
-			height: 100vh;
-
-			.left-editor {
-				height: 100vh;
-				width: 59%;
-				max-width: 758px;
-				min-width: 478px;
-				border-right: 1px solid $separator;
-
-				.editor-title {
-					height: 56px;
-					width: 440px;
-				}
-
-				.editor-workspace {
-					height: calc(100% - 56px);
-					width: 100%;
-				}
-			}
-
-			.right-preview {
-				width: 40%;
-				overflow: scroll;
-				height: 100vh;
-				min-width: 322px;
-				max-width: 522px;
-
-				.preview-background {
-					width: 100%;
-					background-image: url('/public/preview_phone_background.png');
-					background-size: cover;
-					background-position: center;
-					height: calc(100% - 4.67rem);
+					padding-top: 32px;
+					padding-left: 19%;
+					padding-right: 19%;
 
 					.preview {
-						margin-top: 32px;
-						flex: 0 1 auto;
 						position: relative;
-						width: 66%;
-						height: 66%;
-						min-height: 652px;
-						border: 5.12px solid #000;
-						border-radius: 20.48px;
+						width: 100%;
+						border: 8px solid #000;
+						border-radius: 32px;
 						background: #fff;
 						overflow: hidden;
 						box-shadow: inset 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
