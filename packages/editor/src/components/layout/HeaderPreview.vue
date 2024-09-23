@@ -71,7 +71,11 @@
 			:show-border="false"
 			size="100%"
 			:mask="true"
-			radius="0"
+			:radius="userStore.isMobile ? '' : '0.75em'"
+			style="max-width: 23.43em"
+			:style="{
+				marginTop: userStore.isMobile ? '' : '7em'
+			}"
 		/>
 		<div class="header-text column">
 			<div
