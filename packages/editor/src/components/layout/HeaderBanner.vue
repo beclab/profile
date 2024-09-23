@@ -2,6 +2,11 @@
 	<q-responsive
 		v-if="header.style === HEADER_STYLE_TYPE.BANNER"
 		class="avatar-banner"
+		:style="{
+			marginTop: previewPc ? '7.5em' : '0',
+			borderTopRightRadius: previewPc ? '1.2em' : '0',
+			borderTopLeftRadius: previewPc ? '1.2em' : '0'
+		}"
 		:ratio="2"
 	>
 		<div class="full-width" :style="bannerStyle" />
@@ -11,6 +16,7 @@
 <script lang="ts" setup>
 import { computed, PropType } from 'vue';
 import { HEADER_STYLE_TYPE, UserHeader } from 'src/types/User';
+import { useUserStore } from 'src/stores/user';
 
 const props = defineProps({
 	header: {
@@ -18,6 +24,8 @@ const props = defineProps({
 		required: true
 	}
 });
+
+const userStore = useUserStore();
 
 const bannerStyle = computed(() => {
 	if (props.header.banner) {
@@ -31,12 +39,18 @@ const bannerStyle = computed(() => {
 		'background-size': 'cover'
 	};
 });
+
+const previewPc = computed(() => {
+	return !userStore.isMobile && process.env.ACTION === 'PREVIEW';
+});
 </script>
 
 <style scoped lang="scss">
 .avatar-banner {
 	top: 0;
 	position: absolute;
+	max-width: 37.5em;
 	width: 100%;
+	overflow: hidden;
 }
 </style>

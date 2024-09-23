@@ -3,7 +3,6 @@
 		class="terminus-avatar-root row justify-center items-center"
 		:style="{
 			width: size,
-			height: size,
 			'--avatarRadius': radius,
 			'--avatarBorder': `${showBorder ? 2 : 0}px solid ${borderColor}`
 		}"

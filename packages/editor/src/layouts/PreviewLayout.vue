@@ -52,6 +52,7 @@ console.log(!!platform.is.desktop);
 	height: 100vh;
 
 	.close-icon {
+		z-index: 1;
 		position: absolute;
 		height: 40px;
 		width: 40px;

@@ -71,10 +71,10 @@
 			:show-border="false"
 			size="100%"
 			:mask="true"
-			:radius="userStore.isMobile ? '' : '0.75em'"
-			style="max-width: 23.43em"
+			:radius="previewPc ? '0.75em' : ''"
 			:style="{
-				marginTop: userStore.isMobile ? '' : '7em'
+				marginTop: previewPc ? '7em' : '',
+				maxWidth: previewPc ? '23.43em' : ''
 			}"
 		/>
 		<div class="header-text column">
@@ -116,7 +116,7 @@
 			class="avatar-picture"
 			:border-color="textColor"
 			:style="{
-				'--avatarMarginTop': `calc(50% - ${header.profileSize / 16 / 2 + 2 + 'em'})`
+				'--avatarMarginTop': `calc(50% - ${header.profileSize / 16 / 2 + 2 + 'em'} + ${previewPc ? '7.5em' : '0em'})`
 			}"
 			:info="userStore.info"
 			:show-border="header.profileOutline"
@@ -157,7 +157,7 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { PropType } from 'vue';
+import { computed, PropType } from 'vue';
 import {
 	HEADER_STYLE_TYPE,
 	PROFILE_SHAPE_TYPE,
@@ -189,6 +189,10 @@ defineProps({
 });
 
 const userStore = useUserStore();
+
+const previewPc = computed(() => {
+	return !userStore.isMobile && process.env.ACTION === 'PREVIEW';
+});
 </script>
 <style scoped lang="scss">
 .classic-header-format-column {
