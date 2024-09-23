@@ -49,14 +49,14 @@ export default {
 		select_local_image_desc:
 			'Select local image, upload, and edit your own avatar',
 		recommend_sizes:
-			'Use PNG or JPG image over 400x400 pixels for best display',
+			'Use PNG or JPG image over 400x400 pixels for best display, and no larger than 5MB.',
 		header_style: 'Header style',
 		classic: 'Classic',
 		portrait: 'Portrait',
 		banner: 'Banner',
 		profile_picture: 'Profile picture',
 		upload_avatar_desc:
-			'Upload an image of at least 600x600 pixels in JPG, PNG, or GIF format.',
+			'Upload an image of at least 400x400 pixels in JPG, PNG format, and no larger than 5MB.',
 		profile_picture_shape: 'Profile picture shape',
 		profile_picture_size: 'Profile picture size',
 		profile_picture_outline: 'Profile picture outline',

@@ -48,13 +48,14 @@ export default {
 		upload_image: '上传图像',
 		select_local_image_desc: '选择本地图像，上传并编辑',
 		recommend_sizes:
-			'为了最佳显示效果，请使用超过 400x400 px 的 PNG 或 JPG 图像',
+			'为了最佳显示效果，请使用超过 400x400 px 的 PNG 或 JPG 图像，且大小不超过 5MB。',
 		header_style: '头部风格',
 		classic: '经典',
 		portrait: '肖像',
 		banner: '头图',
 		profile_picture: 'Profile 图片',
-		upload_avatar_desc: '请选取超过 600x600 px 的 JPG、PNG 或 GIF 图片上传。',
+		upload_avatar_desc:
+			'请选取超过 400x400 px 的 JPG、PNG图片上传，且大小不超过 5MB。',
 		profile_picture_shape: '图片形状',
 		profile_picture_size: '图片尺寸',
 		profile_picture_outline: '图片轮廓',

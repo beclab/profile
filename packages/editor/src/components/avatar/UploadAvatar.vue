@@ -9,6 +9,7 @@
 			accept=".jpg, .jpeg, .png, .gif, image/*"
 			action="/images/upload/v1"
 			:parmas="{}"
+			type="avator"
 			@ok="ok"
 			@fail="fail"
 		>
@@ -77,6 +78,7 @@ const fail = (response: unknown) => {
 .upload-background-root {
 	width: 100%;
 	height: 100%;
+	padding: 0 20px;
 
 	.upload-image-inner {
 		border-radius: 8px;

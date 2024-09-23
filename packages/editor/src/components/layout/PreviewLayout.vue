@@ -469,8 +469,7 @@ const onOpenWindow = (url: string) => {
 		}
 
 		.default-view {
-			position: absolute;
-			bottom: 2em;
+			margin-top: 12.5em;
 			text-align: center;
 		}
 
