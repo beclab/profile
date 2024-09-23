@@ -190,9 +190,14 @@ export class UserController {
 
     getDefaultSettings(info: TerminusInfo): User {
         let id = 1;
+        let nickName = '';
 
         if (info.terminusName) {
             id = stringToIntHash(info.terminusName, 1, 36);
+            if (info.terminusName.includes('@')){
+               const nameList = info.terminusName.split('@');
+               nickName = nameList[0];
+            }
         }
 
         return {
@@ -207,7 +212,7 @@ export class UserController {
                 profileShape: PROFILE_SHAPE_TYPE.CIRCULAR,
                 profileSize: 100,
                 profileOutline: false,
-                nickName: '',
+                nickName: nickName,
                 description: '',
                 textSize: SIZE_TYPE.SMALL,
                 format: HEADER_FORMAT_TYPE.COLUMN,

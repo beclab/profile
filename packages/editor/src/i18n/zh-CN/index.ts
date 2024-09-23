@@ -103,7 +103,9 @@ export default {
 		image_link: '图片链接',
 		are_you_sure_delete_this_block: '您是否确定删除此区块？',
 		text_block: '文本块的标题',
-		text_description: '轻点以编辑文本块。'
+		text_description: '轻点以编辑文本块。',
+		text_block_title: '文本块',
+		text_block_description: '输入一些文本以删除此临时占位符。'
 	},
 	appearance: {
 		theme: '主题',

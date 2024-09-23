@@ -9,6 +9,7 @@
 						: 'preview-container-padding'
 				"
 			>
+				<header-banner :header="user.header" />
 				<div
 					v-if="user.appearance.theme.style === THEME_TYPE.IMAGE"
 					class="overlay"
@@ -16,7 +17,7 @@
 				/>
 				<div
 					class="column items-center full-width"
-					:style="{ maxWidth: pc ? '37.5em' : '' }"
+					:style="{ maxWidth: pc ? '37.5em' : '', zIndex: '1' }"
 				>
 					<header-preview
 						:header="user.header"
@@ -123,10 +124,14 @@
 								}"
 							>
 								<div class="text-title">
-									{{ item.title }}
+									{{ item.title ? item.title : t('blocks.text_block_title') }}
 								</div>
 								<div class="text-description">
-									{{ item.description }}
+									{{
+										item.description
+											? item.description
+											: t('blocks.text_block_description')
+									}}
 								</div>
 							</div>
 							<div
@@ -197,6 +202,7 @@ import { colors } from 'quasar';
 import hexToRgb = colors.hexToRgb;
 import rgbToHex = colors.rgbToHex;
 import HeaderPreview from 'src/components/layout/HeaderPreview.vue';
+import HeaderBanner from '/src/components/layout/HeaderBanner.vue';
 import { useRoute } from 'vue-router';
 
 const props = defineProps({
@@ -326,24 +332,23 @@ const onOpenWindow = (url: string) => {
 	height: 100%;
 	position: relative;
 
-	.overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-	}
-
 	.preview-container-padding {
 		width: 100%;
 		padding: 2.5em 1.25em 0;
 	}
 
 	.preview-container {
-		min-height: 49.8em;
 		width: 100%;
-		position: relative;
+		height: 100%;
+
+		.overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+		}
 
 		.blocks-margin {
 			width: 100%;

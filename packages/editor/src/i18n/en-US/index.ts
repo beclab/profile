@@ -107,7 +107,10 @@ export default {
 		are_you_sure_delete_this_block:
 			'Are you sure you want to delete this block?',
 		text_block: 'Title of the text block',
-		text_description: 'Add block content'
+		text_description: 'Add block content',
+		text_block_title: 'Text block',
+		text_block_description:
+			'Type some text to remove this temporary placeholder.'
 	},
 	appearance: {
 		theme: 'Theme',

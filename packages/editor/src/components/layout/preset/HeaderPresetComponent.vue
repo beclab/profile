@@ -13,6 +13,7 @@
 			"
 			:style="{ background: '#FFFFFF' }"
 		>
+			<header-banner :header="header" />
 			<header-preview
 				:header="header"
 				:social="social"
@@ -44,6 +45,7 @@
 </template>
 <script lang="ts" setup>
 import HeaderPreview from 'src/components/layout/HeaderPreview.vue';
+import HeaderBanner from 'src/components/layout/HeaderBanner.vue';
 import { PropType } from 'vue';
 import {
 	HEADER_STYLE_TYPE,

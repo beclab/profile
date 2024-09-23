@@ -108,13 +108,11 @@
 		v-if="header.style === HEADER_STYLE_TYPE.BANNER"
 		class="banner-header-format-column column justify-center items-center"
 	>
-		<div class="avatar-banner" :style="bannerStyle" />
-
 		<profile-terminus-avatar
 			class="avatar-picture"
 			:border-color="textColor"
 			:style="{
-				'--avatarMarginTop': 11.75 - 2.5 - header.profileSize / 16 / 2 + 'em'
+				'--avatarMarginTop': `calc(50% - ${header.profileSize / 16 / 2 + 2 + 'em'})`
 			}"
 			:info="userStore.info"
 			:show-border="header.profileOutline"
@@ -155,7 +153,7 @@
 	</div>
 </template>
 <script lang="ts" setup>
-import { computed, PropType } from 'vue';
+import { PropType } from 'vue';
 import {
 	HEADER_STYLE_TYPE,
 	PROFILE_SHAPE_TYPE,
@@ -167,7 +165,7 @@ import { useUserStore } from 'src/stores/user';
 import ProfileTerminusAvatar from '../avatar/ProfileTerminusAvatar.vue';
 import SocialPreview from 'src/components/layout/SocialPreview.vue';
 
-const props = defineProps({
+defineProps({
 	header: {
 		type: Object as PropType<UserHeader>,
 		required: true
@@ -187,19 +185,6 @@ const props = defineProps({
 });
 
 const userStore = useUserStore();
-
-const bannerStyle = computed(() => {
-	if (props.header.banner) {
-		return {
-			background: `url("${props.header.banner}")`,
-			'background-size': 'cover'
-		};
-	}
-	return {
-		'background-image': `url("/banner/banner_default.jpg")`,
-		'background-size': 'cover'
-	};
-});
 </script>
 <style scoped lang="scss">
 .classic-header-format-column {
@@ -417,13 +402,6 @@ const bannerStyle = computed(() => {
 
 .banner-header-format-column {
 	width: 100%;
-
-	.avatar-banner {
-		top: 0;
-		position: absolute;
-		width: 100%;
-		height: 11.75em;
-	}
 
 	.avatar-picture {
 		margin-top: var(--avatarMarginTop);
