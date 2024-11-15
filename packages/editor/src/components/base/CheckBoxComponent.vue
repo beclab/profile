@@ -5,12 +5,19 @@
 	>
 		<q-img
 			class="bt-checkbox__img"
-			:src="modelValue ? 'imgs/check_box.svg' : 'imgs/uncheck_box.svg'"
+			:style="{
+				'--icon-width': size + 'px',
+				'--icon-height': size + 'px'
+			}"
+			:src="
+				modelValue
+					? 'imgs/checkbox/check_box.svg'
+					: $q.dark.isActive
+						? 'imgs/checkbox/uncheck_box_dark.svg'
+						: 'imgs/checkbox/uncheck_box_light.svg'
+			"
 		/>
-		<div
-			v-if="label"
-			class="bt-checkbox__label text-subtitle2 text-ink-1 q-ml-sm"
-		>
+		<div v-if="label" class="bt-checkbox__label text-body2 text-ink-1 q-ml-sm">
 			{{ label }}
 		</div>
 	</div>
@@ -25,6 +32,11 @@ defineProps({
 	label: {
 		type: String,
 		required: false
+	},
+	size: {
+		type: Number,
+		default: 16,
+		required: false
 	}
 });
 const emit = defineEmits(['update:modelValue']);
@@ -35,12 +47,11 @@ const emit = defineEmits(['update:modelValue']);
 	height: 20px;
 
 	&__img {
-		width: 20px;
-		height: 20px;
+		width: var(--icon-width);
+		height: var(--icon-height);
 	}
 
 	&__label {
-		max-width: 170px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
