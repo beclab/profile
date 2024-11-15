@@ -17,7 +17,10 @@
 						: 'imgs/checkbox/uncheck_box_light.svg'
 			"
 		/>
-		<div v-if="label" class="bt-checkbox__label text-body2 text-ink-1 q-ml-sm">
+		<div
+			v-if="label"
+			class="bt-checkbox__label text-subtitle2 text-ink-1 q-ml-sm"
+		>
 			{{ label }}
 		</div>
 	</div>
@@ -35,7 +38,7 @@ defineProps({
 	},
 	size: {
 		type: Number,
-		default: 16,
+		default: 20,
 		required: false
 	}
 });
@@ -52,6 +55,7 @@ const emit = defineEmits(['update:modelValue']);
 	}
 
 	&__label {
+		max-width: 170px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
