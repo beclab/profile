@@ -13,6 +13,7 @@ const dotenv = require('dotenv');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 dotenv.config();
 console.log(process.env);
@@ -91,6 +92,18 @@ module.exports = configure(function (ctx) {
 			sourcemap: false,
 			minify: true,
 
+			extendWebpack(cfg) {
+				!ctx.dev &&
+					cfg.plugins.push(
+						new PreloadWebpackPlugin({
+							rel: 'preload',
+							include: 'allAssets',
+							fileWhitelist: [/.+MaterialSymbolsRounded.+/],
+							as: 'font'
+						})
+					);
+			},
+
 			chainWebpack(chain, { isClient, isServer }) {
 				chain.resolve.alias
 					.set('assets', path.resolve('src/assets'))
@@ -154,11 +167,11 @@ module.exports = configure(function (ctx) {
 			proxy: {
 				// proxy all requests starting with /api to the backend server
 				'/api': {
-					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
+					target: `https://profile.${process.env.ACCOUNT_DOMAIN}`,
 					changeOrigin: true
 				},
 				'/images': {
-					target: `https://profile.${process.env.ACCOUNT}.myterminus.com`,
+					target: `https://profile.${process.env.ACCOUNT_DOMAIN}`,
 					changeOrigin: true
 				}
 				// '/bfl': {
